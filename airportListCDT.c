@@ -10,8 +10,9 @@
 #include "listaAeropuertoADT.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
-#define CANT_CLASES 4
-enum {REGULAR = 0,NO_REGULAR, PRIVADO}
+#define CANT_CLASES 3
+typedef enum {REGULAR = 0,NO_REGULAR, PRIVADO} clases_mov;
+typedef enum {LUNES = 0,NO_REGULAR, PRIVADO} clases_mov;
 
 struct tAeropuerto {
 	char * OACI;
