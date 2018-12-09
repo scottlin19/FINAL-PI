@@ -13,19 +13,18 @@
 #define CANT_CLASES 3
 typedef enum {REGULAR = 0,NO_REGULAR, PRIVADO} clases_mov;
 typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
-
+typedef enum {OACI = 1,DENOMINACION = 4,PROVINCIA = 21};
 struct tAeropuerto {
 	char * OACI;
 	char denominacion[MAX_DENOM];
 	char * provincia;
-	int mov_cabotaje[DIAS_SEMANA][CANT_CLASES];
-	int mov_internacional[DIAS_SEMANA][CANT_CLASES];
+	
 	
 	struct tAeropuerto * tail;
 
 };
 
-typedef struct node * nodeP;
+typedef struct tAeropuerto * nodeP;
 
 struct listaAeropuertoCDT {
 	nodeP first;
@@ -42,15 +41,15 @@ Error(const char* s)
 }
 
 
-listADT
+listaAeropuertoADT
 newList( void )
 {
-	return calloc(1, sizeof(struct airportListCDT ));
+	return calloc(1, sizeof(struct listaAeropuertoCDT ));
 }
 
 
 int
-listIsEmpty( airportCDT list)
+listIsEmpty( listaAeropuertoCDT list)
 {
 	return list->size == 0;
 }
