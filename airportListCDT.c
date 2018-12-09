@@ -12,7 +12,7 @@
 #define DIAS_SEMANA 7
 #define CANT_CLASES 3
 typedef enum {REGULAR = 0,NO_REGULAR, PRIVADO} clases_mov;
-typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} clases_mov;
+typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
 
 struct tAeropuerto {
 	char * OACI;
