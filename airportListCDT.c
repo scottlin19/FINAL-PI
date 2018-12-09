@@ -7,17 +7,26 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "airportListADT.h"
+#include "listaAeropuertoADT.h"
+#define MAX_DENOM 70
+#define DIAS_SEMANA 7
+#define CANT_CLASES 4
+enum {REGULAR = 0,NO_REGULAR, PRIVADO}
 
-struct tAirport {
+struct tAeropuerto {
+	char * OACI;
+	char denominacion[MAX_DENOM];
+	char * provincia;
+	int mov_cabotaje[DIAS_SEMANA][CANT_CLASES];
+	int mov_internacional[DIAS_SEMANA][CANT_CLASES];
 	
-	struct tAirport* tail;
+	struct tAeropuerto * tail;
 
 };
 
 typedef struct node * nodeP;
 
-struct airportListCDT {
+struct listaAeropuertoCDT {
 	nodeP first;
 	unsigned int size;
 	nodeP next;
