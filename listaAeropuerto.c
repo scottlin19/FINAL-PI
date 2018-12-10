@@ -118,7 +118,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		}
 		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 				
-			fscanf(archM,"%[^;]",s);
+			fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
 			
 			
 			switch(cont){
@@ -189,6 +189,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			
 			
 			}
+			cont++;
 		}
 		
 	
