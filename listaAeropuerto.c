@@ -122,12 +122,12 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			
 			switch(cont){
 				case CLASE:
-					if(s == "Regular"){
+					if(strcmp(s, "Regular") == 0){
 					
 							index = REGULAR;
-					else if(s = "No Regular"){
+					else if(strcmp(s, "No Regular") == 0){
 							index = NO_REGULAR;
-					}else if(s == "Vuelo Privado con Matrícula Extranjera" || s == "Vuelo Privado con Matrícula Nacional"){
+					}else if(strcmp(s,  "Vuelo Privado con Matrícula Extranjera") == 0 || strcmp(s, "Vuelo Privado con Matrícula Nacional") == 0){
 						
 							index = PRIVADO;
 					
@@ -137,14 +137,14 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 					
 				case CLASIFICACION:
 					
-					if(s == "Cabotaje"){
+					if(strcmp(s, "Cabotaje") == 0){
 						
 						index = CABOTAJE;			
-					}else if (s == "Internacional"){	
+					}else if (strcmp(s,  "Internacional")  == 0){	
 							
 						index = INTERNACIONAL;
 						
-					}else if (s == "N/A"){
+					}else if (strcmp(s, "N/A") == 0){
 						
 						index = NA;
 						
@@ -155,9 +155,9 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				case TIPO:
 					
 					
-						if(s == "Aterrizaje"){
+						if(strcmp(s,  "Aterrizaje") == 0){
 							index = ATERRIZAJE;			
-						}else if(s == "Despegue"){	
+						}else if(strcmp(s, "Despegue") == 0){	
 						 
 							index = DESPEGUE;
 						}	
