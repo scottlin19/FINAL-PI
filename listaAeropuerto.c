@@ -82,6 +82,13 @@ struct listaAeropuertoCDT {
 	nodeP next;
 };
 
+static int
+diaDeLaSemana(int d, int m, int a)
+{
+	return (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
+
+}
+
 void
 cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 {
@@ -189,12 +196,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	
 
 }
-static int
-diaDeLaSemana(int d, int m, int a)
-{
-	return (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 
-}
 
 static void
 Error(const char* s)
