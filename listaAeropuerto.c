@@ -112,7 +112,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 
 	
 	
-	while(fgets(s,MAX_TEXTO,archM) != NULL && s != NULL){
+	while(fgets(s,MAX_TEXTO,archM) != NULL){
 		printf("s = %s\n",s);
 		token = strtok(s,";");
 		
