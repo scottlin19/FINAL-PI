@@ -120,10 +120,12 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		}
 		if(cont == 0){
 			fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
+			printf("dia = %d , mes = %d año = %d \n",d,m,a);
 			datos->dia = diaDeLaSemana(d,m,a);
 			printf("dia = %d \n",datos->dia);
 			   
 			cont++;
+			 printf("cont = %d \n",cont);
 		}
 		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 				
@@ -147,12 +149,12 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case CLASIFICACION:
-										printf("cont = %d \n",cont);
+					printf("cont = %d \n",cont);
 
 					if(strcmp(s, "Cabotaje") == 0){
 						
 						index = CABOTAJE;
-						printf("index = internacional\n");
+						printf("index = cabotaje\n");
 					}else if (strcmp(s,  "Internacional")  == 0){	
 							
 						index = INTERNACIONAL;
