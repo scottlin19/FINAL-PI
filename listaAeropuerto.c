@@ -106,7 +106,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	char c;
 	char s[MAX_TEXTO];
 	int index;
-	struct tDatos datos = malloc(sizeof(tDatos)); 
+	 tDatos * datos = malloc(sizeof(tDatos)); 
 	while((c = fgetc(archM)) != '\n');
 	printf("c vale %c \n",c);
 	while((c = fgetc(archM)) != EOF){
@@ -120,7 +120,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		}
 		if(cont == 0){
 			fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
-			datos.dia = diaDeLaSemana(d,m,a);
+			datos->dia = diaDeLaSemana(d,m,a);
 			cont++;
 		}
 		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
@@ -140,7 +140,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 							index = PRIVADO;
 					
 					}
-					datos.clase_vuelo = index;
+					datos->clase_vuelo = index;
 				break;
 					
 				case CLASIFICACION:
@@ -157,7 +157,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 						index = NA;
 						
 					}
-					datos.clasificacion_vuelo = index;
+					datos->clasificacion_vuelo = index;
 				break;
 					
 				case TIPO:
@@ -171,19 +171,19 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 						}	
 			
 					
-					datos.tipo_vuelo = index;
+					datos->tipo_vuelo = index;
 				break;
 					
 				case ORIGEN:
-					datos.origen = s;
+					datos->origen = s;
 				break;
 					
 				case DESTINO:
-					datos.destino = s;
+					datos->destino = s;
 				break;
 					
 				case NOMBRE:
-					datos.nombre = s;
+					datos->nombre = s;
 				break;
 			
 			
