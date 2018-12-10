@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listaAeropuertoADT.h"
+#include "listaAerolineaADT.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
 
@@ -33,7 +34,7 @@ struct tAerolinea {
 typedef struct tAerolinea * tAerolineaP;
 
 
-typedef struct tAerolinea * tAerolinieaP;
+
 
 struct tAeropuerto {
 	char * OACI;
