@@ -131,12 +131,12 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				
 			fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
 			printf("s = %s \n",s);
-			
+			printf("cont = %d \n",cont);
 			switch(cont){
 				case CLASE:
-					printf("cont = %d \n",cont);
-					if(strcmp(s, "Regular") == 0){
 					
+					if(strcmp(s, "Regular") == 0){
+						printf("es regular \n");
 							index = REGULAR;
 					}else if(strcmp(s, "No Regular") == 0){
 							index = NO_REGULAR;
@@ -149,7 +149,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case CLASIFICACION:
-					printf("cont = %d \n",cont);
+					
 
 					if(strcmp(s, "Cabotaje") == 0){
 						
@@ -169,7 +169,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case TIPO:
-					printf("cont = %d \n",cont);
+					printf("en tipo\n");
 
 					
 						if(strcmp(s,"Aterrizaje") == 0){
@@ -184,19 +184,20 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case ORIGEN:
-					printf("cont = %d \n",cont);
+					
+					printf("en origen \n");
 
 					datos->origen = s;
 				break;
 					
 				case DESTINO:
-					printf("cont = %d \n",cont);
+					printf("en destino \n");
 
 					datos->destino = s;
 				break;
 					
 				case NOMBRE:
-					printf("cont = %d \n",cont);
+					printf("en nombre \n");
 					
 					datos->nombre = s;
 				break;
