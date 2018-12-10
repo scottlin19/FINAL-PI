@@ -127,7 +127,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			printf("dia = %d \n",datos->dia);
 			   
 			cont++;
-			 printf("cont = %d \n",cont);
+			printf("cont = %d \n",cont);
 		}
 		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 				
