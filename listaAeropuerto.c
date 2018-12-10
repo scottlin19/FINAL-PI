@@ -26,9 +26,9 @@
 #define NO_REGULAR 1
 #define PRIVADO 2
 #define CANT_CAMPOS_MOV 10
+#define MAX_TEXTO 30
 
-
-typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
+typedef enum {DOMINGO = 0,LUNES ,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO} dias_semana;
 
 typedef struct tMov{
 	int cant_cabotaje;
@@ -48,7 +48,7 @@ struct tAerolinea {
 
 typedef struct tAerolinea * tAerolineaP;
 
-struct datos{
+typedef struct tDatos{
 	char * origen;
 	char * destino;
 	char * nombre;
@@ -56,7 +56,7 @@ struct datos{
 	int clase_vuelo;
 	int clasificacion_vuelo;
 	int dia;
-}
+}tDatos;
 
 
 
@@ -83,7 +83,7 @@ struct listaAeropuertoCDT {
 };
 
 void
-cargarDatos(char * pathA,char * pathM)
+cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 {
 	FILE * archA = fopen(pathA,"rt");
 	
@@ -93,10 +93,11 @@ cargarDatos(char * pathA,char * pathM)
 	
 	}
 	
-	int dia,mes,anio;
+	int d,m,a;
 	int cont = 0;
 	char c;
-	char s[];
+	char s[MAX_TEXTO];
+	struct tDatos datos; 
 	while((c = fgetc(archM)) != EOF){
 	
 		if(c == ';'){
@@ -104,21 +105,30 @@ cargarDatos(char * pathA,char * pathM)
 			if(cont > CANT_CAMPOS_MOV){
 				cont = 0;
 			}
-		}else{
-			if(cont == 0){
-			
-			}else if(cont != 1 && cont != 8 && cont != 9){
-				
-				fscanf(archM,"%[^;]",s);	
-			}
 		}
+		if(cont == 0){
+			fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
+			datos.dia = diaDeLaSemana(d,m,a);
+			cont++;
+		}
+		if(cont != 1 && cont != 8 && cont != 9){
+				
+			fscanf(archM,"%[^;]",s);
+			cont++;	
+		}
+		
 	
 	}
 	
 	
 
 }
+static int
+diaDeLaSemana(int d, int m, int a)
+{
+	return (d+=m<3?y--:y-2,23*m/9+d+4+y/4-y/100+y/400)%7; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 
+}
 
 static void
 Error(const char* s)
