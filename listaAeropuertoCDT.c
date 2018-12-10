@@ -29,7 +29,7 @@ struct listaAerolinea {
 	
 
 };
-typedef struct tAerolinea * tAerolinieaP;
+typedef struct tAerolinea * tAerolineaP;
 
 struct tAeropuerto {
 	char * OACI;
