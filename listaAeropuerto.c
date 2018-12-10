@@ -105,7 +105,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	char c;
 	char s[MAX_TEXTO];
 	int index;
-	struct tDatos datos = malloc(sizeof(tDatos)); 
+	struct tDatos * datos = malloc(sizeof(tDatos)); 
 	while((c = fgetc(archM)) != '\n');
 	printf("c vale %c \n",c);
 	while((c = fgetc(archM)) != EOF){
