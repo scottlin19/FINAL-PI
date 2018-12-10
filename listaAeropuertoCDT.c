@@ -15,7 +15,11 @@ typedef enum {REGULAR = 0,NO_REGULAR, PRIVADO} clases_mov;
 typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
 typedef enum {OACI = 1,DENOMINACION = 4,PROVINCIA = 21};
 struct tAerolinea {
+	char * nombre;
 	int mov_cabojate[DIAS_SEMANA][CANT_CLASES];
+	int mov_internacional[DIAS_SEMANA][CANT_CLASES];
+	int mov_totales = 0;
+	
 	struct tAerolinea * tail;
 
 };
