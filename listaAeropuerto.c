@@ -10,13 +10,22 @@
 #include "listaAeropuertoADT.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
+#define OACI 1
+#define DENOMINACION 4
+#define PROVINCIA 21
+#define FECHA 0
+#define CLASE 2
+#define CLASIFICACION 3
+#define TIPO 4
+#define ORIGEN 5
+#define DESTINO 6
+#define NOMBRE 7
 
 typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
-typedef enum {OACI = 1,DENOMINACION = 4,PROVINCIA = 21};
 
 typedef struct tMov{
-	int cant_cabotaje = 0;
-	int cant_internacional = 0;
+	int cant_cabotaje;
+	int cant_internacional;
 
 }tMov;
 
@@ -32,6 +41,15 @@ struct tAerolinea {
 
 typedef struct tAerolinea * tAerolineaP;
 
+struct datos{
+	char * origen;
+	char * destino;
+	char * nombre;
+	int tipo_vuelo;
+	int clase_vuelo;
+	char * 
+
+}
 
 
 
@@ -45,6 +63,7 @@ struct tAeropuerto {
 	
 	int mov_totales;
 	struct tAeropuerto * tail;
+	
 
 };
 
@@ -56,7 +75,17 @@ struct listaAeropuertoCDT {
 	nodeP next;
 };
 
+void
+cargarDatos(char * pathA,char * pathM)
+{
+	FILE * archA = fopen(pathA,"rt");
+	FILE * archM = fopen(pathM,"rt");
+	int dia,mes,anio;
+	char * 
+	
+	
 
+}
 
 
 static void
