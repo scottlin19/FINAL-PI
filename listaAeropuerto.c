@@ -132,7 +132,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 					if(strcmp(s, "Regular") == 0){
 					
 							index = REGULAR;
-					else if(strcmp(s, "No Regular") == 0){
+					}else if(strcmp(s, "No Regular") == 0){
 							index = NO_REGULAR;
 					}else if(strcmp(s,  "Vuelo Privado con Matrícula Extranjera") == 0 || strcmp(s, "Vuelo Privado con Matrícula Nacional") == 0){
 						
