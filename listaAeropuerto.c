@@ -20,6 +20,9 @@
 #define ORIGEN 5
 #define DESTINO 6
 #define NOMBRE 7
+#define CABOTAJE 0
+#define INTERNACIONAL 1
+#define NA 2
 #define ATERRIZAJE 0
 #define DESPEGUE 1
 #define REGULAR 0
@@ -85,9 +88,9 @@ struct listaAeropuertoCDT {
 void
 cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 {
-	FILE * archA = fopen(pathA,"rt");
+	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
+	FILE * archM = fopen(pathM,"rt");//Abro archivo movimientos.csv
 	
-	FILE * archM = fopen(pathM,"rt");
 	if(archA == NULL|| archM == NULL){
 		printf("Error al abrir los archivos. \n");
 	
@@ -97,13 +100,15 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	int cont = 0;
 	char c;
 	char s[MAX_TEXTO];
+	int index;
 	struct tDatos datos; 
 	while((c = fgetc(archM)) != EOF){
 	
 		if(c == ';'){
 			cont++;
-			if(cont > CANT_CAMPOS_MOV){
-				cont = 0;
+			if(cont > CANT_CAMPOS_MOV){ //Si llego al final de los campos tengo que agregar el movimiento;
+				cont = 0;	
+							
 			}
 		}
 		if(cont == 0){
@@ -111,10 +116,79 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			datos.dia = diaDeLaSemana(d,m,a);
 			cont++;
 		}
-		if(cont != 1 && cont != 8 && cont != 9){
+		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 				
 			fscanf(archM,"%[^;]",s);
-			cont++;	
+			
+			
+			switch(cont){
+				case CLASE:
+					switch(s){
+					
+						case "Regular":
+							index = REGULAR;			
+						break;
+							
+						case "No Regular":
+							index = NO_REGULAR;
+						break;
+							
+						case "Vuelo Privado con Matrícula Extranjera":
+						case "Vuelo Privado con Matrícula Nacional":
+							index = PRIVADO;
+						break;
+					}
+					datos.clase_vuelo = index;
+				break;
+					
+				case CLASIFICACION:
+					switch(s){
+					
+						case "Cabotaje":
+							index = CABOTAJE;			
+						break;
+							
+						case "Internacional":
+							index = INTERNACIONAL;
+						break;
+							
+						case "N/A":
+							index = NA;
+						break;
+					}
+					datos.clasificacion_vuelo = index;
+				break;
+					
+				case TIPO:
+					switch(s){
+					
+						case "Aterrizaje":
+							index = ATERRIZAJE;			
+						break;
+							
+						case "Despegue":
+							index = DESPEGUE;
+						break;
+							
+			
+					}
+					datos.tipo_vuelo = index;
+				break;
+					
+				case ORIGEN:
+					datos.origen = s;
+				break;
+					
+				case DESTINO:
+					datos.destino = s;
+				break;
+					
+				case NOMBRE:
+					datos.nombre = s;
+				break;
+			
+			
+			}
 		}
 		
 	
@@ -139,7 +213,7 @@ Error(const char* s)
 
 
 listaAeropuertoADT
-newList( void )
+nuevaLista( void )
 {
 	return calloc(1, sizeof(struct listaAeropuertoCDT ));
 }
