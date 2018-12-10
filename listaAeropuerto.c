@@ -103,7 +103,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	
 	int d,m,a;
 	int cont = 0;
-	char c;
+	
 	
 	int index;
 	char * token;
@@ -121,25 +121,24 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		cont = 0;
 		
 		while(token != NULL){
-			//printf("c vale %c \n",c);
+			
 
 			if(cont == 0){
 				fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
-				printf("dia = %d , mes = %d año = %d \n",d,m,a);
+				
 				datos->dia = diaDeLaSemana(d,m,a);
 				printf("dia = %d \n",datos->dia);
 
-				printf("cont = %d \n",cont);
+				
 			}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
-				printf("token = %s \n",token);
-				printf("cont = %d \n",cont);
+			
 				switch(cont){
 					case CLASE:
 
 						if(strcmp(token, "Regular") == 0){
-							printf("es regular \n");
+							
 								index = REGULAR;
 						}else if(strcmp(s, "No Regular") == 0){
 								index = NO_REGULAR;
@@ -157,11 +156,11 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 						if(strcmp(token, "Cabotaje") == 0){
 
 							index = CABOTAJE;
-							printf("index = cabotaje\n");
+							
 						}else if (strcmp(token,  "Internacional")  == 0){	
 
 							index = INTERNACIONAL;
-							printf("index = internacional\n");
+							
 
 						}else if (strcmp(token, "N/A") == 0){
 
@@ -172,7 +171,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 					break;
 
 					case TIPO:
-						printf("en tipo\n");
+						
 
 
 							if(strcmp(token,"Aterrizaje") == 0){
@@ -188,24 +187,23 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 
 					case ORIGEN:
 
-						printf("en origen \n");
-						printf("token= %s \n",token);
+						
 						datos->origen = token;
-						printf("origen = %s \n",datos->origen);
+						
 					break;
 
 					case DESTINO:
-						printf("en destino \n");
-						printf("token = %s \n",token);
+						
+					
 						datos->destino = token;
-						printf("destino = %s \n",datos->destino);
+						
 					break;
 
 					case NOMBRE:
-						printf("en nombre \n");
-						printf("token = %s \n",token);
+						
+						
 						datos->nombre = token;
-						printf("nombre = %s \n",datos->nombre);
+						
 					break;
 
 
