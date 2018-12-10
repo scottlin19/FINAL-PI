@@ -10,33 +10,40 @@
 #include "listaAeropuertoADT.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
-#define CANT_CLASES 3
-typedef enum {REGULAR = 0,NO_REGULAR, PRIVADO} clases_mov;
+
 typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
 typedef enum {OACI = 1,DENOMINACION = 4,PROVINCIA = 21};
+
+typedef struct tMov{
+	int cant_cabotaje = 0;
+	int cant_internacional = 0;
+
+}tMov;
+
 struct tAerolinea {
 	char * nombre;
-	int mov_cabojate[DIAS_SEMANA][CANT_CLASES];
-	int mov_internacional[DIAS_SEMANA][CANT_CLASES];
-	int mov_totales = 0;
+	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
+				
+	int mov_totales; // = cantidad de vuelos regulares de la aerolinea
 	
 	struct tAerolinea * tail;
 
 };
 
-struct listaAerolinea {
-
-	
-
-};
 typedef struct tAerolinea * tAerolineaP;
+
+
+typedef struct tAerolinea * tAerolinieaP;
 
 struct tAeropuerto {
 	char * OACI;
 	char denominacion[MAX_DENOM];
 	char * provincia;
 	
+	int cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
+	tAerolineaP first_Aerolinea;
 	
+	int mov_totales;
 	struct tAeropuerto * tail;
 
 };
@@ -48,6 +55,8 @@ struct listaAeropuertoCDT {
 	unsigned int size;
 	nodeP next;
 };
+
+
 
 
 static void
@@ -112,7 +121,7 @@ static nodeP insertRec(nodeP first, listElementT elem, int * added) {
 }
 
 int
-insert( airportListADT list, listElementT element)
+insert( listaAeropuerto lista, listElementT element)
 {
 	/* Una mala solucion seria primero llamar a elementBelongs, y si retorna 1 no hacer nada porque ya pertenece
 	 * a la lista. Y si retorna cero volver a recorrer para insertar */
