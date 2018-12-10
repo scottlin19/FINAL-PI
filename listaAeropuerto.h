@@ -55,7 +55,7 @@ listaAeropuertoADT nuevaLista(void);
  * Precondicion:	Lista que sea valida, previamente creada
  * Postcondicion: 	Lista con el nuevo elemento,si no estaba repetido.
  */
-int insert(listADT  list, listElementT element);
+//int insert(listADT  list, listElementT element);
 
 
 /* Funcion:  		delete
@@ -68,7 +68,7 @@ int insert(listADT  list, listElementT element);
  * Precondicion:	Lista que sea valida, previamente creada
  * Postcondicion: 	Lista sin el elemento
  */
-int delete(listADT list, listElementT element);
+//int delete(listADT list, listElementT element);
 
 
 /* Funcion:  		listIsEmpty
@@ -80,7 +80,7 @@ int delete(listADT list, listElementT element);
  * Precondicion:	Lista que sea valida, previamente creada
  * Postcondicion: 	- (lista invariante).
  */
-int listIsEmpty(const listADT list);
+//int listIsEmpty(const listADT list);
 
 /* Funcion:  		elementBelongs
  * Uso:  		if ( elementBelongs( list, 12.3 ))...
@@ -91,7 +91,7 @@ int listIsEmpty(const listADT list);
  * Precondicion:	Lista previamente creada
  * Postcondicion: 	- (lista invariante).
  */
-int elementBelongs(const listADT list, listElementT element);
+//int elementBelongs(const listADT list, listElementT element);
 
 
 /* Funcion: 		freeList
@@ -102,33 +102,33 @@ int elementBelongs(const listADT list, listElementT element);
  * Precondicion:	Lista que sea valida.
  * Postcondicion: 	-
  */
-void freeList(listADT list);
+//void freeList(listADT list);
 
 /** 
  * Retorna la cantidad de elementos en la lista
  */
-int listSize(const listADT list);
+//int listSize(const listADT list);
 
 
 /**
  * Funciones para poder iterar sobre la lista
  */
-void toBegin(listADT list);
+//void toBegin(listADT list);
 
-int hasNext(const listADT list);
+//int hasNext(const listADT list);
 
-listElementT next(listADT list);
+//listElementT next(listADT list);
 
 /**
  * Ejemplo de implementación "funcional"
  * inject recibe una funcion y la aplica a cada elemento de la lista
  */
-void inject(listADT list, listElementT (*fn) (listElementT));
+//void inject(listADT list, listElementT (*fn) (listElementT));
 
 /**
  * Devuelve una nueva lista con los elementos de list, pero aplicandole la funcion fn
  * a cada elemento
  * */
-listADT map(const listADT list, listElementT (*fn) (listElementT));
+//listADT map(const listADT list, listElementT (*fn) (listElementT));
 
 #endif /* LISTADT_H_ */

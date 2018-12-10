@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaAeropuertoADT.h"
+#include "listaAeropuerto.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
 #define OACI 1
@@ -242,14 +242,14 @@ static int contains(nodeP first, listElementT elem) {
 
 	return contains( first->tail, elem);
 }
-
+/*
 int
 elementBelongs( listADT list, listElementT element)
 {
 	return contains(list->first, element);
 }
-
-
+*/
+/*
 static nodeP insertRec(nodeP first, , int * added) {
 	int c;
 	if( first == NULL || (c=compare(first->head, elem)) > 0 )
@@ -267,7 +267,7 @@ static nodeP insertRec(nodeP first, , int * added) {
 		first->tail = insertRec( first->tail, elem, added);
 	return first;
 }
-
+*/
 int
 insert( listaAeropuerto lista, listElementT element)
 {
@@ -283,7 +283,7 @@ insert( listaAeropuerto lista, listElementT element)
 
 
 
-
+/*
 
 void
 freeList( listADT list)
@@ -323,4 +323,4 @@ next(listADT list) {
 	return ans;
 }
 
-
+*/
