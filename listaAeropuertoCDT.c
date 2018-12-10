@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listaAeropuertoADT.h"
-#include "listaAerolineaADT.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
 
