@@ -136,7 +136,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				switch(cont){
 					case CLASE:
 
-						if(strcmp(s, "Regular") == 0){
+						if(strcmp(token, "Regular") == 0){
 							printf("es regular \n");
 								index = REGULAR;
 						}else if(strcmp(s, "No Regular") == 0){
