@@ -27,7 +27,7 @@
 #define NO_REGULAR 1
 #define PRIVADO 2
 #define CANT_CAMPOS_MOV 10
-#define MAX_TEXTO 145
+#define MAX_TEXTO 250
 
 typedef enum {DOMINGO = 0,LUNES ,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO} dias_semana;
 
@@ -104,32 +104,27 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	int d,m,a;
 	int cont = 0;
 	char c;
-	char s[MAX_TEXTO];
+	char info[30];
 	int index;
+	char * token;
 	tDatos * datos = malloc(sizeof(tDatos)); 
 	while((c = fgetc(archM)) != '\n');
 	fseek(archM,-1,SEEK_CUR);
 	printf("c vale %c \n",c);
-	while((c = fgetc(archM)) != EOF){
+	char * s[MAX_TEXTO];
+	s = fscanf("%s\n",s);
+	token = strtok(s,";");
+	while(token != NULL){
 		printf("c vale %c \n",c);
-		if(c == ';'){
-			cont++;
-			printf("cont  vale = %d \n",cont);
-			
-		}else if(c != 0 && c == '\n'){ //Si llego al final de los campos tengo que agregar el movimiento;
-				cont = 0;	
-				printf("nombre = %s\norigen = %s\ndestino = %s\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo,datos->tipo_vuelo,datos->dia);		
-		}
+		
 		if(cont == 0){
 			fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
 			printf("dia = %d , mes = %d año = %d \n",d,m,a);
 			datos->dia = diaDeLaSemana(d,m,a);
 			printf("dia = %d \n",datos->dia);
 			   
-			cont++;
 			printf("cont = %d \n",cont);
-		}
-		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
+		}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 				
 			fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
 			printf("s = %s \n",s);
@@ -188,7 +183,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				case ORIGEN:
 					
 					printf("en origen \n");
-printf("s = %s \n",s);
+					printf("s = %s \n",s);
 					datos->origen = s;
 					printf("origen = %s \n",datos->origen);
 				break;
@@ -211,7 +206,8 @@ printf("s = %s \n",s);
 			}
 			//cont++;
 		}
-		
+		cont++;
+		token =  strtok(NULL, s);
 	
 	}
 	
