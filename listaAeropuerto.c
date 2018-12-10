@@ -119,8 +119,8 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		cont = 0;
 		
 		while(token != NULL){
-			
-
+			printf("token = %s \n",token);
+			printf("cont = %d \n",cont);
 			if(cont == 0){
 				fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
 				
