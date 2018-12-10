@@ -10,9 +10,6 @@
 #include "listaAeropuerto.h"
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
-#define OACI 1
-#define DENOMINACION 4
-#define PROVINCIA 21
 #define FECHA 0
 #define CLASE 2
 #define CLASIFICACION 3
@@ -144,34 +141,31 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case CLASIFICACION:
-					switch(s){
 					
-						case "Cabotaje":
-							index = CABOTAJE;			
-						break;
+					if(s == "Cabotaje"){
+						
+						index = CABOTAJE;			
+					}else if (s == "Internacional"){	
 							
-						case "Internacional":
-							index = INTERNACIONAL;
-						break;
-							
-						case "N/A":
-							index = NA;
-						break;
+						index = INTERNACIONAL;
+						
+					}else if (s == "N/A"){
+						
+						index = NA;
+						
 					}
 					datos.clasificacion_vuelo = index;
 				break;
 					
 				case TIPO:
-					switch(s){
 					
-						case "Aterrizaje":
+					
+						if(s == "Aterrizaje"){
 							index = ATERRIZAJE;			
-						break;
-							
-						case "Despegue":
+						}else if(s == "Despegue"){	
+						 
 							index = DESPEGUE;
-						break;
-							
+						}	
 			
 					}
 					datos.tipo_vuelo = index;
@@ -203,7 +197,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 static int
 diaDeLaSemana(int d, int m, int a)
 {
-	return (d+=m<3?y--:y-2,23*m/9+d+4+y/4-y/100+y/400)%7; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
+	return (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 
 }
 
