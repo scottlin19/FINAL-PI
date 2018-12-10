@@ -190,14 +190,14 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 					printf("en origen \n");
 printf("s = %s \n",s);
 					datos->origen = s;
-					printf("origen = %s \n",datos->nombre);
+					printf("origen = %s \n",datos->origen);
 				break;
 					
 				case DESTINO:
 					printf("en destino \n");
 					printf("s = %s \n",s);
 					datos->destino = s;
-					printf("destino = %s \n",datos->nombre);
+					printf("destino = %s \n",datos->destino);
 				break;
 					
 				case NOMBRE:
