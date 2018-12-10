@@ -117,7 +117,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		
 		token = strtok(s,";");
 		while(token != NULL){
-			printf("c vale %c \n",c);
+			//printf("c vale %c \n",c);
 
 			if(cont == 0){
 				fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
@@ -129,7 +129,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
-				printf("s = %s \n",s);
+				printf("token = %s \n",token);
 				printf("cont = %d \n",cont);
 				switch(cont){
 					case CLASE:
@@ -185,21 +185,21 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 					case ORIGEN:
 
 						printf("en origen \n");
-						printf("s = %s \n",token);
+						printf("token= %s \n",token);
 						datos->origen = token;
 						printf("origen = %s \n",datos->origen);
 					break;
 
 					case DESTINO:
 						printf("en destino \n");
-						printf("s = %s \n",token);
+						printf("token = %s \n",token);
 						datos->destino = token;
 						printf("destino = %s \n",datos->destino);
 					break;
 
 					case NOMBRE:
 						printf("en nombre \n");
-						printf("s = %s \n",token);
+						printf("token = %s \n",token);
 						datos->nombre = token;
 						printf("nombre = %s \n",datos->nombre);
 					break;
