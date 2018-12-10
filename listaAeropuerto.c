@@ -115,10 +115,10 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		if(c == ';'){
 			cont++;
 			printf("cont  vale = %d \n",cont);
-			if(c == '\n'){ //Si llego al final de los campos tengo que agregar el movimiento;
+			
+		}else if(c == '\n'){ //Si llego al final de los campos tengo que agregar el movimiento;
 				cont = 0;	
 				printf("nombre = %s\norigen = %s\ndestino = %s\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo,datos->tipo_vuelo,datos->dia);		
-			}
 		}
 		if(cont == 0){
 			fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
