@@ -121,6 +121,8 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 		if(cont == 0){
 			fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
 			datos->dia = diaDeLaSemana(d,m,a);
+			printf("dia = %d \",datos->dia);
+			   
 			cont++;
 		}
 		if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
@@ -130,6 +132,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			
 			switch(cont){
 				case CLASE:
+					printf("cont = %d \n",cont);
 					if(strcmp(s, "Regular") == 0){
 					
 							index = REGULAR;
@@ -144,14 +147,17 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case CLASIFICACION:
-					
+										printf("cont = %d \n",cont);
+
 					if(strcmp(s, "Cabotaje") == 0){
 						
-						index = CABOTAJE;			
+						index = CABOTAJE;
+						printf("index = internacional\n");
 					}else if (strcmp(s,  "Internacional")  == 0){	
 							
 						index = INTERNACIONAL;
-						
+						printf("index = internacional\n");
+
 					}else if (strcmp(s, "N/A") == 0){
 						
 						index = NA;
@@ -161,11 +167,12 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case TIPO:
+					printf("cont = %d \n",cont);
+
 					
-					
-						if(strcmp(s,  "Aterrizaje") == 0){
+						if(strcmp(s,"Aterrizaje") == 0){
 							index = ATERRIZAJE;			
-						}else if(strcmp(s, "Despegue") == 0){	
+						}else if(strcmp(s,"Despegue") == 0){	
 						 
 							index = DESPEGUE;
 						}	
@@ -175,14 +182,20 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				break;
 					
 				case ORIGEN:
+					printf("cont = %d \n",cont);
+
 					datos->origen = s;
 				break;
 					
 				case DESTINO:
+					printf("cont = %d \n",cont);
+
 					datos->destino = s;
 				break;
 					
 				case NOMBRE:
+					printf("cont = %d \n",cont);
+					
 					datos->nombre = s;
 				break;
 			
