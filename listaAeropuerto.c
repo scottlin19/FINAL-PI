@@ -108,10 +108,11 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	int index;
 	char * token;
 	tDatos * datos = malloc(sizeof(tDatos)); 
+	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
 	
 	printf("c vale %c \n",c);
-	char  s[MAX_TEXTO];
+	
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL && s != NULL){
 		printf("s = %s\n",s);
