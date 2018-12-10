@@ -14,8 +14,11 @@ typedef int  listElementT;
  * Se lo define como puntero a "cierta estructura"
  * para ocultar la real representacion de la misma
  */
-typedef struct listCDT *listADT;
+typedef struct listaAeropuertoCDT *listaAeropuertoADT;
 
+
+
+void cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM);
 
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
@@ -24,6 +27,7 @@ typedef struct listCDT *listADT;
  * que el segundo en la lista, devolver número positivo
  * si debe aparecer después, o bien 0 si son elementos equivalentes
  */
+
 static int compare(listElementT elem1, listElementT elem2 )
 {
 	return elem1 - elem2;		
@@ -37,7 +41,7 @@ static int compare(listElementT elem1, listElementT elem2 )
  * Precondicion:		-
  * Postcondicion: 	Lista creada
  */
-listADT newList(void);
+listaAeropuertoADT newList(void);
 
 
 /* Funcion:  		Insert
