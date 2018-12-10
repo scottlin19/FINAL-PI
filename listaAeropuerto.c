@@ -204,7 +204,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			
 			
 			}
-			cont++;
+			//cont++;
 		}
 		
 	
