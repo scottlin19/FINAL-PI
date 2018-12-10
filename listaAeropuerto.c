@@ -4,7 +4,7 @@
  *
  */
 /* Version recursiva de listas implementadas dinamicamente */
-
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "listaAeropuerto.h"
@@ -106,7 +106,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	char c;
 	char s[MAX_TEXTO];
 	int index;
-	struct tDatos datos; 
+	struct tDatos datos = malloc(sizeof(tDatos)); 
 	while((c = fgetc(archM)) != '\n');
 	printf("c vale %c \n",c);
 	while((c = fgetc(archM)) != EOF){
