@@ -122,7 +122,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			printf("token = %s \n",token);
 			printf("cont = %d \n",cont);
 			if(cont == 0){
-				fscanf(archM,"%02d/%02d/%04d;",&d,&m,&a);
+				sscanf("%02d/%02d/%04d;",&d,&m,&a);
 				printf("d = %d, m = %d, a = %d \n",d,m,a);
 				datos->dia = diaDeLaSemana(d,m,a);
 				printf("dia = %d \n",datos->dia);
