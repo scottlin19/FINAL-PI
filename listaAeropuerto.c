@@ -29,7 +29,7 @@
 #define NO_REGULAR 1
 #define PRIVADO 2
 #define CANT_CAMPOS_MOV 10
-#define MAX_TEXTO 30
+#define MAX_TEXTO 145
 
 typedef enum {DOMINGO = 0,LUNES ,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO} dias_semana;
 
@@ -102,6 +102,8 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	char s[MAX_TEXTO];
 	int index;
 	struct tDatos datos; 
+	while((c = fgetc(archM)) != '\n');
+	printf("c vale %c \n",c);
 	while((c = fgetc(archM)) != EOF){
 	
 		if(c == ';'){
