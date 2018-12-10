@@ -122,20 +122,15 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			
 			switch(cont){
 				case CLASE:
-					switch(s){
+					if(s == "Regular"){
 					
-						case "Regular":
-							index = REGULAR;			
-						break;
-							
-						case "No Regular":
+							index = REGULAR;
+					else if(s = "No Regular"){
 							index = NO_REGULAR;
-						break;
-							
-						case "Vuelo Privado con Matrícula Extranjera":
-						case "Vuelo Privado con Matrícula Nacional":
+					}else if(s == "Vuelo Privado con Matrícula Extranjera" || s == "Vuelo Privado con Matrícula Nacional"){
+						
 							index = PRIVADO;
-						break;
+					
 					}
 					datos.clase_vuelo = index;
 				break;
@@ -167,7 +162,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 							index = DESPEGUE;
 						}	
 			
-					}
+					
 					datos.tipo_vuelo = index;
 				break;
 					
