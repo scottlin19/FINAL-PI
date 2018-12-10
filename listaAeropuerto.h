@@ -41,7 +41,7 @@ static int compare(listElementT elem1, listElementT elem2 )
  * Precondicion:		-
  * Postcondicion: 	Lista creada
  */
-listaAeropuertoADT newList(void);
+listaAeropuertoADT nuevaLista(void);
 
 
 /* Funcion:  		Insert
