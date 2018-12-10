@@ -116,7 +116,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			cont++;
 			printf("cont  vale = %d \n",cont);
 			
-		}else if(c == '\n'){ //Si llego al final de los campos tengo que agregar el movimiento;
+		}else if(c != 0 && c == '\n'){ //Si llego al final de los campos tengo que agregar el movimiento;
 				cont = 0;	
 				printf("nombre = %s\norigen = %s\ndestino = %s\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo,datos->tipo_vuelo,datos->dia);		
 		}
@@ -188,20 +188,23 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 				case ORIGEN:
 					
 					printf("en origen \n");
-
+printf("s = %s \n",s);
 					datos->origen = s;
+					printf("origen = %s \n",datos->nombre);
 				break;
 					
 				case DESTINO:
 					printf("en destino \n");
-
+					printf("s = %s \n",s);
 					datos->destino = s;
+					printf("destino = %s \n",datos->nombre);
 				break;
 					
 				case NOMBRE:
 					printf("en nombre \n");
-					
+					printf("s = %s \n",s);
 					datos->nombre = s;
+					printf("nombre = %s \n",datos->nombre);
 				break;
 			
 			
