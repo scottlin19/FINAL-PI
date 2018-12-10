@@ -113,7 +113,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	printf("c vale %c \n",c);
 	char  s[MAX_TEXTO];
 	
-	while(fscanf(archM,"%s\n",s) == 1 && s != NULL){
+	while(fscanf(archM,"%s",s) == 1 && s != NULL){
 		printf("s = %s\n",s);
 		token = strtok(s,";");
 		printf("primer token = %s\n",token);
