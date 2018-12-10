@@ -134,33 +134,6 @@ insert( listaAeropuerto lista, listElementT element)
 }
 
 
-static nodeP delRec(nodeP first, listElementT elem, int * res) {
-
-	int c;
-	if( first==NULL || (c=compare(first->head, elem)) > 0 )
-		return first;
-
-	if( c == 0 )
-	{
-		nodeP aux = first->tail;
-		free(first);
-		*res = 1;
-		return aux;
-	}
-	first->tail = delRec(first->tail, elem, res);
-	return first;
-
-}
-
-int
-delete( listADT list, listElementT element)
-{
-	int del=0;
-	list->first = delRec(list->first, element, &del);
-	if ( del )
-		list->size--;
-	return del;
-}
 
 
 
