@@ -114,7 +114,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			cont++;
 			if(cont > CANT_CAMPOS_MOV){ //Si llego al final de los campos tengo que agregar el movimiento;
 				cont = 0;	
-				printf("nombre = %s\norigen = %s\ndestino = %d\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n");		
+				printf("nombre = %s\norigen = %s\ndestino = %d\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n",datos.nombre,datos.origen,dato.destino,datos.clase_vuelo,datos.clasificacion_vuelo,datos.tipo_vuelo,dia);		
 			}
 		}
 		if(cont == 0){
