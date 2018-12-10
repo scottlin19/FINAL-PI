@@ -40,7 +40,7 @@ struct tAeropuerto {
 	char denominacion[MAX_DENOM];
 	char * provincia;
 	
-	int cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
+	tMov cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
 	tAerolineaP first_Aerolinea;
 	
 	int mov_totales;
@@ -102,7 +102,7 @@ elementBelongs( listADT list, listElementT element)
 }
 
 
-static nodeP insertRec(nodeP first, listElementT elem, int * added) {
+static nodeP insertRec(nodeP first, , int * added) {
 	int c;
 	if( first == NULL || (c=compare(first->head, elem)) > 0 )
 	{
