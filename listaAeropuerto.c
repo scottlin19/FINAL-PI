@@ -110,7 +110,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	while((c = fgetc(archM)) != '\n');
 	printf("c vale %c \n",c);
 	while((c = fgetc(archM)) != EOF){
-	
+		printf("c vale %c \n",c);
 		if(c == ';'){
 			cont++;
 			if(cont > CANT_CAMPOS_MOV){ //Si llego al final de los campos tengo que agregar el movimiento;
