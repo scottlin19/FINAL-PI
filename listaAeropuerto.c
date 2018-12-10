@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listaAeropuerto.h"
+#include <string.h>
 #define MAX_DENOM 70
 #define DIAS_SEMANA 7
 #define FECHA 0
@@ -77,9 +78,9 @@ struct tAeropuerto {
 typedef struct tAeropuerto * tAeropuertoP;
 
 struct listaAeropuertoCDT {
-	nodeP first;
+	tAeropuertoP first;
 	unsigned int size;
-	nodeP next;
+	tAeropuertoP next;
 };
 
 static int
@@ -114,7 +115,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			cont++;
 			if(cont > CANT_CAMPOS_MOV){ //Si llego al final de los campos tengo que agregar el movimiento;
 				cont = 0;	
-				printf("nombre = %s\norigen = %s\ndestino = %d\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n",datos.nombre,datos.origen,dato.destino,datos.clase_vuelo,datos.clasificacion_vuelo,datos.tipo_vuelo,dia);		
+				printf("nombre = %s\norigen = %s\ndestino = %s\nclase = %d\nclasificacion = %d\ntipo = %d\ndia = %d\n",datos.nombre,datos.origen,datos.destino,datos.clase_vuelo,datos.clasificacion_vuelo,datos.tipo_vuelo,datos.dia);		
 			}
 		}
 		if(cont == 0){
@@ -214,14 +215,14 @@ nuevaLista( void )
 
 
 int
-listIsEmpty( listaAeropuertoCDT list)
+listIsEmpty( listaAeropuertoADT list)
 {
 	return list->size == 0;
 }
 
 
 
-
+/*
 static int contains(nodeP first, listElementT elem) {
 	int c;
 
@@ -232,7 +233,7 @@ static int contains(nodeP first, listElementT elem) {
 		return 1;
 
 	return contains( first->tail, elem);
-}
+}*/
 /*
 int
 elementBelongs( listADT list, listElementT element)
@@ -241,11 +242,11 @@ elementBelongs( listADT list, listElementT element)
 }
 */
 /*
-static nodeP insertRec(nodeP first, , int * added) {
+static tAeropuertoP insertRec(tAeropuertoP first, int elem , int * added) {
 	int c;
 	if( first == NULL || (c=compare(first->head, elem)) > 0 )
 	{
-		nodeP aux = malloc(sizeof( struct tAeropuerto ));
+		tAeropuertoP aux = malloc(sizeof( struct tAeropuerto ));
 		if (aux == NULL)
 			Error("No hay lugar para otro nodo\n");
 		aux->tail = first;
@@ -257,14 +258,11 @@ static nodeP insertRec(nodeP first, , int * added) {
 	if( c < 0 )
 		first->tail = insertRec( first->tail, elem, added);
 	return first;
-}
-*/
+}*/
+/*
 int
-insert( listaAeropuerto lista, listElementT element)
+insert( listaAeropuertoADT lista, listElementT element)
 {
-	/* Una mala solucion seria primero llamar a elementBelongs, y si retorna 1 no hacer nada porque ya pertenece
-	 * a la lista. Y si retorna cero volver a recorrer para insertar */
-
 	int added =0 ;
 	list->first = insertRec(list->first, element, &added);
 	if (added)
@@ -272,7 +270,7 @@ insert( listaAeropuerto lista, listElementT element)
 	return added;
 }
 
-
+*/
 
 /*
 

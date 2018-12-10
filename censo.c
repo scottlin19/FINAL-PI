@@ -16,4 +16,9 @@ int main(int argc, char * argv[])
 /*
 void query1(listaAeropuertoADT lsitaAeropuerto){
 	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
+	if (archivoDest == NULL){
+		printf("Error al crear/reemplazar archivo");
+	}
+	else {
+		
 */
