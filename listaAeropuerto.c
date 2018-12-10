@@ -116,6 +116,8 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	while(fscanf(archM,"%s\n",s) == 1 && s != NULL){
 		
 		token = strtok(s,";");
+		cont = 0;
+		
 		while(token != NULL){
 			//printf("c vale %c \n",c);
 
@@ -212,7 +214,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 			token =  strtok(NULL, ";");
 
 		}
-
+		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\ntipo=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo,datos->tipo_vuelo);
 	}
 
 }
