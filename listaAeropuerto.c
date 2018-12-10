@@ -108,6 +108,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM)
 	int index;
 	 tDatos * datos = malloc(sizeof(tDatos)); 
 	while((c = fgetc(archM)) != '\n');
+	fseek(archM,-1,SEEK_CUR);
 	printf("c vale %c \n",c);
 	while((c = fgetc(archM)) != EOF){
 		printf("c vale %c \n",c);
