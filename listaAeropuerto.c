@@ -20,6 +20,13 @@
 #define ORIGEN 5
 #define DESTINO 6
 #define NOMBRE 7
+#define ATERRIZAJE 0
+#define DESPEGUE 1
+#define REGULAR 0
+#define NO_REGULAR 1
+#define PRIVADO 2
+#define CANT_CAMPOS_MOV 10
+
 
 typedef enum {LUNES = 0,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO} dias_semana;
 
@@ -47,8 +54,8 @@ struct datos{
 	char * nombre;
 	int tipo_vuelo;
 	int clase_vuelo;
-	char * 
-
+	int clasificacion_vuelo;
+	int dia;
 }
 
 
@@ -79,9 +86,34 @@ void
 cargarDatos(char * pathA,char * pathM)
 {
 	FILE * archA = fopen(pathA,"rt");
+	
 	FILE * archM = fopen(pathM,"rt");
+	if(archA == NULL|| archM == NULL){
+		printf("Error al abrir los archivos. \n");
+	
+	}
+	
 	int dia,mes,anio;
-	char * 
+	int cont = 0;
+	char c;
+	char s[];
+	while((c = fgetc(archM)) != EOF){
+	
+		if(c == ';'){
+			cont++;
+			if(cont > CANT_CAMPOS_MOV){
+				cont = 0;
+			}
+		}else{
+			if(cont == 0){
+			
+			}else if(cont != 1 && cont != 8 && cont != 9){
+				
+				fscanf(archM,"%[^;]",s);	
+			}
+		}
+	
+	}
 	
 	
 
