@@ -121,9 +121,9 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 	
 	while(tieneProx(lista)){
 		if((c = strcmp(lista->proximo->datos.oaci,oaci)) == 0){
-			if(clase == "Regular"){
+			if(strcmp(clase,"Regular") == 0){
 				claseIndex = REGULAR;
-			}else if(clase == "No Regular"){
+			}else if(strcmp(clase,"No Regular") == 0){
 				claseIndex = NO_REGULAR;	
 			}else{
 				claseIndex = VUELO_PRIVADO;
