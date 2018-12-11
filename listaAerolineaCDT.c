@@ -1,4 +1,4 @@
-#include "listaAreolineaADT.h"
+#include "listaAerolineaADT.h"
 
 struct tAerolinea {
 	char * nombre;
