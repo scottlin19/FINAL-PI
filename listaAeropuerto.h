@@ -113,12 +113,13 @@ listaAeropuertoADT nuevaLista(void);
 /**
  * Funciones para poder iterar sobre la lista
  */
-//void toBegin(listADT list);
+void toBegin(listaAeropuertoADT listaAeropuerto);
 
 //int hasNext(const listADT list);
 
 //listElementT next(listADT list);
 
+void next(listaAeropuertoADT listaAeropuerto);
 /**
  * Ejemplo de implementación "funcional"
  * inject recibe una funcion y la aplica a cada elemento de la lista
