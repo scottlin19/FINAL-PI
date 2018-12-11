@@ -41,7 +41,7 @@ struct listaAreolineaCDT{
 
 }
 
-static tAeropuertoP insertALRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
+static tAeropuertoP insertarALRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
 	
 	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
 	{
