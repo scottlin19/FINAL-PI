@@ -129,10 +129,10 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 				claseIndex = VUELO_PRIVADO;
 			}
 			if(clasif == "Cabotaje"){
-				(lista->proximo->cant_mov[dia][claseIndex].cabotaje)++;
+				(lista->proximo->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
-				(lista->proximo->cant_mov[dia][claseIndex].internacional)++;
+				(lista->proximo->cant_mov[dia][claseIndex].cant_internacional)++;
 			}
 			return 0;
 			
@@ -163,7 +163,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 	int cont;	
 	int valido;
 	char * token;
-	tDatos  datos; 
+	tDatosA  datos; 
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archA);
 	while(fgets(s,MAX_TEXTO,archA) != NULL){
