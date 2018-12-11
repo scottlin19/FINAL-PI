@@ -57,13 +57,14 @@ typedef struct tAeropuerto {
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
+	
 }tAeropuerto;
 
 typedef struct tAeropuerto * tAeropuertoP;
 
 struct listaAeropuertoCDT {
 	tAeropuertoP primero;
-
+	
 	tAeropuertoP proximo;
 };
 
@@ -111,16 +112,14 @@ insertar( listaAeropuertoADT lista, tDatosA datos)
 }
 
 
-int
-agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
+
+tAeropuertoP
+agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
 {
-	alPrincipioA(lista);
+	
 	int c;
 	int claseIndex;
-
-	
-	while(tieneProxAP(lista)){
-		if((c = strcmp(lista->proximo->datos.oaci,oaci)) == 0){
+		if((c = strcmp(primero->datos.oaci,oaci)) == 0){
 			if(strcmp(clase,"Regular") == 0){
 				claseIndex = REGULAR;
 			}else if(strcmp(clase,"No Regular") == 0){
@@ -129,27 +128,46 @@ agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, i
 				claseIndex = VUELO_PRIVADO;
 			}
 			if(strcmp(clasif,"Cabotaje"){
-				(lista->proximo->cant_mov[dia][claseIndex].cant_cabotaje)++;
+				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
-				(lista->proximo->cant_mov[dia][claseIndex].cant_internacional)++;
+				(primero->cant_mov[dia][claseIndex].cant_internacional)++;
 			}
-			return 0;
+			(primero->mov_totales)++;
+			 
+			*agregado = 1;
 			
 		}else if(c > 0){
 			
 			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
-			return 1;
+			
 		}else{
-			proximoAP(lista);
+			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
+			if(agregado == 1){
+				if( (primero->mov_totales < primero->cola->mov_totales)||
+				   (primero->mov_totales == primero->cola->mov_totales && 
+				    strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0)){
+						tAeropuerto aux = primero->cola->cola;
+						primero->cola->cola = primero;
+						primero = primero->cola;
+						primero->cola->cola = aux;
+					}
+				}
+				agregado = 2; //Agregado y ordenado
+			}
 		}
 	
 	}
-	return 1;
+	
 
 }
+int
+agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
+{
+	int agregado = 0;
+	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
 
-
+}
 int
 cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 {
