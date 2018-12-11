@@ -79,12 +79,8 @@ typedef struct tDatos{
 typedef struct tAeropuerto {
 	tDatos datos;	
 	tMov cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
-	
 	int mov_totales;
 	struct tAeropuerto * siguiente;
-	struct tAeropuerto * anterior;
-	
-
 }tAeropuerto;
 
 typedef struct tAeropuerto * tAeropuertoP;
@@ -122,26 +118,53 @@ static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , 
 	}
 	return primero;
 }
-
-int
-insert( listaAeropuertoADT lista, tDatos datos,FILE * archA)
-{
-	int added =0 ;
-	lista->primero = insertRec(lista->primero, datos,archA, &added);
-
-	return added;
-}
-
-
-
 static int
 diaDeLaSemana(int d, int m, int a)
 {
 	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 
 }
+
 */
-void
+
+static tAeropuertoP
+insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
+{
+	int c;
+	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
+		tAeropuertoP aux = malloc(sizeof(tAeropuerto));
+		if(aux == NULL){
+			printf("Error:No se pudo utilizar malloc\n");
+		}else{
+		aux->cola = primero;
+		aux->datos = datos;
+		*ok = 1;
+		}
+		return aux;
+	}else if(c <0){
+		primero->tail = insertarRec(primero->tail,datos,ok);
+	}else{
+		printf("Aeropuerto repetido \n");
+	}
+	return aux;
+	
+
+}
+
+int
+insertar( listaAeropuertoADT lista, tDatos datos)
+{
+	int ok =0 ;
+	lista->primero = insertRec(lista->primero, datos, &ok);
+
+	return ok;
+}
+
+
+
+
+
+int
 cargarDatos(listaAeropuertoADT lista, char * pathA)
 {
 
@@ -149,6 +172,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		
 	if(archA == NULL){
 		printf("Error al abrir los archivos. \n");
+		return 1;
 	
 	}
 		
@@ -188,8 +212,13 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
 			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
+			if(!insertar(lista->primero,datos)){
+				printf("Error al cargar datos \n");
+				return 1;
+			}
 		}
 	}
+	return 0;
 }
 
 /*
