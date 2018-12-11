@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype>
+#include <ctype.h>
 #include "listaAeropuerto.h"
 #include <string.h>
 /*
