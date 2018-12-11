@@ -162,7 +162,7 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 	}
 }
 
-listaAreolineaADT
+listaAerolineaADT
 nuevaListaAL(void)
 {
 	return calloc(1,sizeof(struct listaAreolineaCDT));
