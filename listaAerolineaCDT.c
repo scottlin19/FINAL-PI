@@ -1,5 +1,9 @@
 #include "listaAerolineaADT.h"
-
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "listaAeropuertoADT.h"
+#include <string.h>
 struct tAerolinea {
 	char * nombre;
 	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
