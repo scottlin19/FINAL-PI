@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype>
 #include "listaAeropuerto.h"
 #include <string.h>
 /*
@@ -164,6 +165,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		valido = 1;
 		
 		while(token != NULL & valido){
+			printf("token = %s\n",token);
 			if(cont == OACI){
 				if(!isspace(token)){
 					datos->oaci = token;
@@ -183,7 +185,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 			token =  strtok(NULL, ";");
 			
 		}		
-		printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);
+		if(valido){printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);}
 	}
 }
 
