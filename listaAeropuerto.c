@@ -162,7 +162,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
 			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
-			if(!insertar(lista->primero,datos)){
+			if(!insertar(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
 			}
