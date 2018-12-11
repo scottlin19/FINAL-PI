@@ -162,8 +162,8 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 	}
 	
 	
-	int cont = 0;	
-	int valido = 1;
+	int cont;	
+	int valido;
 	int index;
 	char * token;
 	tDatos * datos = malloc(sizeof(tDatos)); 
@@ -173,6 +173,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		printf("s = %s\n",s);
 		token = strtok(s,";");
 		cont = 0;
+		valido = 1;
 		while(token != NULL & valido){
 			if(cont == OACI){
 				if(!isspace(token)){
@@ -192,7 +193,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 			cont++;
 			token =  strtok(NULL, ";");
 		}	
-		valido = 1;
+		
 		printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);
 
 	}
