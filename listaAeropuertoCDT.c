@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "listaAeropuerto.h"
+#include "listaAeropuertoADT.h"
 #include <string.h>
 /*
 
