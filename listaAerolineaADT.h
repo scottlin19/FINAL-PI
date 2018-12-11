@@ -1,5 +1,4 @@
 
-#include "listaAeropuertoADT.h"
 
 typedef struct listaAerolineaCDT* listaAerolineaADT;
 
