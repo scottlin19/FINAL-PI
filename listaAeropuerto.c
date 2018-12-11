@@ -118,7 +118,7 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 	int c;
 	int claseIndex;
 	int clasifIndex;
-
+	
 	while(tieneProx(lista)){
 		if((c = strcmp(lista->proximo->datos.oaci,oaci) == 0){
 			if(clase == "Regular"){
@@ -134,15 +134,16 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 			}else{
 				(lista->proximo->cant_mov[dia][claseIndex].internacional)++;
 			}
-			
+			return 0;
 			
 		}else if(c > 0){
 			
 			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
+			return 1;
 		}
 	
 	}
-
+	return 1;
 
 }
 
