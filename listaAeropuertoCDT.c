@@ -11,25 +11,7 @@
 #include <ctype.h>
 #include "listaAeropuertoADT.h"
 #include <string.h>
-/*
 
-
-#define FECHA 0
-#define CLASE 2
-#define CLASIFICACION 3
-#define TIPO 4
-#define ORIGEN 5
-#define DESTINO 6
-#define NOMBRE 7
-#define CABOTAJE 0
-#define INTERNACIONAL 1
-#define NA 2
-#define ATERRIZAJE 0
-#define DESPEGUE 1
-
-#define CANT_CAMPOS_MOV 10
-
-*/
 #define OACI 1
 #define DENOMINACION 4
 #define PROVINCIA 21
@@ -78,7 +60,7 @@ static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 
 
 static tAeropuertoP
-insertarRec(tAeropuertoP primero,tDatosA datos, int * ok)
+insertarAPRec(tAeropuertoP primero,tDatosA datos, int * ok)
 {
 	int c;
 	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
@@ -93,7 +75,7 @@ insertarRec(tAeropuertoP primero,tDatosA datos, int * ok)
 		}
 		return aux;
 	}else if(c <0){
-		primero->cola = insertarRec(primero->cola,datos,ok);
+		primero->cola = insertarAPRec(primero->cola,datos,ok);
 	}else{
 		printf("Aeropuerto repetido \n");
 	}
@@ -103,10 +85,10 @@ insertarRec(tAeropuertoP primero,tDatosA datos, int * ok)
 }
 
 static int
-insertar( listaAeropuertoADT lista, tDatosA datos)
+insertarAP( listaAeropuertoADT lista, tDatosA datos)
 {
 	int ok =0 ;
-	lista->primero = insertarRec(lista->primero, datos, &ok);
+	lista->primero = insertarAPRec(lista->primero, datos, &ok);
 
 	return ok;
 }
@@ -144,8 +126,9 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 		}else{
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			if(*agregado == 1){
-				if( (primero->mov_totales < primero->cola->mov_totales)||
-				   (primero->mov_totales == primero->cola->mov_totales && 
+				int comp;
+				if( (comp =comparaMov(primero,primero->cola)) < 0||
+				   ((comp == 0) && 
 				    strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0)){
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
@@ -214,7 +197,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
 			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
-			if(!insertar(lista,datos)){
+			if(!insertarAP(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
 			}
