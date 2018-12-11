@@ -78,11 +78,11 @@ typedef struct tAeropuerto {
 
 typedef struct tAeropuerto * tAeropuertoP;
 
-struct listaAeropuertoCDT {
+typedef struct listaAeropuertoCDT {
 	tAeropuertoP primero;
 
 	tAeropuertoP next;
-};
+}listaAeropuertoCDT;
 
 static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 {
