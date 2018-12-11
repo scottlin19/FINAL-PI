@@ -369,7 +369,7 @@ Error(const char* s)
 listaAeropuertoADT
 nuevaLista( void )
 {
-	return calloc(1, sizeof(listaAeropuertoCDT));
+	return calloc(1, sizeof(struct listaAeropuertoCDT));
 }
 
 /*
