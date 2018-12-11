@@ -50,7 +50,7 @@ typedef struct tDatosA{
 	char * oaci; 
 	char * denom;
 	char * prov;
-}tDatos;
+}tDatosA;
 
 typedef struct tAeropuerto {
 	tDatosA datos;	
