@@ -76,9 +76,7 @@ typedef struct tDatos{
 }tDatos;
 
 typedef struct tAeropuerto {
-	char * OACI;
-	char denominacion[MAX_DENOM];
-	char * provincia;	
+	tDatos datos;	
 	tMov cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
 	
 	int mov_totales;
