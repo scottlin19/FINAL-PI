@@ -322,22 +322,23 @@ listSize(const listADT list) {
 	return list->size;
 }
 
-void
-toBegin(listADT list) {
-	list->next = list->first;
-}
-
 int
 hasNext(const listADT list) {
 	return list->next != NULL;
 }
 */
+
+void
+toBegin(listaAeropuertoADT listaAeropuerto) {
+	listaAeropuerto->next = listaAeropuerto->primero;
+}
+
 void
 next(listaAeropuertoADT listaAeropuerto) {
 	if (listaAeropuerto->next==NULL){
 		Error("No hay mas elementos a recorrer");
 	}
-	list->next = list->next->tail;
+	list->next = list->next->siguiente;
 }
 
 
