@@ -115,7 +115,7 @@ listaAeropuertoADT nuevaLista(void);
 void alPrincipio(listaAeropuertoADT listaAeropuerto);
 
 //int tieneProximo(const listADT list);
-
+int tieneProx(const listaAeropuertoADT lista);
 //listElementT next(listADT list);
 
 void proximo(listaAeropuertoADT listaAeropuerto);
