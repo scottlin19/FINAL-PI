@@ -95,13 +95,6 @@ typedef struct listaAerolineaCDT {
 }listaAeropuertoCDT;
 
 
-typedef struct listaAeropuertoCDT {
-	tAeropuertoP primero;
-
-	tAeropuertoP next;
-}listaAeropuertoCDT;
-
-
 static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 {
 	return a1->mov_totales - a2->mov_totales;
@@ -337,14 +330,14 @@ nuevaLista( void )
 	return calloc(1, sizeof(struct listaAeropuertoCDT ));
 }
 
-
+/*
 int
 listIsEmpty( listaAeropuertoADT list)
 {
 	return list->size == 0;
 }
 
-
+*/
 
 /*
 static int contains(nodeP first, listElementT elem) {
@@ -398,6 +391,7 @@ hasNext(const listADT list) {
 	return list->next != NULL;
 }
 */
+/*
 tAeropuertoP
 next(listaAeropuertoADT listaAeropuerto) {
 	if (listaAeropuerto->next==NULL){
@@ -408,4 +402,4 @@ next(listaAeropuertoADT listaAeropuerto) {
 	return list->next;
 }
 
-
+*/
