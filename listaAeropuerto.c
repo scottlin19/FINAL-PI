@@ -37,7 +37,7 @@ typedef struct tMov{
 
 }tMov;
 
-struct tAerolinea {
+typedef struct tAerolinea {
 	char * nombre;
 	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
 				
@@ -45,7 +45,7 @@ struct tAerolinea {
 	
 	struct tAerolinea * tail;
 
-};
+}tAerolinea;
 
 typedef struct tAerolinea * tAerolineaP;
 
@@ -61,7 +61,7 @@ typedef struct tDatos{
 
 
 
-struct tAeropuerto {
+typedef struct tAeropuerto {
 	char * OACI;
 	char denominacion[MAX_DENOM];
 	char * provincia;
@@ -70,18 +70,57 @@ struct tAeropuerto {
 	tAerolineaP first_Aerolinea;
 	
 	int mov_totales;
-	struct tAeropuerto * tail;
+	struct tAeropuerto * siguiente;
+	struct tAeropuerto * anterior;
 	
 
-};
+}tAeropuerto;
 
 typedef struct tAeropuerto * tAeropuertoP;
 
 struct listaAeropuertoCDT {
-	tAeropuertoP first;
-	unsigned int size;
+	tAeropuertoP primero;
+
 	tAeropuertoP next;
 };
+
+static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
+{
+	return a1->mov_totales - a2->mov_totales;
+
+}
+
+static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
+	
+	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
+	{
+		tAeropuertoP aux = malloc(sizeof( struct tAeropuerto ));
+		if (aux == NULL){
+			Error("No hay lugar para otro nodo\n");
+		}
+		aux->cola = primero;
+		//Cargo datos de aeropuerto y aerolinea
+		
+			
+		*added = 1;
+		return aux;
+	}else if((primero->mov_totales > 1) || strcmp(primero->OACI,datos->origen) < 0){
+		
+		primero->cola = insertRec( primero->cola, datos,archA, added);
+	}
+	return primero;
+}
+
+int
+insert( listaAeropuertoADT lista, tDatos datos,FILE * archA)
+{
+	int added =0 ;
+	lista->primero = insertRec(lista->primero, datos,archA, &added);
+
+	return added;
+}
+
+
 
 static int
 diaDeLaSemana(int d, int m, int a)
@@ -260,36 +299,8 @@ elementBelongs( listADT list, listElementT element)
 	return contains(list->first, element);
 }
 */
-/*
-static tAeropuertoP insertRec(tAeropuertoP first, int elem , int * added) {
-	int c;
-	if( first == NULL || (c=compare(first->head, elem)) > 0 )
-	{
-		tAeropuertoP aux = malloc(sizeof( struct tAeropuerto ));
-		if (aux == NULL)
-			Error("No hay lugar para otro nodo\n");
-		aux->tail = first;
-		aux->head = elem;
-		*added = 1;
-		return aux;
-	}
 
-	if( c < 0 )
-		first->tail = insertRec( first->tail, elem, added);
-	return first;
-}*/
-/*
-int
-insert( listaAeropuertoADT lista, listElementT element)
-{
-	int added =0 ;
-	list->first = insertRec(list->first, element, &added);
-	if (added)
-		list->size++;
-	return added;
-}
 
-*/
 
 /*
 
