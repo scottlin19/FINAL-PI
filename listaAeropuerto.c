@@ -112,7 +112,7 @@ insertar( listaAeropuertoADT lista, tDatosA datos)
 
 
 int
-agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
+agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
 {
 	alPrincipioA(lista);
 	int c;
@@ -140,6 +140,8 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 			
 			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
 			return 1;
+		}else{
+			proximoAP(lista);
 		}
 	
 	}
