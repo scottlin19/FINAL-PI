@@ -8,13 +8,13 @@
 #ifndef LISTADT_H_
 #define LISTADT_H_
 
-typedef int  listElementT;
+
 
 /* El siguiente tipo define el TAD Lista.
  * Se lo define como puntero a "cierta estructura"
  * para ocultar la real representacion de la misma
  */
-typedef struct listaAeropuertoCDT *listaAeropuertoADT;
+typedef struct listaAeropuertoCDT * listaAeropuertoADT;
 
 
 
