@@ -127,7 +127,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			}else{
 				claseIndex = VUELO_PRIVADO;
 			}
-			if(strcmp(clasif,"Cabotaje"){
+			if(strcmp(clasif,"Cabotaje") == 0){
 				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
