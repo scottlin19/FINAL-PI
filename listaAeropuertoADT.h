@@ -5,9 +5,6 @@
  * simplemente encadenada ordenada, sin repeticiones 
  */
 
-#ifndef LISTADT_H_
-#define LISTADT_H_
-
 
 
 /* El siguiente tipo define el TAD Lista.
@@ -131,4 +128,3 @@ void proximoAP(listaAeropuertoADT listaAeropuerto);
  * */
 //listADT map(const listADT list, listElementT (*fn) (listElementT));
 
-#endif /* LISTADT_H_ */
