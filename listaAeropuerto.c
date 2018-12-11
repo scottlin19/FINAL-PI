@@ -127,7 +127,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			}else{
 				claseIndex = VUELO_PRIVADO;
 			}
-			if(strcmp(clasif,"Cabotaje"){
+			if(strcmp(clasif,"Cabotaje") == 0){
 				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
@@ -143,7 +143,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 		}else{
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
-			if(agregado == 1){
+			if(*agregado == 1){
 				if( (primero->mov_totales < primero->cola->mov_totales)||
 				   (primero->mov_totales == primero->cola->mov_totales && 
 				    strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0)){
@@ -153,11 +153,9 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 						primero->cola->cola = aux;
 				}
 			}
-			agregado = 2; //Agregado y ordenado
+			*agregado = 2; //Agregado y ordenado
 			
 		}
-	
-	
 	
 
 }
