@@ -64,7 +64,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 {
 	int c;
 	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
-		tAeropuertoP aux = calloc(1,sizeof(tAeropuerto));
+		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
 		}else{
