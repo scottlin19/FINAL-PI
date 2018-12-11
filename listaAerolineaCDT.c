@@ -1,9 +1,19 @@
-#include "listaAerolineaADT.h"
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaAeropuertoADT.h"
+
 #include <string.h>
+#include "listaAeropuertoADT.h"
+#include "listaAerolineaADT.h"
+
+#define FECHA 0
+#define CLASE 2
+#define CLASIFICACION 3
+#define TIPO 4
+#define ORIGEN 5
+#define DESTINO  6
+#define NOMBRE 7
 struct tAerolinea {
 	char * nombre;
 	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
@@ -103,7 +113,7 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 				datos->dia = diaDeLaSemana(d,m,a);
 				printf("dia = %d \n",datos->dia);
 				
-			}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
+			}else if(cont != 1 && cont != 4 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
 			
 				switch(cont){
@@ -120,17 +130,17 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 					break;
 					case CLASIFICACION:
 						if(strcmp(token, "Cabotaje") == 0){
-							index = CABOTAJE;
+							index = 0;
 							
 						}else if (strcmp(token,  "Internacional")  == 0){	
-							index = INTERNACIONAL;
+							index = 1;
 							
 						}else if (strcmp(token, "N/A") == 0){
 							index = NA;
 						}
 						datos->clasificacion_vuelo = index;
 					break;
-					case TIPO:
+					/*case TIPO:
 						
 							if(strcmp(token,"Aterrizaje") == 0){
 								index = ATERRIZAJE;			
@@ -139,6 +149,7 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 							}	
 						datos->tipo_vuelo = index;
 					break;
+					*/
 					case ORIGEN:
 						
 						datos->origen = token;
@@ -162,7 +173,7 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 			cont++;
 			token =  strtok(NULL, ";");
 		}
-		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\ntipo=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo,datos->tipo_vuelo);
+		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo);
 	}
 }
 
