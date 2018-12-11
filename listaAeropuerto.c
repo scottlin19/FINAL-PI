@@ -69,70 +69,12 @@ struct listaAeropuertoCDT {
 
 
 
-/*
-typedef struct tAerolinea {
-	char * nombre;
-	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
-				
-	int mov_totales; // = cantidad de vuelos regulares de la aerolinea
-	
-	struct tAerolinea * tail;
-
-}tAerolinea;
-
-typedef struct tAerolinea * tAerolineaP;
-*/
-/*
-typedef struct tDatos{
-	char * origen;
-	char * destino;
-	char * nombre;
-	int tipo_vuelo;
-	int clase_vuelo;
-	int clasificacion_vuelo;
-	int dia;
-}tDatos;
-
-*/
-
-
-
-
-
 static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 {
 	return a1->mov_totales - a2->mov_totales;
 
 }
-/*
-static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
-	
-	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
-	{
-		tAeropuertoP aux = malloc(sizeof( struct tAeropuerto ));
-		if (aux == NULL){
-			Error("No hay lugar para otro nodo\n");
-		}
-		aux->cola = primero;
-		//Cargo datos de aeropuerto y aerolinea
-		
-			
-		*added = 1;
-		return aux;
-	}else if((primero->mov_totales > 1) || strcmp(primero->OACI,datos->origen) < 0){
-		
-		primero->cola = insertRec( primero->cola, datos,archA, added);
-	}
-	return primero;
-}
-static int
-diaDeLaSemana(int d, int m, int a)
-{
-	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 
-}
-
-*/
 
 static tAeropuertoP
 insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
@@ -228,6 +170,66 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 	}
 	return 0;
 }
+listaAeropuertoADT
+nuevaLista( void )
+{
+	return calloc(1, sizeof(struct listaAeropuertoCDT));
+}
+/*
+typedef struct tAerolinea {
+	char * nombre;
+	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
+				
+	int mov_totales; // = cantidad de vuelos regulares de la aerolinea
+	
+	struct tAerolinea * tail;
+
+}tAerolinea;
+
+typedef struct tAerolinea * tAerolineaP;
+*/
+/*
+typedef struct tDatos{
+	char * origen;
+	char * destino;
+	char * nombre;
+	int tipo_vuelo;
+	int clase_vuelo;
+	int clasificacion_vuelo;
+	int dia;
+}tDatos;
+
+*/
+
+/*
+static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
+	
+	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
+	{
+		tAeropuertoP aux = malloc(sizeof( struct tAeropuerto ));
+		if (aux == NULL){
+			Error("No hay lugar para otro nodo\n");
+		}
+		aux->cola = primero;
+		//Cargo datos de aeropuerto y aerolinea
+		
+			
+		*added = 1;
+		return aux;
+	}else if((primero->mov_totales > 1) || strcmp(primero->OACI,datos->origen) < 0){
+		
+		primero->cola = insertRec( primero->cola, datos,archA, added);
+	}
+	return primero;
+}
+static int
+diaDeLaSemana(int d, int m, int a)
+{
+	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
+
+}
+
+*/
 
 /*
 void
@@ -358,19 +360,9 @@ cargarDatos(listaAeropuertoADT lista,char * pathA)
 }
 */
 
-static void
-Error(const char* s)
-{
-	fprintf(stderr, "%s", s);
-	exit(EXIT_FAILURE);
-}
 
 
-listaAeropuertoADT
-nuevaLista( void )
-{
-	return calloc(1, sizeof(struct listaAeropuertoCDT));
-}
+
 
 /*
 int
