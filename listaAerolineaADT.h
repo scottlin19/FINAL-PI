@@ -3,6 +3,6 @@
 
 typedef struct listaAerolineaCDT* listaAerolineaADT;
 
-listaAreolineaADT nuevaListaAL(void);
+listaAerolineaADT nuevaListaAL(void);
 
 int cargarDatosAL(listaAerolineaADT lista,char * pathM);
