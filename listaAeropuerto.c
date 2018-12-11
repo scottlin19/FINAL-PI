@@ -56,11 +56,11 @@ typedef struct tAeropuerto {
 
 typedef struct tAeropuerto * tAeropuertoP;
 
-typedef struct listaAeropuertoCDT {
+struct listaAeropuertoCDT {
 	tAeropuertoP primero;
 
 	tAeropuertoP next;
-}listaAeropuertoCDT;
+};
 
 typedef struct tMov{
 	int cant_cabotaje;
