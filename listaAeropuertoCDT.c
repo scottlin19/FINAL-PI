@@ -15,9 +15,9 @@
 #define OACI 1
 #define DENOMINACION 4
 #define PROVINCIA 21
+#define DIAS_SEMANA 7
 #define MAX_DENOM 70
 #define MAX_TEXTO 250
-#define DIAS_SEMANA 7
 #define REGULAR 0
 #define NO_REGULAR 1
 #define VUELO_PRIVADO 2
