@@ -15,7 +15,8 @@ int main(int argc, char * argv[])
 
 /*
 void query1(listaAeropuertoADT listaAeropuerto){
-	tAeropuertoP aux = listaAeropuerto->first;
+	toBegin(listaAeropuerto);
+	tAeropuertoP aux = listaAeropuerto->next;
 	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
 	if (archivoDest == NULL){
 		printf("Error al crear/reemplazar archivo");
