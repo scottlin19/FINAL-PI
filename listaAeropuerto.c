@@ -154,7 +154,7 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
 	
 	
-	if(archA == NULL|| archM == NULL){
+	if(archA == NULL){
 		printf("Error al abrir los archivos. \n");
 	
 	}
