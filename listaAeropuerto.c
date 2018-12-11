@@ -331,15 +331,15 @@ int
 hasNext(const listADT list) {
 	return list->next != NULL;
 }
-
-listElementT
-next(listADT list) {
-	if (list->next==NULL)
+*/
+tAeropuertoP
+next(listaAeropuertoADT listaAeropuerto) {
+	if (listaAeropuerto->next==NULL){
 		Error("No hay mas elementos a recorrer");
-	listElementT ans = list->next->head;
+	}
 	list->next = list->next->tail;
 
-	return ans;
+	return list->next;
 }
 
-*/
+
