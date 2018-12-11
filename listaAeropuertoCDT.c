@@ -28,19 +28,19 @@ typedef struct tMov{
 
 }tMov;
 
-typedef struct tDatosA{
+typedef struct tDatosAP{
 	char * oaci; 
 	char * denom;
 	char * prov;
-}tDatosA;
+}tDatosAP;
 
-typedef struct tAeropuerto {
-	tDatosA datos;	
+struct tAeropuerto {
+	tDatosAP datos;	
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
 	
-}tAeropuerto;
+};
 
 typedef struct tAeropuerto * tAeropuertoP;
 
@@ -60,7 +60,7 @@ static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 
 
 static tAeropuertoP
-insertarAPRec(tAeropuertoP primero,tDatosA datos, int * ok)
+insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 {
 	int c;
 	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
@@ -85,7 +85,7 @@ insertarAPRec(tAeropuertoP primero,tDatosA datos, int * ok)
 }
 
 static int
-insertarAP( listaAeropuertoADT lista, tDatosA datos)
+insertarAP( listaAeropuertoADT lista, tDatosAP datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
