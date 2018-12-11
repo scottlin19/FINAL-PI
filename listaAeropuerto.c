@@ -147,17 +147,17 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 				if( (primero->mov_totales < primero->cola->mov_totales)||
 				   (primero->mov_totales == primero->cola->mov_totales && 
 				    strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0)){
-						tAeropuerto aux = primero->cola->cola;
+						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
 						primero = primero->cola;
 						primero->cola->cola = aux;
-					}
 				}
-				agregado = 2; //Agregado y ordenado
 			}
+			agregado = 2; //Agregado y ordenado
+			
 		}
 	
-	}
+	
 	
 
 }
