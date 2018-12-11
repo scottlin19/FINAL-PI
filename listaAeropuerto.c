@@ -332,14 +332,12 @@ hasNext(const listADT list) {
 	return list->next != NULL;
 }
 */
-tAeropuertoP
+void
 next(listaAeropuertoADT listaAeropuerto) {
 	if (listaAeropuerto->next==NULL){
 		Error("No hay mas elementos a recorrer");
 	}
 	list->next = list->next->tail;
-
-	return list->next;
 }
 
 
