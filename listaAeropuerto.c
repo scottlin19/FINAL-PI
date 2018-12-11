@@ -101,7 +101,7 @@ insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
 
 }
 
-int
+static int
 insertar( listaAeropuertoADT lista, tDatos datos)
 {
 	int ok =0 ;
