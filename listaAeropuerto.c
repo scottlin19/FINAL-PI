@@ -401,6 +401,7 @@ hasNext(const listADT list) {
 	return list->next != NULL;
 }
 */
+/*
 tAeropuertoP
 next(listaAeropuertoADT listaAeropuerto) {
 	if (listaAeropuerto->next==NULL){
@@ -411,4 +412,4 @@ next(listaAeropuertoADT listaAeropuerto) {
 	return list->next;
 }
 
-
+*/
