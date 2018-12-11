@@ -14,7 +14,7 @@
  * Se lo define como puntero a "cierta estructura"
  * para ocultar la real representacion de la misma
  */
-typedef struct listaAeropuertoCDT * listaAeropuertoADT;
+typedef struct listaAeropuertoCDT* listaAeropuertoADT;
 
 //Carga Datos del archivo aeropuertos.csv , devuelve 1 si hubo un error y 0 si no.
 int cargarDatosAP(listaAeropuertoADT lista,char * pathA);
