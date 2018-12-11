@@ -17,7 +17,7 @@
 typedef struct listaAeropuertoCDT * listaAeropuertoADT;
 
 //Carga Datos del archivo aeropuertos.csv , devuelve 1 si hubo un error y 0 si no.
-int cargarDatos(listaAeropuertoADT lista,char * pathA);
+int cargarDatosAP(listaAeropuertoADT lista,char * pathA);
 
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
@@ -40,7 +40,7 @@ static int compare(listElementT elem1, listElementT elem2 )
  * Precondicion:		-
  * Postcondicion: 	Lista creada
  */
-listaAeropuertoADT nuevaLista(void);
+listaAeropuertoADT nuevaListaAP(void);
 
 
 /* Funcion:  		Insert
@@ -112,13 +112,13 @@ listaAeropuertoADT nuevaLista(void);
 /**
  * Funciones para poder iterar sobre la lista
  */
-void alPrincipio(listaAeropuertoADT listaAeropuerto);
+void alPrincipioAP(listaAeropuertoADT listaAeropuerto);
 
 //int tieneProximo(const listADT list);
-int tieneProx(const listaAeropuertoADT lista);
+int tieneProxAP(const listaAeropuertoADT lista);
 //listElementT next(listADT list);
 
-void proximo(listaAeropuertoADT listaAeropuerto);
+void proximoAP(listaAeropuertoADT listaAeropuerto);
 /**
  * Ejemplo de implementación "funcional"
  * inject recibe una funcion y la aplica a cada elemento de la lista
