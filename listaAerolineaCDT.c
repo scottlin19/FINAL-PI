@@ -26,8 +26,8 @@ typedef struct tDatosAL{
 
 struct listaAreolineaCDT{
 	tDatosAL datos;
-	tAreolineaP primero;
-	tAreolineaP proximo;
+	tAerolineaP primero;
+	tAerolineaP proximo;
 
 }
 
