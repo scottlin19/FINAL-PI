@@ -14,6 +14,11 @@
 #define ORIGEN 5
 #define DESTINO  6
 #define NOMBRE 7
+#define DIAS_SEMANA 7
+#define MAX_TEXTO 250
+#define REGULAR 0
+#define NO_REGULAR 1
+#define VUELO_PRIVADO 2
 struct tAerolinea {
 	char * nombre;
 	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
