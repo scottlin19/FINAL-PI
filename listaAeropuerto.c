@@ -114,12 +114,12 @@ insertar( listaAeropuertoADT lista, tDatosA datos)
 int
 agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
 {
-	alPrincipio(lista);
+	alPrincipioA(lista);
 	int c;
 	int claseIndex;
 
 	
-	while(tieneProx(lista)){
+	while(tieneProxAP(lista)){
 		if((c = strcmp(lista->proximo->datos.oaci,oaci)) == 0){
 			if(strcmp(clase,"Regular") == 0){
 				claseIndex = REGULAR;
@@ -128,7 +128,7 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 			}else{
 				claseIndex = VUELO_PRIVADO;
 			}
-			if(clasif == "Cabotaje"){
+			if(strcmp(clasif,"Cabotaje"){
 				(lista->proximo->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
@@ -149,7 +149,7 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 
 
 int
-cargarDatos(listaAeropuertoADT lista, char * pathA)
+cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 {
 
 	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
@@ -205,23 +205,23 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 	return 0;
 }
 listaAeropuertoADT
-nuevaLista( void )
+nuevaListaAP( void )
 {
 	return calloc(1, sizeof(struct listaAeropuertoCDT));
 }
 
 void
-alPrincipio(listaAeropuertoADT lista) {
+alPrincipioAP(listaAeropuertoADT lista) {
 	lista->proximo = lista->primero;
 }
 
 int
-tieneProx(const listaAeropuertoADT lista) {
+tieneProxAP(const listaAeropuertoADT lista) {
 	return lista->proximo != NULL;
 }
 
 void
-proximo(listaAeropuertoADT lista)
+proximoAP(listaAeropuertoADT lista)
 {
 	lista->proximo = lista->proximo->cola;
 }
