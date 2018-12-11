@@ -1,5 +1,4 @@
-
-#include "listaAeropuertoADT.h"
+#include "listaAreolineaADT.h"
 
 struct tAerolinea {
 	char * nombre;
