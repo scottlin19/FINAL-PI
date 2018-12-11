@@ -156,7 +156,7 @@ int
 insertar( listaAeropuertoADT lista, tDatos datos)
 {
 	int ok =0 ;
-	lista->primero = insertRec(lista->primero, datos, &ok);
+	lista->primero = insertarRec(lista->primero, datos, &ok);
 
 	return ok;
 }
