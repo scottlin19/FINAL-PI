@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <listaAeropuertoADT.h>
+#include "listaAeropuertoADT.h"
 
 typedef struct tAerolinea {
 	char * nombre;
@@ -23,7 +23,7 @@ typedef struct tDatosAL{
 	int dia;
 }tDatosAL;
 
-static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
+static tAeropuertoP insertALRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
 	
 	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
 	{
@@ -45,10 +45,10 @@ static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , 
 }
 
 static int
-insertarAP( listaAeropuertoADT lista, tDatosA datos)
+insertarAL( listaAerolineaADT lista, tDatosAL datos)
 {
 	int ok =0 ;
-	lista->primero = insertarAPRec(lista->primero, datos, &ok);
+	lista->primero = insertarALRec(lista->primero, datos, &ok);
 
 	return ok;
 }
@@ -60,13 +60,13 @@ diaDeLaSemana(int d, int m, int a)
 }
 
 void
-cargarDatos(listaAeropuertoADT lista,char * pathA)
+cargarDatosAL(listaAerolineaADT lista,char * pathM)
 {
-	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
+	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
 	
-	if(archA == NULL|| archM == NULL){
-		printf("Error al abrir los archivos. \n");
+	if(archM == NULL){
+		printf("Error al abrir el archivo. \n");
 	
 	}
 	
@@ -74,7 +74,7 @@ cargarDatos(listaAeropuertoADT lista,char * pathA)
 	int cont = 0;	
 	int index;
 	char * token;
-	tDatos * datos = malloc(sizeof(tDatos)); 
+	tDatosAL * datos = malloc(sizeof(tDatosAL)); 
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
 	
