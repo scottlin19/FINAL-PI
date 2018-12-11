@@ -137,11 +137,6 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 						if(strcmp(token, "Cabotaje") == 0){
 							index = 0;
 							
-						}else if (strcmp(token,  "Internacional")  == 0){	
-							index = 1;
-							
-						}else if (strcmp(token, "N/A") == 0){
-							index = NA;
 						}
 						datos->clasificacion_vuelo = index;
 					break;
