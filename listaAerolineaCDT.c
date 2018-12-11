@@ -1,14 +1,14 @@
 
 #include "listaAeropuertoADT.h"
 
-typedef struct tAerolinea {
+struct tAerolinea {
 	char * nombre;
 	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
 				
 	int mov_totales; // = cantidad de vuelos regulares de la aerolinea
 	
 	struct tAerolinea * tail;
-}tAerolinea;
+};
 typedef struct tAerolinea * tAerolineaP;
 
 typedef struct tDatosAL{
@@ -20,6 +20,13 @@ typedef struct tDatosAL{
 	int clasificacion_vuelo;
 	int dia;
 }tDatosAL;
+
+struct listaAreolineaCDT{
+	tDatosAL datos;
+	tAreolineaP primero;
+	tAreolineaP proximo;
+
+}
 
 static tAeropuertoP insertALRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
 	
@@ -57,7 +64,7 @@ diaDeLaSemana(int d, int m, int a)
 	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 }
 
-void
+int
 cargarDatosAL(listaAerolineaADT lista,char * pathM)
 {
 	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
@@ -103,8 +110,8 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 								index = REGULAR;
 						}else if(strcmp(s, "No Regular") == 0){
 								index = NO_REGULAR;
-						}else if(strcmp(s,  "Vuelo Privado con Matrícula Extranjera") == 0 || strcmp(s, "Vuelo Privado con Matrícula Nacional") == 0){
-								index = PRIVADO;
+						}else{
+								index = VUELO_PRIVADO;
 						}
 						datos->clase_vuelo = index;
 					break;
@@ -154,4 +161,10 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 		}
 		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\ntipo=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo,datos->tipo_vuelo);
 	}
+}
+
+listaAreolineaADT
+nuevaListaAL(void)
+{
+	return calloc(1,sizeof(struct listaAreolineaCDT));
 }
