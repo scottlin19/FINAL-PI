@@ -167,13 +167,13 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		while((token != NULL) && valido){
 			printf("token = %s\n",token);
 			if(cont == OACI){
-				if(!isspace(token)){
-					datos->oaci = token;
-					
-					
-				}else{
+				if(isspace(token)){
 					printf("token es espacio, valido = 0 \n");
 					valido = 0;
+							
+				}else{
+					
+					datos->oaci = token;
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
