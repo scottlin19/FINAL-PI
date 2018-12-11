@@ -85,7 +85,7 @@ typedef struct tAeropuerto {
 
 typedef struct tAeropuerto * tAeropuertoP;
 
-typedef struct listaAerolineaCDT {
+typedef struct listaAeropuertoCDT {
 	tAeropuertoP primero;
 
 	tAeropuertoP next;
