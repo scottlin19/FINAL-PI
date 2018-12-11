@@ -18,7 +18,7 @@ typedef struct listaAeropuertoCDT * listaAeropuertoADT;
 
 
 
-void cargarDatos(listaAeropuertoADT lista,char * pathA,char * pathM);
+void cargarDatos(listaAeropuertoADT lista,char * pathA);
 
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
