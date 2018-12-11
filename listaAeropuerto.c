@@ -155,40 +155,40 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 	int cont;	
 	int valido;
 	char * token;
-	tDatos * datos = malloc(sizeof(tDatos)); 
+	tDatos  datos; 
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archA);
 	while(fgets(s,MAX_TEXTO,archA) != NULL){
-		printf("s = %s\n",s);
+		
 		token = strtok(s,";");
 		cont = 0;
 		valido = 1;
 		
 		while((token != NULL) && valido){
-			printf("token = %s\n",token);
+			
 			if(cont == OACI){
 				if(strcmp(token," ") == 0){
-					printf("token es espacio, valido = 0 \n");
 					valido = 0;
 							
-				}else{
-					
-					datos->oaci = token;
+				}else{		
+					datos.oaci = token;
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
-					datos->denom = token;
+					datos.denom = token;
 				
 			}else if(valido && cont == PROVINCIA){	
-					datos->prov = token;
+					datos.prov = token;
 					
 			}	
 			cont++;
-			printf("cont = %d \n",cont);
+		
 			token =  strtok(NULL, ";");
-			printf("token cambio \n");
+			
 		}		
-		if(valido){printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);}
+		if(valido){ //Si es valido el aeropuerto tiene OACI
+			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
+		}
 	}
 }
 
