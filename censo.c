@@ -58,5 +58,7 @@ void query2(listaAeropuertoADT listaAeropuerto){
 
 void query3(listaAeropuertoADT listaAeropuerto){
 	FILE * archivoDest = fopen("composicion.csv", "w+t");
-
+	int i,j;
+	char *clasificacion[2][3] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}}
+	d
 */
