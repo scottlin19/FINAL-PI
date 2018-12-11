@@ -340,14 +340,14 @@ nuevaLista( void )
 	return calloc(1, sizeof(struct listaAeropuertoCDT ));
 }
 
-
+/*
 int
 listIsEmpty( listaAeropuertoADT list)
 {
 	return list->size == 0;
 }
 
-
+*/
 
 /*
 static int contains(nodeP first, listElementT elem) {
