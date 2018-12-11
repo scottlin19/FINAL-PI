@@ -40,6 +40,11 @@
 #define DIAS_SEMANA 7
 
 
+typedef struct tMov{
+	int cant_cabotaje;
+	int cant_internacional;
+
+}tMov;
 
 typedef struct tDatos{
 	char * oaci; 
@@ -62,11 +67,7 @@ struct listaAeropuertoCDT {
 	tAeropuertoP next;
 };
 
-typedef struct tMov{
-	int cant_cabotaje;
-	int cant_internacional;
 
-}tMov;
 
 /*
 typedef struct tAerolinea {
