@@ -26,9 +26,7 @@
 #define NA 2
 #define ATERRIZAJE 0
 #define DESPEGUE 1
-#define REGULAR 0
-#define NO_REGULAR 1
-#define PRIVADO 2
+
 #define CANT_CAMPOS_MOV 10
 
 */
@@ -38,7 +36,9 @@
 #define MAX_DENOM 70
 #define MAX_TEXTO 250
 #define DIAS_SEMANA 7
-
+#define REGULAR 0
+#define NO_REGULAR 1
+#define VUELO_PRIVADO 2
 
 typedef struct tMov{
 	int cant_cabotaje;
@@ -54,7 +54,7 @@ typedef struct tDatos{
 
 typedef struct tAeropuerto {
 	tDatos datos;	
-	tMov cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
+	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
 }tAeropuerto;
@@ -64,7 +64,7 @@ typedef struct tAeropuerto * tAeropuertoP;
 struct listaAeropuertoCDT {
 	tAeropuertoP primero;
 
-	tAeropuertoP next;
+	tAeropuertoP proximo;
 };
 
 
@@ -81,7 +81,7 @@ insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
 {
 	int c;
 	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
-		tAeropuertoP aux = malloc(sizeof(tAeropuerto));
+		tAeropuertoP aux = calloc(sizeof(tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
 		}else{
@@ -111,7 +111,40 @@ insertar( listaAeropuertoADT lista, tDatos datos)
 }
 
 
+int
+agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
+{
+	alPrincipio(lista);
+	int c;
+	int claseIndex;
+	int clasifIndex;
 
+	while(tieneProx(lista)){
+		if((c = strcmp(lista->proximo->datos.oaci,oaci) == 0){
+			if(clase == "Regular"){
+				claseIndex = REGULAR;
+			}else if(clase == "No Regular"){
+				claseIndex = NO_REGULAR;	
+			}else{
+				claseIndex = VUELO_PRIVADO;
+			}
+			if(clasif == "Cabotaje"){
+				(lista->proximo->cant_mov[dia][claseIndex].cabotaje)++;
+				
+			}else{
+				(lista->proximo->cant_mov[dia][claseIndex].internacional)++;
+			}
+			
+			
+		}else if(c > 0){
+			
+			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
+		}
+	
+	}
+
+
+}
 
 
 int
@@ -175,6 +208,23 @@ nuevaLista( void )
 {
 	return calloc(1, sizeof(struct listaAeropuertoCDT));
 }
+
+void
+alPrincipio(listaAeropuertoADT lista) {
+	lisat->proximo = lista->primero;
+}
+
+int
+tieneProx(const listADT list) {
+	return list->next != NULL;
+}
+
+void
+proximo(listaAeropuertoADT lista)
+{
+	lista->proximo = lista->proximo->cola;
+}
+
 /*
 typedef struct tAerolinea {
 	char * nombre;
@@ -414,26 +464,6 @@ int
 listSize(const listADT list) {
 	return list->size;
 }
-
-void
-toBegin(listADT list) {
-	list->next = list->first;
-}
-
-int
-hasNext(const listADT list) {
-	return list->next != NULL;
-}
 */
-/*
-tAeropuertoP
-next(listaAeropuertoADT listaAeropuerto) {
-	if (listaAeropuerto->next==NULL){
-		Error("No hay mas elementos a recorrer");
-	}
-	list->next = list->next->tail;
 
-	return list->next;
-}
 
-*/
