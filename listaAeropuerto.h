@@ -16,9 +16,8 @@
  */
 typedef struct listaAeropuertoCDT * listaAeropuertoADT;
 
-
-
-void cargarDatos(listaAeropuertoADT lista,char * pathA);
+//Carga Datos del archivo aeropuertos.csv , devuelve 1 si hubo un error y 0 si no.
+int cargarDatos(listaAeropuertoADT lista,char * pathA);
 
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
