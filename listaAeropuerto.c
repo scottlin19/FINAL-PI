@@ -136,7 +136,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			(primero->mov_totales)++;
 			 
 			*agregado = 1;
-			
+			return primero;
 		}else if(c > 0){
 			
 			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
@@ -157,7 +157,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 		}
 	
-
+	return primero;
 }
 int
 agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
