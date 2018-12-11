@@ -12,7 +12,7 @@
 #include <string.h>
 /*
 
-#define DIAS_SEMANA 7
+
 #define FECHA 0
 #define CLASE 2
 #define CLASIFICACION 3
@@ -36,13 +36,13 @@
 #define PROVINCIA 21
 #define MAX_DENOM 70
 #define MAX_TEXTO 250
-/*
+#define DIAS_SEMANA 7
 typedef struct tMov{
 	int cant_cabotaje;
 	int cant_internacional;
 
 }tMov;
-*/
+
 /*
 typedef struct tAerolinea {
 	char * nombre;
@@ -152,26 +152,24 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 {
 
 	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
-	
-	
+		
 	if(archA == NULL){
 		printf("Error al abrir los archivos. \n");
 	
 	}
-	
-	
+		
 	int cont;	
 	int valido;
-	int index;
 	char * token;
 	tDatos * datos = malloc(sizeof(tDatos)); 
 	char  s[MAX_TEXTO];
-	fgets(s,MAX_TEXTO,archM);
+	fgets(s,MAX_TEXTO,archA);
 	while(fgets(s,MAX_TEXTO,archA) != NULL){
 		printf("s = %s\n",s);
 		token = strtok(s,";");
 		cont = 0;
 		valido = 1;
+		
 		while(token != NULL & valido){
 			if(cont == OACI){
 				if(!isspace(token)){
@@ -180,20 +178,19 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 				}else{
 					valido = 0;
 				}
+				
 			}else if(valido && cont == DENOMINACION){	
 					datos->denom = token;
+				
 			}else if(valido && cont == PROVINCIA){	
 					datos->prov = token;
 					
-			}
-		
-			
+			}	
 			cont++;
 			token =  strtok(NULL, ";");
-		}	
-		
+			
+		}		
 		printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);
-
 	}
 }
 
@@ -340,14 +337,14 @@ nuevaLista( void )
 	return calloc(1, sizeof(struct listaAeropuertoCDT ));
 }
 
-/*
+
 int
 listIsEmpty( listaAeropuertoADT list)
 {
 	return list->size == 0;
 }
 
-*/
+
 
 /*
 static int contains(nodeP first, listElementT elem) {
@@ -401,7 +398,6 @@ hasNext(const listADT list) {
 	return list->next != NULL;
 }
 */
-/*
 tAeropuertoP
 next(listaAeropuertoADT listaAeropuerto) {
 	if (listaAeropuerto->next==NULL){
@@ -412,4 +408,4 @@ next(listaAeropuertoADT listaAeropuerto) {
 	return list->next;
 }
 
-*/
+
