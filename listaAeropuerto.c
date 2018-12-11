@@ -165,12 +165,14 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 		valido = 1;
 		
 		while((token != NULL) && valido){
-			//printf("token = %s\n",token);
+			printf("token = %s\n",token);
 			if(cont == OACI){
 				if(!isspace(token)){
 					datos->oaci = token;
 					
+					
 				}else{
+					printf("token es espacio, valido = 0 \n");
 					valido = 0;
 				}
 				
@@ -182,8 +184,9 @@ cargarDatos(listaAeropuertoADT lista, char * pathA)
 					
 			}	
 			cont++;
+			printf("cont = %d \n",cont);
 			token =  strtok(NULL, ";");
-			
+			printf("token cambio \n");
 		}		
 		if(valido){printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);}
 	}
