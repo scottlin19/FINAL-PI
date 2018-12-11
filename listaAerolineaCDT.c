@@ -12,8 +12,7 @@ typedef struct tAerolinea {
 	struct tAerolinea * tail;
 }tAerolinea;
 typedef struct tAerolinea * tAerolineaP;
-*/
-/*
+
 typedef struct tDatosAL{
 	char * origen;
 	char * destino;
@@ -23,9 +22,7 @@ typedef struct tDatosAL{
 	int clasificacion_vuelo;
 	int dia;
 }tDatosAL;
-*/
 
-/*
 static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
 	
 	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
@@ -46,14 +43,22 @@ static tAeropuertoP insertRec(tAeropuertoP primero, tDatos datos,FILE * archA , 
 	}
 	return primero;
 }
+
+static int
+insertarAP( listaAeropuertoADT lista, tDatosA datos)
+{
+	int ok =0 ;
+	lista->primero = insertarAPRec(lista->primero, datos, &ok);
+
+	return ok;
+}
+
 static int
 diaDeLaSemana(int d, int m, int a)
 {
 	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 }
-*/
 
-/*
 void
 cargarDatos(listaAeropuertoADT lista,char * pathA)
 {
