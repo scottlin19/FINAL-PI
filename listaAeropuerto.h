@@ -54,7 +54,7 @@ listaAeropuertoADT nuevaLista(void);
  * Precondicion:	Lista que sea valida, previamente creada
  * Postcondicion: 	Lista con el nuevo elemento,si no estaba repetido.
  */
-//int insert(listADT  list, listElementT element);
+
 
 
 /* Funcion:  		delete
