@@ -19,11 +19,11 @@
 #define REGULAR 0
 #define NO_REGULAR 1
 #define VUELO_PRIVADO 2
+
+
 struct tAerolinea {
 	char * nombre;
-	tMov cant_mov[DIAS_SEMANA]; // Si estan en una aerolinea significa que son vuelos REGULARES.
-				
-	int mov_totales; // = cantidad de vuelos regulares de la aerolinea
+	int cant_mov_cabotaje;
 	
 	struct tAerolinea * tail;
 };
@@ -44,13 +44,13 @@ struct listaAreolineaCDT{
 	tAerolineaP primero;
 	tAerolineaP proximo;
 
-}
+};
 
-static tAeropuertoP insertarALRec(tAeropuertoP primero, tDatos datos,FILE * archA , int * added) {
+static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos,FILE * archM , int * added) {
 	
 	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
 	{
-		tAeropuertoP aux = malloc(sizeof( struct tAeropuerto ));
+		tAerolineaP aux = malloc(sizeof( struct tAerolinea ));
 		if (aux == NULL){
 			Error("No hay lugar para otro nodo\n");
 		}
