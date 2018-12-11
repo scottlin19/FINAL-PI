@@ -138,6 +138,7 @@ insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
 		}else{
 		aux->cola = primero;
 		aux->datos = datos;
+		printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos.oici,aux->datos.denom,aux->datos.prov);
 		*ok = 1;
 		}
 		return aux;
