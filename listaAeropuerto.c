@@ -143,7 +143,7 @@ insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
 		}
 		return aux;
 	}else if(c <0){
-		primero->tail = insertarRec(primero->tail,datos,ok);
+		primero->cola = insertarRec(primero->cola,datos,ok);
 	}else{
 		printf("Aeropuerto repetido \n");
 	}
