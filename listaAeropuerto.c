@@ -46,14 +46,14 @@ typedef struct tMov{
 
 }tMov;
 
-typedef struct tDatos{
+typedef struct tDatosA{
 	char * oaci; 
 	char * denom;
 	char * prov;
 }tDatos;
 
 typedef struct tAeropuerto {
-	tDatos datos;	
+	tDatosA datos;	
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
@@ -77,7 +77,7 @@ static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 
 
 static tAeropuertoP
-insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
+insertarRec(tAeropuertoP primero,tDatosA datos, int * ok)
 {
 	int c;
 	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
@@ -102,7 +102,7 @@ insertarRec(tAeropuertoP primero,tDatos datos, int * ok)
 }
 
 static int
-insertar( listaAeropuertoADT lista, tDatos datos)
+insertar( listaAeropuertoADT lista, tDatosA datos)
 {
 	int ok =0 ;
 	lista->primero = insertarRec(lista->primero, datos, &ok);
