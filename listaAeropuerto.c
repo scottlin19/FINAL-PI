@@ -38,6 +38,30 @@
 #define MAX_DENOM 70
 #define MAX_TEXTO 250
 #define DIAS_SEMANA 7
+
+
+
+typedef struct tDatos{
+	char * oaci; 
+	char * denom;
+	char * prov;
+}tDatos;
+
+typedef struct tAeropuerto {
+	tDatos datos;	
+	tMov cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
+	int mov_totales;
+	struct tAeropuerto * cola;
+}tAeropuerto;
+
+typedef struct tAeropuerto * tAeropuertoP;
+
+typedef struct listaAeropuertoCDT {
+	tAeropuertoP primero;
+
+	tAeropuertoP next;
+}listaAeropuertoCDT;
+
 typedef struct tMov{
 	int cant_cabotaje;
 	int cant_internacional;
@@ -70,26 +94,8 @@ typedef struct tDatos{
 
 */
 
-typedef struct tDatos{
-	char * oaci; 
-	char * denom;
-	char * prov;
-}tDatos;
 
-typedef struct tAeropuerto {
-	tDatos datos;	
-	tMov cant_mov_no_regulares[DIAS_SEMANA][2]; //  0 = Vuelos no regulares , 1 = Vuelos privados;
-	int mov_totales;
-	struct tAeropuerto * cola;
-}tAeropuerto;
 
-typedef struct tAeropuerto * tAeropuertoP;
-
-typedef struct listaAeropuertoCDT {
-	tAeropuertoP primero;
-
-	tAeropuertoP next;
-}listaAeropuertoCDT;
 
 
 static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
