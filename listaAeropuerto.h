@@ -27,12 +27,12 @@ void cargarDatos(listaAeropuertoADT lista,char * pathA);
  * que el segundo en la lista, devolver número positivo
  * si debe aparecer después, o bien 0 si son elementos equivalentes
  */
-
+/*
 static int compare(listElementT elem1, listElementT elem2 )
 {
 	return elem1 - elem2;		
 }
-
+*/
 /* Funcion:  		newList
  * Uso:  		list = newList();
  * -------------------------------------------------------------------
