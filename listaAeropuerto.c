@@ -117,10 +117,10 @@ agregarMovAeropuerto(listaAeropuertoADT lista,char * oaci,char * clase, char * c
 	alPrincipio(lista);
 	int c;
 	int claseIndex;
-	int clasifIndex;
+
 	
 	while(tieneProx(lista)){
-		if((c = strcmp(lista->proximo->datos.oaci,oaci) == 0){
+		if((c = strcmp(lista->proximo->datos.oaci,oaci)) == 0){
 			if(clase == "Regular"){
 				claseIndex = REGULAR;
 			}else if(clase == "No Regular"){
@@ -212,12 +212,12 @@ nuevaLista( void )
 
 void
 alPrincipio(listaAeropuertoADT lista) {
-	lisat->proximo = lista->primero;
+	lista->proximo = lista->primero;
 }
 
 int
-tieneProx(const listADT list) {
-	return list->next != NULL;
+tieneProx(const listaAeropuertoADT lista) {
+	return lista->proximo != NULL;
 }
 
 void
