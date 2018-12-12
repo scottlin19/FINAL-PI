@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <string.h>
 #include "listaAeropuertoADT.h"
 #include "listaAerolineaADT.h"
@@ -31,9 +30,7 @@ typedef struct tAerolinea * tAerolineaP;
 
 typedef struct tDatosAL{
 	char * origen;
-	char * destino;
 	char * nombre;
-	int tipo_vuelo;
 	int clase_vuelo;
 	int clasificacion_vuelo;
 	int dia;
@@ -46,7 +43,7 @@ struct listaAreolineaCDT{
 
 };
 
-static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos,FILE * archM , int * added) {
+static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) {
 	
 	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
 	{
