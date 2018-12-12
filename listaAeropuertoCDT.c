@@ -97,7 +97,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP datos)
 void
 printLista(listaAeropuertoADT lista)
 {
-	for(tAeropuertoP aux = lista->primero, aux!= NULL; aux = aux->cola){
+	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
 			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
 	}
 
