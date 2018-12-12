@@ -47,7 +47,17 @@ struct listaAerolineaCDT{
 
 };
 
-static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) {
+void
+printListaAL(listaAerolineaADT lista)
+{
+	int i = 1;
+	for(listaAerolineaADT aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
+			printf("%d : nombre: %s , movs cabotaje: %d \n",i,aux->nombre,aux->cant_mov_cabotaje);
+	}
+
+}
+
+static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	
 	if( primero == NULL)
 	{
@@ -56,7 +66,8 @@ static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) 
 			printf("Error: No hay lugar para otro nodo\n");
 		}
 		aux->cola = primero;
-		//Cargo datos de aeropuerto y aerolinea
+		aux->nombre = nombre;
+		aux->cant_mov_cabotaje= 1;
 		
 		*ok = 1;
 		return aux;
@@ -77,10 +88,10 @@ static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) 
 }
 
 static int
-insertarAL( listaAerolineaADT lista, tDatosAL datos)
+insertarAL( listaAerolineaADT lista, char * nombre)
 {
 	int ok =0 ;
-	lista->primero = insertarALRec(lista->primero, datos, &ok);
+	lista->primero = insertarALRec(lista->primero, nombre, &ok);
 
 	return ok;
 }
@@ -187,13 +198,13 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
 		}
-		/*if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
-			
+		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
+			printf("agrego areolinea: %s \n",datos.nombre);
 			if( !insertarAL(listaAL,datos)){
 				printf("Error al insertar los datos de la aerolinea.\n");
 				return 1;
 			}
-		}*/
+		}
 		
 	}
 	printLista(listaAP);
@@ -213,15 +224,7 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		*ok = 1;
 	}
 	else {
-		int porcentaje;
-		fprintf(archivoDest,"Aerolínea;Porcentaje\n");
-		tAerolineaP aux = listaAL->primero;
-		while (aux != NULL){
-			porcentaje = (aux->cant_mov_cabotaje / listaAL->cant_mov_cabotaje_total) * 100;
-			fprintf(archivoDest, "%s;%d%\n", aux->nombre, porcentaje);
-			aux = aux->cola;
-		}
-		fclose(archivoDest);
-	}
-}
+		fprintf(archivoDest, 
+
+
 */
