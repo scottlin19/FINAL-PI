@@ -89,7 +89,7 @@ void
 printLista(listaAeropuertoADT lista)
 {
 	int i = 1;
-	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola,i++;){
+	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
 			printf("%d : OACI: %s, DENOM: %s PROV: %s \n",i,aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 	}
 
