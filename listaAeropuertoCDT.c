@@ -230,10 +230,11 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 				printf("Error al cargar datos \n");
 				return 1;
 			}
+			printf("se inserto bien \n");
 		}
 	}
 	
-	printLista(lista);
+	printf("oaci p: %s denom p %s, prov p :%s \n",lista->primero->datos.oaci,lista->primero->datos.denom,lista->primero->datos.prov);
 	return 0;
 }
 listaAeropuertoADT
