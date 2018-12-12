@@ -161,7 +161,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 						primero = primero->cola;
 						primero->cola->cola = aux;
 				}
-		*/
+		
 			*agregado = 2; //Agregado y ordenado
 			}
 		}
