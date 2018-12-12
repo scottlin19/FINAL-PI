@@ -34,7 +34,7 @@ typedef struct tDatosAP{
 }tDatosAP;
 
 struct tAeropuerto {
-	tDatosAP   datos;	
+	tDatosAP  * datos;	
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
@@ -63,17 +63,16 @@ static tAeropuertoP
 insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos->oaci)) > 0){
+	if(primero == NULL || (c = strcmp(primero->datos->oaci,datos->oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
 		}else{
 			aux->cola = primero;
 		
-			aux->datos.oaci = datos->oaci;
-			aux->datos.denom = datos->denom;
-			aux->datos.prov = datos->prov;
-			printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+			aux->datos = datos;
+		
+			printf("AUX OICI: %s\nAux Denom: %s\nAux Prov: %s\n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 			*ok = 1;
 		}
 		return aux;
@@ -92,7 +91,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP * datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
-
+printf("Primero OICI: %s\nPrimero Denom: %s\nPrimero Prov: %s\n",lista->primero->datos->oaci,lista->primero->datos->denom,lista->primero->datos->prov);
 	return ok;
 }
 
