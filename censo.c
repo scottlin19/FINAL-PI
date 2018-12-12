@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listaAeropuertoADT.h"
+
 #include "listaAerolineaADT.h"
 
 void query1(listaAeropuertoADT listaAeropuerto, int *ok);
