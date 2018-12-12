@@ -258,3 +258,23 @@ proximoAP(listaAeropuertoADT lista)
 {
 	lista->proximo = lista->proximo->cola;
 }
+
+void query1(listaAeropuertoADT listaAeropuerto, int *ok){
+	alPrincipioAP(listaAeropuerto);
+	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
+	if (archivoDest == NULL){
+		printf("Error al crear/reemplazar archivo");
+		*ok = 1;
+	}
+	else {
+		fprintf(archivoDest, "OACI;Denominación;Movimientos\n");
+		while(listaAeropuerto->proximo != NULL){
+			printf("oaci vale %s\n", listaAeropuerto->proximo->datos.oaci);
+			if (listaAeropuerto->proximo->mov_totales != 0){
+				fprintf(archivoDest, "%s;%s;%d\n", listaAeropuerto->proximo->datos.oaci, listaAeropuerto->proximo->datos.denom, listaAeropuerto->proximo->mov_totales);
+			}
+			proximoAP(listaAeropuerto);
+		}
+	}
+	fclose(archivoDest);
+}	
