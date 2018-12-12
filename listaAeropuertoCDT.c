@@ -149,18 +149,19 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			//printf("ELSE 2 \n");
 		//	printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
-			if(*agregado == 1){
-				//printf("8 IF \n");
-				int comp;
+			
+			int comp;
+			printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
 			if((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) )){
-				//	printf("9 IF \n");
+					printf("me los intercambia \n");
+						
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
 						primero = primero->cola;
 						primero->cola->cola = aux;
 				}
 		
-			*agregado = 2; //Agregado y ordenado
+			
 			}
 		}
 	
