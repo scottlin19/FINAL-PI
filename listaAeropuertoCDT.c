@@ -99,7 +99,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP * datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
-	printLista(lista);
+	//printLista(lista);
 	return ok;
 }
 
@@ -153,7 +153,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 			int comp;
 			//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
-			if(primero->cola != NULL && (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) )){
+			if((primero->cola != NULL )&& (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) )){
 					printf("me los intercambia \n");
 						
 						tAeropuertoP aux = primero->cola->cola;
@@ -316,7 +316,7 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		*ok = 1;
 	}
 	else {
-		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos\n");
+		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos");
 		tAeropuertoP aux = listaAeropuerto->primero;
 		int i,j, dia;
 		char *clasificacion[2][4] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}};
@@ -338,7 +338,7 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		}
 		for (i = 0; i < 2; i++){
 			for (j = 1; j < 4; j++){
-				fprintf(archivoDest, "%s;%s;%d\n", clasificacion[i][0],clasificacion[i][j], total[i][j-1]);
+				fprintf(archivoDest, "%s;%s;%d", clasificacion[i][0],clasificacion[i][j], total[i][j-1]);
 			}
 		}
 		fclose(archivoDest);
