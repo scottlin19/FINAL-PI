@@ -86,6 +86,14 @@ insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 
 }
 
+void
+printLista(listaAeropuertoADT lista)
+{
+	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
+			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
+	}
+
+}
 static int
 insertarAP( listaAeropuertoADT lista, tDatosAP * datos)
 {
@@ -97,14 +105,6 @@ printf("Primero OICI: %s\nPrimero Denom: %s\nPrimero Prov: %s\n",lista->primero-
 }
 
 
-void
-printLista(listaAeropuertoADT lista)
-{
-	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
-			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
-	}
-
-}
 
 static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
@@ -279,31 +279,3 @@ void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 	}
 	fclose(archivoDest);
 }	
-
-void query2(listaAeropuertoADT listaAeropuerto, int *ok){
-	FILE * archivoDest = fopen("dia_semana.csv", "w+t");
-	if (archivoDest == NULL){
-		printf("Error al crear/reemplazar archivp");
-		*ok = 1;
-	}
-	else {
-		fprintf(archivoDest, "Día;Cabotaje;Internacional;Total\n");
-		char dias[7][11] = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
-		int total[7][2];
-		int dia = 0, clase;
-		alPrincipioAP(listaAeropuerto);
-		while (listaAeropuerto->proximo != NULL){
-			for (dia = 0; dia < 7; dia++){	
-				for (clase = 0; clase < 3;clase++){
-					total[dia][0] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_cabotaje;
-					total[dia][1] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_internacional;
-				}
-			}
-			listaAeropuerto->proximo = listaAeropuerto->proximo->cola;
-		}
-		for (dia = 0; dia < 7; dia++){
-			fprintf(archivoDest, "%s;%d;%d;%d\n", dias[dia], total[dia][0],total[dia][1],total[dia][0] + total[dia][1]);
-		}
-	}
-	fclose(archivoDest);
-}
