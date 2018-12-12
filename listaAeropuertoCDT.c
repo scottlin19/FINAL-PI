@@ -100,7 +100,7 @@ void
 printLista(listaAeropuertoADT lista)
 {
 	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
-			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 	}
 
 }
@@ -200,7 +200,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 		token = strtok(s,";");
 		cont = 0;
 		valido = 1;
-		
+		tDatosAP *  datos = malloc(sizeof(tDatosAP)); 
 		while((token != NULL) && valido){
 			
 			if(cont == OACI){
@@ -208,7 +208,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 					valido = 0;
 							
 				}else{		
-					tDatosAP *  datos = malloc(sizeof(tDatosAP)); 
+					
 					strcpy(datos->oaci,token);
 				}
 				
