@@ -5,9 +5,6 @@
  * simplemente encadenada ordenada, sin repeticiones 
  */
 
-#ifndef LISTADT_H_
-#define LISTADT_H_
-
 
 
 /* El siguiente tipo define el TAD Lista.
@@ -18,6 +15,8 @@ typedef struct listaAeropuertoCDT* listaAeropuertoADT;
 
 //Carga Datos del archivo aeropuertos.csv , devuelve 1 si hubo un error y 0 si no.
 int cargarDatosAP(listaAeropuertoADT lista,char * pathA);
+
+int agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia);
 
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
@@ -131,4 +130,3 @@ void proximoAP(listaAeropuertoADT listaAeropuerto);
  * */
 //listADT map(const listADT list, listElementT (*fn) (listElementT));
 
-#endif /* LISTADT_H_ */
