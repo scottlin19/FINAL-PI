@@ -209,14 +209,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 							
 				}else{		
 					
-					strcpy(datos->oaci,token);
+					datos->oaci = token;
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
-					strcpy(datos->denom,token);
+					datos->denom = token;
 				
 			}else if(valido && cont == PROVINCIA){	
-					strcpy(datos->prov,token);
+					datos->prov = token;
 					
 			}	
 			cont++;
