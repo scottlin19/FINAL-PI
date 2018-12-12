@@ -30,11 +30,11 @@ struct tAerolinea {
 typedef struct tAerolinea * tAerolineaP;
 
 typedef struct tDatosAL{
-	char * origen;
-	char * destino;
-	char * nombre;
-	char * clase;
-	char * clasificacion;
+	char  origen[10];
+	char  destino[10];
+	char  nombre[30];
+	char  clase[16];
+	char  clasificacion[40];
 	int dia;
 }tDatosAL;
 
@@ -109,7 +109,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 	int d,m,a;
 	int cont = 0;	
 	char * token;
-	tDatosAL  datos; 
+	
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
 	
@@ -120,7 +120,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 		token = strtok(s,";");
 		printf("token  = %s\n",token);
 		cont = 0;
-		
+		tDatosAL  datos; 
 		while(token != NULL){
 			//printf("token = %s \n",token);
 			//printf("cont = %d \n",cont);
@@ -136,28 +136,28 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 				switch(cont){
 					case CLASE:
 						
-						datos.clase = token;;
+						strcpy(datos.clase,token);
 					break;
 					case CLASIFICACION:
 						
-						datos.clasificacion = token;
+						strcpy(datos.clasificacion,token);
 					break;
 				
 					case ORIGEN:
 						
-						datos.origen = token;
+						strcpy(datos.origen,token);
 						
 					break;
 					case DESTINO:
 						
 					
-						datos.destino = token;
+						strcpy(datos.destino,token);
 						
 					break;
 					case NOMBRE:
 						
 						
-						datos.nombre = token;
+						strcpy(datos.nombre,token);
 						
 					break;
 				}
