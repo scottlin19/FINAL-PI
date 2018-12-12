@@ -133,7 +133,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 		printf("s = %s\n",s);
 		token = strtok(s,";");
-		printf("token  = %s\n",token);
+		//printf("token  = %s\n",token);
 		cont = 0;
 		tDatosAL  datos; 
 		while(token != NULL){
@@ -143,7 +143,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				printf("d = %d, m = %d, a = %d \n",d,m,a);
 				datos.dia = diaDeLaSemana(d,m,a);
-				//printf("dia = %d \n",datos->dia);
+				printf("dia = %d \n",datos->dia);
 				
 			}else if(cont != 1 && cont != 4 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
@@ -185,7 +185,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 		}
 		
 		
-		printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
+		//printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
 		char * aux;
 		if(strcmp(datos.clasificacion,"Internacional") == 0){
 			if(strcmp(datos.tipo,"Despegue") == 0){
