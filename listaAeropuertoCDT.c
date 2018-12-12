@@ -110,7 +110,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 {	
 	//printf("entro a AGREGAR REC \n");
 	printf("origen = %s\nclase=%s\nclasificacion=%s\n",oaci,clase,clasif);
-	printf("oaci primero2 : %s \n",primero->datos->oaci);
+	//printf("oaci primero2 : %s \n",primero->datos->oaci);
 	int c;
 	int claseIndex;
 
