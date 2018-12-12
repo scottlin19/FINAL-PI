@@ -66,12 +66,14 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 		tAerolineaP aux = calloc(1,sizeof( struct tAerolinea ));
 		if (aux == NULL){
 			printf("Error: No hay lugar para otro nodo\n");
-		}
-		aux->cola = primero;
-		aux->nombre = nombre;
-		aux->cant_mov_cabotaje= 1;
 		
-		*ok = 1;
+		}else{
+			aux->cola = primero;
+			aux->nombre = nombre;
+			aux->cant_mov_cabotaje= 1;
+			
+			*ok = 1;
+		}
 		return aux;
 	}else if(strcmp(primero->nombre,nombre) == 0){
 		(primero->cant_mov_cabotaje)++;
