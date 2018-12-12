@@ -92,7 +92,9 @@ insertarAL( listaAerolineaADT lista, char * nombre)
 {
 	int ok =0 ;
 	lista->primero = insertarALRec(lista->primero, nombre, &ok);
-
+	if(ok){
+		(lista->cabotaje_total)++;
+	}
 	return ok;
 }
 
