@@ -139,7 +139,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 		printf("asd 2 \n");
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
-		printf("s = %s\n",s);
+		printf("ss = %s\n",s);
 		token = strtok(s,";");
 		//printf("token  = %s\n",token);
 		cont = 0;
