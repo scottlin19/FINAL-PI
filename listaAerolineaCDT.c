@@ -33,7 +33,7 @@ typedef struct tDatosAL{
 	char  origen[10];
 	char  destino[10];
 	char  nombre[30];
-	char  clase[25];
+	char  clase[40];
 	char  clasificacion[40];
 	int dia;
 }tDatosAL;
