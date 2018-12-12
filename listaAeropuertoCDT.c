@@ -115,7 +115,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	printf("entro a AGREGAR REC \n");
 		if(primero == NULL){
 			return primero;
-		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
+		}else if((c = strcmp(primero->datos->oaci,oaci)) == 0){
 				
 
 			if(strcmp(clase,"Regular") == 0){
@@ -148,7 +148,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 		}else{
 			printf("ELSE 2 \n");
-			printf("origen: %s oaci data: %s \n",primero->datos.oaci,oaci);
+			printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			if(*agregado == 1){
 				printf("8 IF \n");
