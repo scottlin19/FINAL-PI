@@ -126,7 +126,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			//printf("cont = %d \n",cont);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
-				//printf("d = %d, m = %d, a = %d \n",d,m,a);
+				printf("d = %d, m = %d, a = %d \n",d,m,a);
 				datos.dia = diaDeLaSemana(d,m,a);
 				//printf("dia = %d \n",datos->dia);
 				
@@ -167,6 +167,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			token =  strtok(NULL, ";");
 		}
 		printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s\n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion);
+		printf("oaci primero 1: %s \n",listaAP->primero->datos.oaci);
 		if(agregarMovAP(listaAP,datos.origen,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
@@ -188,3 +189,4 @@ nuevaListaAL(void)
 {
 	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
+
