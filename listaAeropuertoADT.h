@@ -133,3 +133,6 @@ void proximoAP(listaAeropuertoADT listaAeropuerto);
 void query1(listaAeropuertoADT listaAeropuerto, int *ok);
 void query2(listaAeropuertoADT listaAeropuerto, int *ok);
 void query3(listaAeropuertoADT listaAP, int *ok);
+
+void
+printLista(listaAeropuertoADT lista);
