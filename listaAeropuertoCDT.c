@@ -52,7 +52,8 @@ struct listaAeropuertoCDT {
 
 
 
-static comparaMov(tAeropuertoP a1,tAeropuertoP a2)
+static int 
+comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 {
 	return a1->mov_totales - a2->mov_totales;
 
