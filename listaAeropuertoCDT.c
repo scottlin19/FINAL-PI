@@ -25,7 +25,6 @@
 typedef struct tMov{
 	int cant_cabotaje;
 	int cant_internacional;
-
 }tMov;
 
 typedef struct tDatosAP{
@@ -102,35 +101,48 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	
 	int c;
 	int claseIndex;
+	printf("entro a AGREGAR REC \n");
 		if((c = strcmp(primero->datos.oaci,oaci)) == 0){
+				
+
 			if(strcmp(clase,"Regular") == 0){
 				claseIndex = REGULAR;
+				printf("2 IF \n");
 			}else if(strcmp(clase,"No Regular") == 0){
+				printf("3 IF \n");
 				claseIndex = NO_REGULAR;	
 			}else{
+				printf("4 IF \n");
 				claseIndex = VUELO_PRIVADO;
 			}
 			if(strcmp(clasif,"Cabotaje") == 0){
+				printf("5 IF \n");
 				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
+				printf("6 IF \n");
 				(primero->cant_mov[dia][claseIndex].cant_internacional)++;
+				
 			}
+			
 			(primero->mov_totales)++;
-			 
+			 printf("ELSE \n");
 			*agregado = 1;
 			return primero;
 		}else if(c > 0){
-			
+			printf("7 IF \n");
 			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
 			
 		}else{
+			printf("ELSE 2 \n");
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			if(*agregado == 1){
+				printf("8 IF \n");
 				int comp;
-				if( (comp =comparaMov(primero,primero->cola)) < 0||
+				if( ((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0||
 				   ((comp == 0) && 
 				    strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0)){
+					printf("9 IF \n");
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
 						primero = primero->cola;
@@ -147,7 +159,9 @@ int
 agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
 {
 	int agregado = 0;
+	printf("entro a agregarMovap\n");
 	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
+	
 	return agregado;
 }
 int
