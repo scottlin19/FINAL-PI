@@ -43,6 +43,7 @@ struct listaAerolineaCDT{
 	
 	tAerolineaP primero;
 	tAerolineaP proximo;
+	int cabotaje_total;
 
 };
 
@@ -169,9 +170,20 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			cont++;
 			token =  strtok(NULL, ";");
 		}
-		printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s\n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion);
 		
-		if(!agregarMovAP(listaAP,datos.origen,datos.clase,datos.clasificacion,datos.dia)){
+		
+		printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
+		char * aux;
+		if(strcmp(datos.clasificacion,"Internacional") == 0){
+			if(strcmp(datos.tipo,"Despegue") == 0){
+				aux = datos.origen;
+			}else{
+				aux = datos.destino;
+			}
+		}else{
+			aux = datos.origen;
+		}
+		if(!agregarMovAP(listaAP,aux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
 		}
