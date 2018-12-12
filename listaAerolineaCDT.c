@@ -61,6 +61,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	
 	if( primero == NULL)
 	{
+		printf("primer AL == NULL \n");
 		tAerolineaP aux = calloc(1,sizeof( struct tAerolinea ));
 		if (aux == NULL){
 			printf("Error: No hay lugar para otro nodo\n");
