@@ -24,7 +24,7 @@ struct tAerolinea {
 	char * nombre;
 	int cant_mov_cabotaje;
 	
-	struct tAerolinea * tail;
+	struct tAerolinea * cola;
 };
 typedef struct tAerolinea * tAerolineaP;
 
