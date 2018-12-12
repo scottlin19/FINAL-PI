@@ -172,13 +172,13 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
 		}
-		/*if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
+		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
 			
 			if( !insertarAL(listaAL,datos)){
 				printf("Error al insertar los datos de la aerolinea.\n");
 				return 1;
 			}
-		}*/
+		}
 		
 	}
 	return 0;
