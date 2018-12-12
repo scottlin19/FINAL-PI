@@ -71,8 +71,8 @@ insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 			aux->cola = primero;
 		
 			aux->datos = datos;
+		
 			*ok = 1;
-			
 		}
 		return aux;
 	}else if(c <0){
@@ -88,8 +88,9 @@ insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 void
 printLista(listaAeropuertoADT lista)
 {
-	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
-			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
+	int i = 1;
+	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola,i++;){
+			printf("%d : OACI: %s, DENOM: %s PROV: %s \n",i,aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 	}
 
 }
