@@ -193,4 +193,15 @@ nuevaListaAL(void)
 {
 	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
+/*
+void query5(listaAerolineaADT listaAL, int *ok){
+	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
+	if (archivoDest == NULL){
+		printf("Error al crear/reemplazar archivo\n");
+		*ok = 1;
+	}
+	else {
+		fprintf(archivoDest, 
 
+
+*/
