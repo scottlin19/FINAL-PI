@@ -32,8 +32,8 @@ typedef struct tDatosAL{
 	char * origen;
 	char * destino;
 	char * nombre;
-	int clase_vuelo;
-	int clasificacion_vuelo;
+	int clase;
+	int clasificacion;
 	int dia;
 }tDatosAL;
 
@@ -81,7 +81,7 @@ diaDeLaSemana(int d, int m, int a)
 }
 
 int
-cargarDatosAL(listaAerolineaADT lista,char * pathM)
+cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 {
 	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
@@ -108,13 +108,13 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 		cont = 0;
 		
 		while(token != NULL){
-			printf("token = %s \n",token);
-			printf("cont = %d \n",cont);
+			//printf("token = %s \n",token);
+			//printf("cont = %d \n",cont);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
-				printf("d = %d, m = %d, a = %d \n",d,m,a);
+				//printf("d = %d, m = %d, a = %d \n",d,m,a);
 				datos->dia = diaDeLaSemana(d,m,a);
-				printf("dia = %d \n",datos->dia);
+				//printf("dia = %d \n",datos->dia);
 				
 			}else if(cont != 1 && cont != 4 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
@@ -129,14 +129,14 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 						}else{
 								index = VUELO_PRIVADO;
 						}
-						datos->clase_vuelo = index;
+						datos->clase = index;
 					break;
 					case CLASIFICACION:
 						if(strcmp(token, "Cabotaje") == 0){
 							index = 0;
 							
 						}
-						datos->clasificacion_vuelo = index;
+						datos->clasificacion = index;
 					break;
 					/*case TIPO:
 						
@@ -172,6 +172,10 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 			token =  strtok(NULL, ";");
 		}
 		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo);
+		if(agregarMovAP(listaAP,datos->origen,datos->clase,datos->clasificacion,datos->dia) < 0){
+			printf("Error al sumarle un movimiento al aeropuerto. \n");
+			return 1;
+		}
 	}
 }
 
