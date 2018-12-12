@@ -108,12 +108,13 @@ printLista(listaAeropuertoADT lista)
 
 static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
-{
-	printf("origen = %s\ndestino = %s\nclase=%s\nclasificacion=%s\n",oaci,clase,clasif);
+{	
+		printf("entro a AGREGAR REC \n");
+	//printf("origen = %s\ndestino = %s\nclase=%s\nclasificacion=%s\n",oaci,clase,clasif);
 	printf("oaci primero : %s \n",primero->datos.oaci);
 	int c;
 	int claseIndex;
-	printf("entro a AGREGAR REC \n");
+
 		if(primero == NULL){
 			return primero;
 		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
