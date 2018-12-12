@@ -68,13 +68,13 @@ insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
 		}else{
-		aux->cola = primero;
+			aux->cola = primero;
 		
-		aux->datos.oaci = datos.oaci;
-		aux->datos.denom = datos.denom;
-		aux->datos.prov = datos.prov;
-		printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
-		*ok = 1;
+			aux->datos.oaci = datos.oaci;
+			aux->datos.denom = datos.denom;
+			aux->datos.prov = datos.prov;
+			printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+			*ok = 1;
 		}
 		return aux;
 	}else if(c <0){
@@ -209,14 +209,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 					valido = 0;
 							
 				}else{		
-					datos.oaci = token;
+					strcpy(datos.oaci,token);
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
-					datos.denom = token;
+					dstrcpy(datos.denom,token);
 				
 			}else if(valido && cont == PROVINCIA){	
-					datos.prov = token;
+					strcpy(datos.prov,token);
 					
 			}	
 			cont++;
