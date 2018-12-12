@@ -60,19 +60,19 @@ comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 
 
 static tAeropuertoP
-insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
+insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
+	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos->oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
 		}else{
 			aux->cola = primero;
 		
-			aux->datos.oaci = datos.oaci;
-			aux->datos.denom = datos.denom;
-			aux->datos.prov = datos.prov;
+			aux->datos.oaci = datos->oaci;
+			aux->datos.denom = datos->denom;
+			aux->datos.prov = datos->prov;
 			printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
 			*ok = 1;
 		}
@@ -88,7 +88,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 }
 
 static int
-insertarAP( listaAeropuertoADT lista, tDatosAP datos)
+insertarAP( listaAeropuertoADT lista, tDatosAP * datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
@@ -209,14 +209,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 					valido = 0;
 							
 				}else{		
-					strcpy(datos.oaci,token);
+					strcpy(datos->oaci,token);
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
-					dstrcpy(datos.denom,token);
+					dstrcpy(datos->denom,token);
 				
 			}else if(valido && cont == PROVINCIA){	
-					strcpy(datos.prov,token);
+					strcpy(datos->prov,token);
 					
 			}	
 			cont++;
@@ -225,7 +225,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
-			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
+			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);
 			if(!insertarAP(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
