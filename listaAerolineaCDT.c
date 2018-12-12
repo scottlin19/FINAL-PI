@@ -203,7 +203,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 		}
 		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
 			printf("agrego areolinea: %s \n",datos.nombre);
-			if( !insertarAL(listaAL,datos)){
+			if( !insertarAL(listaAL,nombre)){
 				printf("Error al insertar los datos de la aerolinea.\n");
 				return 1;
 			}
