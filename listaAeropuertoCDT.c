@@ -102,7 +102,9 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	int c;
 	int claseIndex;
 	printf("entro a AGREGAR REC \n");
-		if((c = strcmp(primero->datos.oaci,oaci)) == 0){
+		if(primero == NULL){
+			return primero;
+		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
 				
 
 			if(strcmp(clase,"Regular") == 0){
