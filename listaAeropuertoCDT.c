@@ -70,9 +70,9 @@ insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 		}else{
 		aux->cola = primero;
 		aux->datos = malloc(sizeof(tDatosAP));
-		aux->datos->oaci = datos->oaci;
+		aux->datos->oaci = datos.oaci;
 		aux->datos->denom = datos.denom;
-		aux->datos->prov = datos->prov;
+		aux->datos->prov = datos.prov;
 		printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 		*ok = 1;
 		}
@@ -153,7 +153,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			if(*agregado == 1){
 				printf("8 IF \n");
 				int comp;
-				if( (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
+				if( (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) )){
 					printf("9 IF \n");
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
