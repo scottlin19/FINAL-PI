@@ -234,7 +234,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			printf("se inserto bien \n");
 		}
 	}
-	
+	printLista(lista);
 	printf("oaci p: %s denom p %s, prov p :%s \n",lista->primero->datos->oaci,lista->primero->datos->denom,lista->primero->datos->prov);
 	return 0;
 }
