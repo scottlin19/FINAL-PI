@@ -168,7 +168,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 		}
 		printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s\n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion);
 		
-		if(agregarMovAP(listaAP,datos.origen,datos.clase,datos.clasificacion,datos.dia)){
+		if(!agregarMovAP(listaAP,datos.origen,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
 		}
