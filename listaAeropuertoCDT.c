@@ -92,7 +92,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
-	printf("oaci: %s \n",lista->primero->datos->oaci);
+
 	return ok;
 }
 
@@ -101,7 +101,7 @@ void
 printLista(listaAeropuertoADT lista)
 {
 	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
-			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
+			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
 	}
 
 }
@@ -149,7 +149,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 		}else{
 			printf("ELSE 2 \n");
-			printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
+			printf("origen: %s oaci data: %s \n",primero->datos.oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			if(*agregado == 1){
 				printf("8 IF \n");
