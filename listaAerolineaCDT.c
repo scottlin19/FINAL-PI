@@ -36,7 +36,7 @@ typedef struct tDatosAL{
 	int dia;
 }tDatosAL;
 
-struct listaAreolineaCDT{
+struct listaAerolineaCDT{
 	tDatosAL datos;
 	tAerolineaP primero;
 	tAerolineaP proximo;
@@ -44,7 +44,7 @@ struct listaAreolineaCDT{
 };
 
 static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) {
-	
+	/*
 	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
 	{
 		tAerolineaP aux = malloc(sizeof( struct tAerolinea ));
@@ -60,7 +60,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) 
 	}else if((primero->mov_totales > 1) || strcmp(primero->OACI,datos->origen) < 0){
 		
 		primero->cola = insertRec( primero->cola, datos,archA, added);
-	}
+	}*/
 	return primero;
 }
 
