@@ -261,20 +261,20 @@ proximoAP(listaAeropuertoADT lista)
 }
 
 void query1(listaAeropuertoADT listaAeropuerto, int *ok){
-	alPrincipioAP(listaAeropuerto);
 	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
 	if (archivoDest == NULL){
 		printf("Error al crear/reemplazar archivo");
 		*ok = 1;
 	}
 	else {
+		tAeropuertoP aux = listaAeropuerto->primero;
 		fprintf(archivoDest, "OACI;Denominación;Movimientos\n");
-		while(listaAeropuerto->proximo != NULL){
+		while(aux != NULL){
 			printf("oaci vale %s\n", listaAeropuerto->proximo->datos->oaci);
 			if (listaAeropuerto->proximo->mov_totales != 0){
 				fprintf(archivoDest, "%s;%s;%d\n", listaAeropuerto->proximo->datos->oaci, listaAeropuerto->proximo->datos->denom, listaAeropuerto->proximo->mov_totales);
 			}
-			proximoAP(listaAeropuerto);
+			aux = aux->cola;
 		}
 	}
 	fclose(archivoDest);
@@ -291,15 +291,15 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 		char dias[7][11] = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
 		int total[7][2];
 		int dia = 0, clase;
-		alPrincipioAP(listaAeropuerto);
-		while (listaAeropuerto->proximo != NULL){
+		tAeropuertoP aux = listaAeropuerto->primero;
+		while (aux != NULL){
 			for (dia = 0; dia < 7; dia++){	
 				for (clase = 0; clase < 3;clase++){
 					total[dia][0] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_cabotaje;
 					total[dia][1] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_internacional;
 				}
 			}
-			listaAeropuerto->proximo = listaAeropuerto->proximo->cola;
+			aux = aux->cola;
 		}
 		for (dia = 0; dia < 7; dia++){
 			fprintf(archivoDest, "%s;%d;%d;%d\n", dias[dia], total[dia][0],total[dia][1],total[dia][0] + total[dia][1]);
