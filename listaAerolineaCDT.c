@@ -5,7 +5,7 @@
 #include <string.h>
 #include "listaAeropuertoADT.h"
 #include "listaAerolineaADT.h"
-
+#include "listaAeropuertoCDT.c"
 
 #define FECHA 0
 #define CLASE 2
