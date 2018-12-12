@@ -14,12 +14,12 @@ int main(int argc, char * argv[])
 	//if (cargarDatosAL(listaAL, listaAP, "../mov.csv")){
 	//	printf("funca\n");
 	//}
-	/*
+	
 	query1(listaAP, &ok);
 	printf("ok vale %d\n", ok);
 	query2(listaAP, &ok);
 	printf("ok vale %d\n", ok);
-	*/
+	
 	return ok;
 	
 

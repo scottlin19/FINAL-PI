@@ -270,9 +270,9 @@ void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 		tAeropuertoP aux = listaAeropuerto->primero;
 		fprintf(archivoDest, "OACI;Denominación;Movimientos\n");
 		while(aux != NULL){
-			printf("oaci vale %s\n", listaAeropuerto->proximo->datos->oaci);
-			if (listaAeropuerto->proximo->mov_totales != 0){
-				fprintf(archivoDest, "%s;%s;%d\n", listaAeropuerto->proximo->datos->oaci, listaAeropuerto->proximo->datos->denom, listaAeropuerto->proximo->mov_totales);
+			printf("oaci vale %s\n", aux->datos->oaci);
+			if (aux->mov_totales != 0){
+				fprintf(archivoDest, "%s;%s;%d\n", aux->datos->oaci, aux->datos->denom, aux->mov_totales);
 			}
 			aux = aux->cola;
 		}
@@ -295,8 +295,8 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 		while (aux != NULL){
 			for (dia = 0; dia < 7; dia++){	
 				for (clase = 0; clase < 3;clase++){
-					total[dia][0] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_cabotaje;
-					total[dia][1] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_internacional;
+					total[dia][0] += aux->cant_mov[dia][clase].cant_cabotaje;
+					total[dia][1] += aux->cant_mov[dia][clase].cant_internacional;
 				}
 			}
 			aux = aux->cola;
