@@ -130,3 +130,5 @@ void proximoAP(listaAeropuertoADT listaAeropuerto);
  * */
 //listADT map(const listADT list, listElementT (*fn) (listElementT));
 
+void query1(listaAeropuertoADT listaAeropuerto, int *ok);
+void query2(listaAeropuertoADT listaAeropuerto, int *ok);
