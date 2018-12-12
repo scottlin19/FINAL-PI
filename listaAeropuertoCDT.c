@@ -72,8 +72,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 		
 			aux->datos = datos;
 		
-			printf("AUX OICI: %s\nAux Denom: %s\nAux Prov: %s\n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
-			*ok = 1;
+			
 		}
 		return aux;
 	}else if(c <0){
@@ -99,7 +98,6 @@ insertarAP( listaAeropuertoADT lista, tDatosAP * datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
-printf("Primero OICI: %s\nPrimero Denom: %s\nPrimero Prov: %s\n",lista->primero->datos->oaci,lista->primero->datos->denom,lista->primero->datos->prov);
 	printLista(lista);
 	return ok;
 }
@@ -261,20 +259,27 @@ proximoAP(listaAeropuertoADT lista)
 }
 
 void query1(listaAeropuertoADT listaAeropuerto, int *ok){
+	alPrincipioAP(listaAeropuerto);
 	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
 	if (archivoDest == NULL){
 		printf("Error al crear/reemplazar archivo");
 		*ok = 1;
 	}
 	else {
-		tAeropuertoP aux = listaAeropuerto->primero;
 		fprintf(archivoDest, "OACI;Denominación;Movimientos\n");
+<<<<<<< HEAD
 		while(aux != NULL){
 			printf("oaci vale %s\n", aux->datos->oaci);
 			if (aux->mov_totales != 0){
 				fprintf(archivoDest, "%s;%s;%d\n", aux->datos->oaci, aux->datos->denom, aux->mov_totales);
+=======
+		while(listaAeropuerto->proximo != NULL){
+			printf("oaci vale %s\n", listaAeropuerto->proximo->datos->oaci);
+			if (listaAeropuerto->proximo->mov_totales != 0){
+				fprintf(archivoDest, "%s;%s;%d\n", listaAeropuerto->proximo->datos->oaci, listaAeropuerto->proximo->datos->denom, listaAeropuerto->proximo->mov_totales);
+>>>>>>> 237607038ce428d6f42dfe03f56f0080fbf13700
 			}
-			aux = aux->cola;
+			proximoAP(listaAeropuerto);
 		}
 	}
 	fclose(archivoDest);
@@ -291,15 +296,15 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 		char dias[7][11] = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
 		int total[7][2];
 		int dia = 0, clase;
-		tAeropuertoP aux = listaAeropuerto->primero;
-		while (aux != NULL){
+		alPrincipioAP(listaAeropuerto);
+		while (listaAeropuerto->proximo != NULL){
 			for (dia = 0; dia < 7; dia++){	
 				for (clase = 0; clase < 3;clase++){
 					total[dia][0] += aux->cant_mov[dia][clase].cant_cabotaje;
 					total[dia][1] += aux->cant_mov[dia][clase].cant_internacional;
 				}
 			}
-			aux = aux->cola;
+			listaAeropuerto->proximo = listaAeropuerto->proximo->cola;
 		}
 		for (dia = 0; dia < 7; dia++){
 			fprintf(archivoDest, "%s;%d;%d;%d\n", dias[dia], total[dia][0],total[dia][1],total[dia][0] + total[dia][1]);
