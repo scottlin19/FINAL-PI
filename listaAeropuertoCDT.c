@@ -28,9 +28,9 @@ typedef struct tMov{
 }tMov;
 
 typedef struct tDatosAP{
-	char * oaci; 
-	char * denom;
-	char * prov;
+	char  oaci[20]; 
+	char  denom[70];
+	char  prov[30];
 }tDatosAP;
 
 struct tAeropuerto {
@@ -210,14 +210,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 							
 				}else{		
 					
-					datos->oaci = token;
+					strcpy(datos->oaci,token);
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
-					datos->denom = token;
+					strcpy(datos->denom,token);
 				
 			}else if(valido && cont == PROVINCIA){	
-					datos->prov = token;
+					strcpy(datos->prov,token);
 					
 			}	
 			cont++;
