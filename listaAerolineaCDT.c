@@ -46,24 +46,24 @@ struct listaAerolineaCDT{
 };
 
 static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) {
-	int c;
+	
 	if( primero == NULL)
 	{
-		tAerolineaP aux = malloc(sizeof( struct tAerolinea ));
+		tAerolineaP aux = calloc(1,sizeof( struct tAerolinea ));
 		if (aux == NULL){
-			Error("No hay lugar para otro nodo\n");
+			printf("Error: No hay lugar para otro nodo\n");
 		}
 		aux->cola = primero;
 		//Cargo datos de aeropuerto y aerolinea
 		
-			
-		*added = 1;
+		*ok = 1;
 		return aux;
-	}else if(strcmp(primero->nombre,datos->nombre) == 0){
+	}else if(strcmp(primero->nombre,datos.nombre) == 0){
 		(primero->cant_mov_cabotaje)++;
+		*ok = 1;
 		
 	}else{	
-		primero->cola = insertRec( primero->cola, datos,archA, added);
+		primero->cola = insertRec( primero->cola, datos, ok);
 		if(primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje < 0){
 				tAerolineaP aux = primero->cola->cola;
 				primero->cola->cola = primero;
@@ -109,7 +109,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 	int d,m,a;
 	int cont = 0;	
 	char * token;
-	tDatosAL * datos = malloc(sizeof(tDatosAL)); 
+	tDatosAL  datos; 
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
 	
@@ -136,28 +136,28 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 				switch(cont){
 					case CLASE:
 						
-						datos->clase = token;;
+						datos.clase = token;;
 					break;
 					case CLASIFICACION:
 						
-						datos->clasificacion = token;
+						datos.clasificacion = token;
 					break;
 				
 					case ORIGEN:
 						
-						datos->origen = token;
+						datos.origen = token;
 						
 					break;
 					case DESTINO:
 						
 					
-						datos->destino = token;
+						datos.destino = token;
 						
 					break;
 					case NOMBRE:
 						
 						
-						datos->nombre = token;
+						datos.nombre = token;
 						
 					break;
 				}
@@ -166,13 +166,14 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			cont++;
 			token =  strtok(NULL, ";");
 		}
-		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%s\nclasificacion=%s\n",datos->nombre,datos->origen,datos->destino,datos->clase,datos->clasificacion);
-		if(QagregarMovAP(listaAP,datos->origen,datos->clase,datos->clasificacion,datos->dia)){
+		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%s\nclasificacion=%s\n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion);
+		if(agregarMovAP(listaAP,datos.origen,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
 		}
-		if(strcmp(datos->clasificacion,"Cabotaje") == 0){
-			if(!insertarAL(listaAL,datos)){
+		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
+			
+			if( !insertarAL(listaAL,datos)){
 				printf("Error al insertar los datos de la aerolinea.\n");
 				return 1;
 			}
