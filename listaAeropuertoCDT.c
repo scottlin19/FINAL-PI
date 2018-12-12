@@ -286,7 +286,7 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 	}
 	else {
 		fprintf(archivoDest, "Día;Cabotaje;Internacional;Total\n");
-		char dias[7][11] = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
+		char dias[7][11] = {"domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"};
 		int total[7][2] = {{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}}; 
 		int dia = 0, clase;
 		tAeropuertoP aux = listaAeropuerto->primero;
@@ -299,9 +299,10 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 			}
 			aux = aux->cola;
 		}
-		for (dia = 0; dia < 7; dia++){
+		for (dia = 1; dia < 7; dia++){
 			fprintf(archivoDest, "%s;%d;%d;%d\n", dias[dia], total[dia][0],total[dia][1],total[dia][0] + total[dia][1]);
 		}
+		fprintf(archivoDest, "%s;%d;%d;%d\n", dias[0], total[0][0],total[0][1],total[0][0] + total[0][1]);
 	}
 	fclose(archivoDest);
 }
