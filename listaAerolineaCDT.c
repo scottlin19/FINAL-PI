@@ -59,7 +59,7 @@ printListaAL(listaAerolineaADT lista)
 }
 
 static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
-	
+	printf("primero: %s nombre: %s \n",primero->nombre,nombre);
 	if( primero == NULL)
 	{
 		printf("primer AL == NULL \n");
@@ -76,10 +76,12 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 		}
 		return aux;
 	}else if(strcmp(primero->nombre,nombre) == 0){
+		printf("%s == %s \n",primero->nombre,nombre);
 		(primero->cant_mov_cabotaje)++;
 		*ok = 1;
 		
 	}else{	
+		printf("sig \n");
 		primero->cola = insertarALRec( primero->cola, nombre, ok);
 		if((primero->cola != NULL) && (primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje) < 0){
 				tAerolineaP aux = primero->cola->cola;
