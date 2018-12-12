@@ -184,6 +184,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 		}*/
 		
 	}
+	printLista(listaAP);
 	return 0;
 }
 
