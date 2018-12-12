@@ -32,8 +32,8 @@ typedef struct tDatosAL{
 	char * origen;
 	char * destino;
 	char * nombre;
-	int clase;
-	int clasificacion;
+	char * clase;
+	char * clasificacion;
 	int dia;
 }tDatosAL;
 
@@ -121,33 +121,14 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			
 				switch(cont){
 					case CLASE:
-						if(strcmp(token, "Regular") == 0){
-							
-								index = REGULAR;
-						}else if(strcmp(s, "No Regular") == 0){
-								index = NO_REGULAR;
-						}else{
-								index = VUELO_PRIVADO;
-						}
-						datos->clase = index;
+						
+						datos->clase = token;;
 					break;
 					case CLASIFICACION:
-						if(strcmp(token, "Cabotaje") == 0){
-							index = 0;
-							
-						}
-						datos->clasificacion = index;
-					break;
-					/*case TIPO:
 						
-							if(strcmp(token,"Aterrizaje") == 0){
-								index = ATERRIZAJE;			
-							}else if(strcmp(token,"Despegue") == 0){	
-								index = DESPEGUE;
-							}	
-						datos->tipo_vuelo = index;
+						datos->clasificacion = token;
 					break;
-					*/
+				
 					case ORIGEN:
 						
 						datos->origen = token;
