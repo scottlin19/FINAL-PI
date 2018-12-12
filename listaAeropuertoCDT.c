@@ -317,8 +317,8 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 	}
 	else {
 		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos");
+		tAeropuertoP aux = listaAeropuerto->primero;
 		int i,j;
 		char *clasificacion[2][3] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}}
 		int total[2][3];
-		alprincipioAP(listaAeropuerto);
 */
