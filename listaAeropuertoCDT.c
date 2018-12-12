@@ -192,7 +192,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 	int cont;	
 	int valido;
 	char * token;
-	tDatosAP *  datos = malloc(sizeof(tDatosAP)); 
+	
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archA);
 	while(fgets(s,MAX_TEXTO,archA) != NULL){
@@ -208,6 +208,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 					valido = 0;
 							
 				}else{		
+					tDatosAP *  datos = malloc(sizeof(tDatosAP)); 
 					strcpy(datos->oaci,token);
 				}
 				
