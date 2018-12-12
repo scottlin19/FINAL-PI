@@ -79,7 +79,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 		
 	}else{	
 		primero->cola = insertarALRec( primero->cola, nombre, ok);
-		if(primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje < 0){
+		if((primero->cola != NULL) && (primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje) < 0){
 				tAerolineaP aux = primero->cola->cola;
 				primero->cola->cola = primero;
 				primero = primero->cola;
@@ -222,7 +222,7 @@ nuevaListaAL(void)
 {
 	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
-
+/*
 void query5(listaAerolineaADT listaAL, int *ok){
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
@@ -230,17 +230,7 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		*ok = 1;
 	}
 	else {
-		int porcentaje;
-		fprintf(archivoDest, "Aerolínea;Porcentaje\n");
-		tAerolineaP aux = listaAL->primero;
-		while (aux != NULL){
-			porcentaje = (aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
-			fprintf(archivoDest, "%s;%d%\n", aux->nombre, porcentaje);
-			aux = aux->cola;
-		}
-		fclose(archivoDest);
-	}
-}
+		fprintf(archivoDest, 
 
 
-
+*/
