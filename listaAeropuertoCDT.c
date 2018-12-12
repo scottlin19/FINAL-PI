@@ -287,7 +287,7 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 	else {
 		fprintf(archivoDest, "Día;Cabotaje;Internacional;Total\n");
 		char dias[7][11] = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
-		int total[7][2];
+		int total[7][2] = {{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}}; 
 		int dia = 0, clase;
 		tAeropuertoP aux = listaAeropuerto->primero;
 		while (aux != NULL){
