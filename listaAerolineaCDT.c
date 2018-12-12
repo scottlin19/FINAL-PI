@@ -22,7 +22,7 @@
 
 
 struct tAerolinea {
-	char * nombre;
+	char  nombre[40];
 	int cant_mov_cabotaje;
 
 	struct tAerolinea * cola;
@@ -68,8 +68,9 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 			printf("Error: No hay lugar para otro nodo\n");
 		
 		}else{
+			printf("crea aux; \n");
 			aux->cola = primero;
-			aux->nombre = nombre;
+			strcpy(aux->nombre,nombre);
 			aux->cant_mov_cabotaje= 1;
 			
 			*ok = 1;
