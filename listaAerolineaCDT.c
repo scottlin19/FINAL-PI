@@ -51,6 +51,7 @@ void
 printListaAL(listaAerolineaADT lista)
 {
 	int i = 1;
+	printf("lista Aerolineas: \n");
 	for(tAerolineaP aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
 			printf("%d : nombre: %s , movs cabotaje: %d \n",i,aux->nombre,aux->cant_mov_cabotaje);
 	}
