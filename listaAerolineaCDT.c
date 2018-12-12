@@ -6,6 +6,7 @@
 #include "listaAeropuertoADT.h"
 #include "listaAerolineaADT.h"
 
+
 #define FECHA 0
 #define CLASE 2
 #define CLASIFICACION 3
