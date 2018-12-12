@@ -4,4 +4,5 @@ typedef struct listaAerolineaCDT* listaAerolineaADT;
 
 listaAerolineaADT nuevaListaAL(void);
 
-int cargarDatosAL(listaAerolineaADT lista,char * pathM);
+int
+cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
