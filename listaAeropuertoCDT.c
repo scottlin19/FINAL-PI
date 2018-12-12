@@ -154,7 +154,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			if(*agregado == 1){
 				printf("8 IF \n");
 				int comp;
-				if( (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) )){
+				if(primero->cola != NULL &&( (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) ))){
 					printf("9 IF \n");
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
