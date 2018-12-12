@@ -14,9 +14,9 @@ int main(int argc, char * argv[])
 	if (cargarDatosAP(listaAP, "../aer.csv")){
 		printf("funca\n");
 	}
-	if (cargarDatosAL(listaAL, listaAP, "../mov.csv")){
-		printf("funca\n");
-	}
+	//if (cargarDatosAL(listaAL, listaAP, "../mov.csv")){
+	//	printf("funca\n");
+	//}
 	query1(listaAP, &ok);
 	printf("ok vale %d\n", ok);
 	query2(listaAP, &ok);
@@ -60,11 +60,10 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 		fprintf(archivoDest, "Día;Cabotaje;Internacional;Total\n");
 		char dias[7][11] = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
 		int total[7][2];
-		int cantCab, cantInter, dia = 0, clase;
+		int dia = 0, clase;
 		alPrincipioAP(listaAeropuerto);
 		while (listaAeropuerto->proximo != NULL){
 			for (dia = 0; dia < 7; dia++){	
-				cantCab = cantInter = 0;
 				for (clase = 0; clase < 3;clase++){
 					total[dia][0] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_cabotaje;
 					total[dia][1] += listaAeropuerto->proximo->cant_mov[dia][clase].cant_internacional;
@@ -90,5 +89,5 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		int i,j;
 		char *clasificacion[2][3] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}}
 		int total[2][3];
-
+		alprincipioAP(listaAeropuerto);
 */
