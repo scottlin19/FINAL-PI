@@ -92,7 +92,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
-
+	printf("oaci: %s \n",lista->primero->datos->oaci);
 	return ok;
 }
 
