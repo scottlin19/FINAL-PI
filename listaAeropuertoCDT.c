@@ -95,7 +95,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP datos)
 
 
 
-tAeropuertoP
+static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
 {
 	
