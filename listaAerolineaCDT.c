@@ -51,7 +51,7 @@ void
 printListaAL(listaAerolineaADT lista)
 {
 	int i = 1;
-	for(listaAerolineaADT aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
+	for(tAerolineaP aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
 			printf("%d : nombre: %s , movs cabotaje: %d \n",i,aux->nombre,aux->cant_mov_cabotaje);
 	}
 
@@ -71,12 +71,12 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 		
 		*ok = 1;
 		return aux;
-	}else if(strcmp(primero->nombre,datos.nombre) == 0){
+	}else if(strcmp(primero->nombre,nombre) == 0){
 		(primero->cant_mov_cabotaje)++;
 		*ok = 1;
 		
 	}else{	
-		primero->cola = insertarALRec( primero->cola, datos, ok);
+		primero->cola = insertarALRec( primero->cola, nombre, ok);
 		if(primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje < 0){
 				tAerolineaP aux = primero->cola->cola;
 				primero->cola->cola = primero;
