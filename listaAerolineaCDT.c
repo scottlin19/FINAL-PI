@@ -46,8 +46,8 @@ struct listaAerolineaCDT{
 };
 
 static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) {
-	/*
-	if( primero == NULL || (primero->mov_totales == 1) && strcmp(primero->OACI,datos->origen) > 0)
+	int c;
+	if( primero == NULL)
 	{
 		tAerolineaP aux = malloc(sizeof( struct tAerolinea ));
 		if (aux == NULL){
@@ -59,10 +59,18 @@ static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) 
 			
 		*added = 1;
 		return aux;
-	}else if((primero->mov_totales > 1) || strcmp(primero->OACI,datos->origen) < 0){
+	}else if(strcmp(primero->nombre,datos->nombre) == 0){
+		(primero->cant_mov_cabotaje)++;
 		
+	}else{	
 		primero->cola = insertRec( primero->cola, datos,archA, added);
-	}*/
+		if(primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje < 0){
+				tAerolineaP aux = primero->cola->cola;
+				primero->cola->cola = primero;
+				primero = primero->cola;
+				primero->cola->cola = aux;
+		}
+	}
 	return primero;
 }
 
@@ -81,6 +89,12 @@ diaDeLaSemana(int d, int m, int a)
 	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
 }
 
+static int
+esAerolinea(char * nombre)
+{
+	return ((strcmp(nombre," ") != 0 )&& (strcmp(nombre,"N/A") != 0));
+}
+
 int
 cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 {
@@ -94,7 +108,6 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 	
 	int d,m,a;
 	int cont = 0;	
-	int index;
 	char * token;
 	tDatosAL * datos = malloc(sizeof(tDatosAL)); 
 	char  s[MAX_TEXTO];
@@ -153,12 +166,20 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			cont++;
 			token =  strtok(NULL, ";");
 		}
-		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase,datos->clasificacion);
-		if(agregarMovAP(listaAP,datos->origen,datos->clase,datos->clasificacion,datos->dia) < 0){
+		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%s\nclasificacion=%s\n",datos->nombre,datos->origen,datos->destino,datos->clase,datos->clasificacion);
+		if(QagregarMovAP(listaAP,datos->origen,datos->clase,datos->clasificacion,datos->dia)){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
 		}
+		if(strcmp(datos->clasificacion,"Cabotaje") == 0){
+			if(!insertarAL(listaAL,datos)){
+				printf("Error al insertar los datos de la aerolinea.\n");
+				return 1;
+			}
+		}
+		
 	}
+	return 0;
 }
 
 listaAerolineaADT
