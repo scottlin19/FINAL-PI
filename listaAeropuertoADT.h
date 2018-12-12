@@ -16,6 +16,8 @@ typedef struct listaAeropuertoCDT* listaAeropuertoADT;
 //Carga Datos del archivo aeropuertos.csv , devuelve 1 si hubo un error y 0 si no.
 int cargarDatosAP(listaAeropuertoADT lista,char * pathA);
 
+int agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia);
+
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
  * que desea. La convención a seguir es que debe devolver
