@@ -100,7 +100,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 {
 	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
-	
+	printf("asd 1 \n");
 	if(archM == NULL){
 		printf("Error al abrir el archivo. \n");
 	
@@ -113,12 +113,12 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
 	
-	
+		printf("asd 2 \n");
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 		printf("s = %s\n",s);
 		token = strtok(s,";");
-		
+		printf("token  = %s\n",token);
 		cont = 0;
 		
 		while(token != NULL){
