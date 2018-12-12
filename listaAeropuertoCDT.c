@@ -94,6 +94,14 @@ insertarAP( listaAeropuertoADT lista, tDatosAP datos)
 }
 
 
+void
+printLista(listaAeropuertoADT lista)
+{
+	for(tAeropuertoP aux = lista->primero, aux!= NULL; aux = aux->cola){
+			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+	}
+
+}
 
 static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
@@ -219,6 +227,8 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			}
 		}
 	}
+	
+	printLista(lista);
 	return 0;
 }
 listaAeropuertoADT
