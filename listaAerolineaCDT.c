@@ -5,7 +5,7 @@
 #include <string.h>
 #include "listaAeropuertoADT.h"
 #include "listaAerolineaADT.h"
-#include "listaAeropuertoCDT.c"
+
 
 #define FECHA 0
 #define CLASE 2
@@ -167,7 +167,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			token =  strtok(NULL, ";");
 		}
 		printf("nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s\n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion);
-		printf("oaci primero 1: %s \n",listaAP->primero->datos.oaci);
+		
 		if(agregarMovAP(listaAP,datos.origen,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
