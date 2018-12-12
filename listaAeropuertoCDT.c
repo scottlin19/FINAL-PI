@@ -162,7 +162,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 				}
 		
 			
-			}
+			
 		}
 	
 	return primero;
