@@ -26,18 +26,3 @@ int main(int argc, char * argv[])
 
 
 }
-
-/*
-void query3(listaAeropuertoADT listaAeropuerto, int *ok){
-	FILE * archivoDest = fopen("composicion.csv", "w+t");
-	if (archivo == NULL){
-		printf("Error al crear/reemplazar archivo");
-		*ok = 1;
-	}
-	else {
-		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos");
-		int i,j;
-		char *clasificacion[2][3] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}}
-		int total[2][3];
-		alprincipioAP(listaAeropuerto);
-*/
