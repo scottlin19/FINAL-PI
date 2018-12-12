@@ -171,7 +171,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			cont++;
 			token =  strtok(NULL, ";");
 		}
-		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase_vuelo,datos->clasificacion_vuelo);
+		printf("nombre = %s\norigen = %s\ndestino = %s\n,clase=%d\nclasificacion=%d\n",datos->nombre,datos->origen,datos->destino,datos->clase,datos->clasificacion);
 		if(agregarMovAP(listaAP,datos->origen,datos->clase,datos->clasificacion,datos->dia) < 0){
 			printf("Error al sumarle un movimiento al aeropuerto. \n");
 			return 1;
