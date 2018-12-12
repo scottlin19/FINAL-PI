@@ -143,9 +143,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 		//	 printf("ELSE \n");
 			*agregado = 1;
 			return primero;
-		}else if(c > 0){
-			//printf("7 IF \n");
-			printf("Error: no existe un aeropuerto con OACI: %s \n",oaci);
+
 			
 		}else{
 			//printf("ELSE 2 \n");
