@@ -70,10 +70,10 @@ insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 		}else{
 		aux->cola = primero;
 		aux->datos = malloc(sizeof(tDatosAP));
-		aux->datos.oaci = datos.oaci;
-		aux->datos.denom = datos.denom;
-		aux->datos.prov = datos.prov;
-		printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+		aux->datos->oaci = datos.oaci;
+		aux->datos->denom = datos.denom;
+		aux->datos->prov = datos.prov;
+		printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 		*ok = 1;
 		}
 		return aux;
@@ -101,7 +101,7 @@ void
 printLista(listaAeropuertoADT lista)
 {
 	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola){
-			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+			printf("OACI: %s, DENOM: %s PROV: %s \n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 	}
 
 }
