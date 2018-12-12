@@ -141,9 +141,10 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			//printf("cont = %d \n",cont);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
-				printf("d = %d, m = %d, a = %d \n",d,m,a);
 				datos.dia = diaDeLaSemana(d,m,a);
-				printf("dia = %d \n",datos->dia);
+				printf("d = %d, m = %d, a = %d  dia = %d\n",d,m,a,datos.dia);
+				
+				 
 				
 			}else if(cont != 1 && cont != 4 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
