@@ -110,13 +110,13 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 {	
 		printf("entro a AGREGAR REC \n");
 	printf("origen = %s\nclase=%s\nclasificacion=%s\n",oaci,clase,clasif);
-	printf("oaci primero2 : %s \n",primero->datos.oaci);
+	printf("oaci primero2 : %s \n",primero->datos->oaci);
 	int c;
 	int claseIndex;
 
 		if(primero == NULL){
 			return primero;
-		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
+		}else if((c = strcmp(primero->datos->oaci,oaci)) == 0){
 				
 
 			if(strcmp(clase,"Regular") == 0){
@@ -149,12 +149,12 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 		}else{
 			printf("ELSE 2 \n");
-			printf("origen: %s oaci data: %s \n",primero->datos.oaci,oaci);
+			printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			if(*agregado == 1){
 				printf("8 IF \n");
 				int comp;
-				if( (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
+				if( (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos->oaci,primero->cola->datos->oaci) > 0) )){
 					printf("9 IF \n");
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
