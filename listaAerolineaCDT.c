@@ -97,6 +97,7 @@ insertarAL( listaAerolineaADT lista, char * nombre)
 	if(ok){
 		(lista->cabotaje_total)++;
 	}
+	printListaAL(lista);
 	return ok;
 }
 
