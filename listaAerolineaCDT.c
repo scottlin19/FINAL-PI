@@ -30,6 +30,7 @@ typedef struct tAerolinea * tAerolineaP;
 
 typedef struct tDatosAL{
 	char * origen;
+	char * destino;
 	char * nombre;
 	int clase_vuelo;
 	int clasificacion_vuelo;
@@ -177,5 +178,5 @@ cargarDatosAL(listaAerolineaADT lista,char * pathM)
 listaAerolineaADT
 nuevaListaAL(void)
 {
-	return calloc(1,sizeof(struct listaAreolineaCDT));
+	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
