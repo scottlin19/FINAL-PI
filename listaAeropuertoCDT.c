@@ -63,16 +63,16 @@ static tAeropuertoP
 insertarAPRec(tAeropuertoP primero,tDatosAP datos, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
+	if(primero == NULL || (c = strcmp(primero->datos->oaci,datos.oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
 		}else{
 		aux->cola = primero;
 		aux->datos = malloc(sizeof(tDatosAP));
-		aux->datos->oaci = datos.oaci;
+		aux->datos->oaci = datos->oaci;
 		aux->datos->denom = datos.denom;
-		aux->datos->prov = datos.prov;
+		aux->datos->prov = datos->prov;
 		printf("Nuevo OICI: %s\nNueva Denom: %s\nNueva Prov: %s\n",aux->datos->oaci,aux->datos->denom,aux->datos->prov);
 		*ok = 1;
 		}
