@@ -34,7 +34,7 @@ typedef struct tDatosAP{
 }tDatosAP;
 
 struct tAeropuerto {
-	tDatosAP datos;	
+	tDatosAP  * datos;	
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
