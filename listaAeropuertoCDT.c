@@ -71,7 +71,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
 			aux->cola = primero;
 		
 			aux->datos = datos;
-		
+			*ok = 1;
 			
 		}
 		return aux;
