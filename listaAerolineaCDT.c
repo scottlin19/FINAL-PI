@@ -23,7 +23,7 @@
 struct tAerolinea {
 	char * nombre;
 	int cant_mov_cabotaje;
-	
+
 	struct tAerolinea * cola;
 };
 typedef struct tAerolinea * tAerolineaP;
@@ -37,7 +37,7 @@ typedef struct tDatosAL{
 }tDatosAL;
 
 struct listaAerolineaCDT{
-	tDatosAL datos;
+	
 	tAerolineaP primero;
 	tAerolineaP proximo;
 
