@@ -290,7 +290,7 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 		int total[7][2];
 		int dia = 0, clase;
 		tAeropuertoP aux = listaAeropuerto->primero;
-		while (listaAeropuerto->proximo != NULL){
+		while (aux != NULL){
 			for (dia = 0; dia < 7; dia++){	
 				for (clase = 0; clase < 3;clase++){
 					total[dia][0] += aux->cant_mov[dia][clase].cant_cabotaje;
