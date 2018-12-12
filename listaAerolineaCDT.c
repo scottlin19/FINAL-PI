@@ -63,7 +63,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, tDatosAL datos, int * ok) 
 		*ok = 1;
 		
 	}else{	
-		primero->cola = insertRec( primero->cola, datos, ok);
+		primero->cola = insertarALRec( primero->cola, datos, ok);
 		if(primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje < 0){
 				tAerolineaP aux = primero->cola->cola;
 				primero->cola->cola = primero;
