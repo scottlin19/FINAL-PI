@@ -137,7 +137,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 		}else{
 			printf("ELSE 2 \n");
-			printf("origen: %s oaci data: %s \n",primero->datos.oaci,datos.oaci);
+			printf("origen: %s oaci data: %s \n",primero->datos.oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			if(*agregado == 1){
 				printf("8 IF \n");
