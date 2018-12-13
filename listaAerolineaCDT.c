@@ -173,6 +173,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 					case CLASIFICACION:
 						
 						strcpy(datos.clasificacion,token);
+						printf(" clasi = %s \n",datos.clasificacion);
 					break;
 					case TIPO:
 						strcpy(datos.tipo,token);
