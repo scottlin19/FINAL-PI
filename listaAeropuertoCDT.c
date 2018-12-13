@@ -99,6 +99,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 		primero->cola = insertarAPRec(primero->cola,datos,ok);
 	}else{
 		printf("Aeropuerto repetido \n");
+		*ok =1;
 	}
 	return primero;
 	
