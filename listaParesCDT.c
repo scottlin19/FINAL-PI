@@ -77,7 +77,7 @@ void query5(listaParesADT lista, int *ok){
 		nodoP aux = lista->primero;
 		fprintf(archivoDest, "Provincia A;Provincia B;Movimientos\n");
 		while (aux != NULL){
-			fprintf(archivoDest, "%s;%s;%d\n", provincias[0], provincias[1], aux->mov_compartido);
+			fprintf(archivoDest, "%s;%s;%d\n", provincias[0], provincias[1], aux->mov_compartidos);
 			aux = aux->cola;
 		}
 		fclose(archivoDest);
