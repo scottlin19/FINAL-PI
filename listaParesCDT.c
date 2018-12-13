@@ -77,6 +77,7 @@ int insertarPares(listaParesADT lista,char * provincias[])
 {
     int ok = 0;
     lista->primero = insertarParesRec(lista->primero,provincias,&ok);
+	printListaPares(lista);
     return ok;
 }
 
