@@ -47,6 +47,7 @@ insertarParesRec(nodoP primero,char * provincias[], int * ok)
 			aux->provincias[1]= provincias[0];
 		}
        		aux->cola = primero;
+		aux->mov_compartidos = 1;
        		*ok = 1;
      		return aux;
       	}
