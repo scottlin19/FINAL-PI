@@ -223,7 +223,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 		
 			token = strtok(s,";");
 			cont = 0;
-			
+			valido =1;
 			tDatosAP  datos;
 			while((token != NULL) && valido){
 				printf("token: %s, ",token);
