@@ -229,7 +229,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 			return 1;
 		}
 		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
-			printf("agrego areolinea: %s \n",datos.nombre);
+		
 			if( !insertarAL(listaAL,datos.nombre)){
 				printf("Error al insertar los datos de la aerolinea.\n");
 				return 1;
@@ -239,6 +239,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	}
 	printListaAL(listaAL);
 	printLista(listaAP);
+	printListaPares(listaPares);
 	return 0;
 }
 
