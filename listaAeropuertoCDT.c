@@ -17,7 +17,7 @@
 #define PROVINCIA 21
 #define DIAS_SEMANA 7
 #define MAX_DENOM 70
-#define MAX_TEXTO 250
+#define MAX_TEXTO 300
 #define REGULAR 0
 #define NO_REGULAR 1
 #define VUELO_PRIVADO 2
@@ -30,7 +30,7 @@ typedef struct tMov{
 typedef struct tDatosAP{
 	char  oaci[20]; 
 	char  denom[70];
-	char  prov[75];
+	char  prov[100];
 }tDatosAP;
 
 struct tAeropuerto {
