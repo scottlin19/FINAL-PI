@@ -149,6 +149,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 		
 		token = strtok(s,";");
+		printf("HOLAAAAAAAAAAAAA \n");
 		printf("%s\n",s);
 		cont = 0;
 		tDatosAL  datos; 
