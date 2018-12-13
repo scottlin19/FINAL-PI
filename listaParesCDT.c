@@ -47,11 +47,11 @@ insertarParesRec(nodoP primero, char * origen, char * destino, int * ok)
     }else{
         primero->cola = insertarParesRec(primero->cola,origen,destino,ok);
         if((primero->cola != NULL )&& (primero->mov_compartidos - primero->cola->mov_compartidos) < 0){		
-						tAeropuertoP aux = primero->cola->cola;
-						primero->cola->cola = primero;
-						primero = primero->cola;
-						primero->cola->cola = aux;
-				}
+		tAeropuertoP aux = primero->cola->cola;
+		primero->cola->cola = primero;
+		primero = primero->cola;
+		primero->cola->cola = aux;
+	}
 		
     }
   return primero;
