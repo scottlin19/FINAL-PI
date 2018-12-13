@@ -143,7 +143,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
-	
+	int i = 1;
 		
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
@@ -201,6 +201,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				//cont++;
 			}
 			cont++;
+			
 			token =  strtok(NULL, ";");
 		}
 		
@@ -239,6 +240,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				return 1;
 			}
 		}
+		i++;
 		
 	}
 	printListaAL(listaAL);
