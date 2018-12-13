@@ -30,7 +30,7 @@ typedef struct tMov{
 typedef struct tDatosAP{
 	char  oaci[20]; 
 	char  denom[70];
-	char  prov[30];
+	char  prov[100];
 }tDatosAP;
 
 struct tAeropuerto {
