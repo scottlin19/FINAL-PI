@@ -155,7 +155,8 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		tDatosAL  datos; 
 		while(token != NULL){
 			printf("token = %s \n",token);
-			//printf("cont = %d \n",cont);
+			printf("cont = %d \n",cont);
+			printf("clasi = %s \n",datos.clasificacion);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);
@@ -207,7 +208,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		
 		
 		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasi=%s\ntipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
-		printf(" clasi = %s \n",datos.clasificacion);
+		printf("clasi = %s \n",datos.clasificacion);
 		char * aux;
 		if(strcmp(datos.tipo,"Despegue") == 0){
 			aux = datos.origen;
