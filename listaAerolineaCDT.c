@@ -209,15 +209,14 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasi=%s\ntipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
 		printf(" clasi = %s \n",datos.clasificacion);
 		char * aux;
-		if(strcmp(datos.clasificacion,"Internacional") == 0){
-			if(strcmp(datos.tipo,"Despegue") == 0){
-				aux = datos.origen;
-			}else{
-				aux = datos.destino;
-			}
-		}else{// Es cabotaje;
+		if(strcmp(datos.tipo,"Despegue") == 0){
+			aux = datos.origen;
+		}else{
+			aux = datos.destino;
+		}
+		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
 			char * provincias[2];
-			//printf("Es cabotaje \n");
+			printf("Es cabotaje \n");
 			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
 				//printf(" %s != %s \n",provincias[0],provincias [1]);
 				if(!insertarPares(listaPares,provincias)){
