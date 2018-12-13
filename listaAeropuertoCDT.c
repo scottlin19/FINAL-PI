@@ -49,32 +49,33 @@ struct listaAeropuertoCDT {
 	tAeropuertoP proximo;
 };
 
+char * 
+obtenerProvincia(listaAeropuertoADT lista,char * oaci)
+{
+	char * prov = NULL;
+	int listo = 0;
+	for(tAeropuertoP aux = lista->primero; !listo && aux != NULL;aux = aux->cola){
+		if(strcmp(aux->datos.oaci,oaci) == 0){
+			prov = aux->datos.prov;
+		}
+	}
+	return prov;
+}
 
-int //Devuelve 0 si no coinciden provincias, 1 si coinciden provincias,  2 si hubo error
+
+int //Devuelve 1 si no coinciden provincias, 0 si coinciden provincias
 sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[])
 {
-	 int sonDistintitas = 0;
-	char * p1 = NULL;
-	char * p2 = NULL;
-	if(strcmp(lista->primero->datos.oaci,origen)  > 0 || (lista->primero->datos.oaci,destino) > 0){
-		printf("Error: no se encuentra alguno de los aeropuertos en la lista.\n");
-		return 2;
-	}
-	for(tAeropuertoP aux = lista->primero; aux != NULL && !sonDistintas; aux = aux->cola){
-		if(p1 == NULL && strcmp(aux->datos.oaci,origen) == 0){
-			p1 = aux->datos.prov;
-		}
-		if(p2 == NULL && strcmp(aux->datos.oaci,destino) == 0){
-			p2 = aux->datos.prov;
-		}
-		if(p1 != NULL && p2 != NULL && strcmp(p1,p2) != 0){
-			sonDistintas = 1;
-			provincias[0] = 
+	char * prov1 = obtenerProvincia(lista,origen);
+	if(prov1 != NULL){
+		char * prov2 = obtenerProvincia(lista,destino);
+		if((prov2 != NULL) && (strcmp(prov1,prov2) != 0)){
+			provincias[0] = prov1;
+			provincias[1] = prov2;
+			return 1;
 		}
 	}
-	
-	return sonDistintas
-
+	return 0;
 }
 
 
