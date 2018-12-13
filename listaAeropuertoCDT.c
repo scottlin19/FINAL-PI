@@ -4,13 +4,13 @@
  *
  */
 /* Version recursiva de listas implementadas dinamicamente */
-#include "listaAeropuertoADT.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
 #include <string.h>
+#include "listaAeropuertoADT.h"
+
 
 #define OACI 1
 #define DENOMINACION 4
@@ -173,7 +173,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			
 			int comp;
 			//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
-			if((primero->cola != NULL )&& (comp =(primero->mov_totales - primero->cola->mov_totales)) < 0 || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
+			if((primero->cola != NULL )&& ((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0) || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
 					printf("me los intercambia \n");
 						
 						tAeropuertoP aux = primero->cola->cola;
