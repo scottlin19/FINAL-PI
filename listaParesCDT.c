@@ -19,6 +19,7 @@ struct listaParesCDT{
 
 void printListaPares(listaParesADT lista)
 {	int i = 1;
+ 	printf("Lista pares: \n");
 	for(nodoP aux = lista->primero; aux != NULL; i++,aux = aux->cola){
 		printf("P1: %s P2: %s mov_compartidos: %d \n",i,aux->provincias[0],aux->provincias[1],mov_compartidos);
 	}
