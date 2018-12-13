@@ -212,6 +212,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 	int cont;	
 	int valido;
 	char * token;
+	int i = 1;
 	
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archA);
@@ -245,7 +246,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
-			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
+			printf("%d : OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",i++,datos.oaci,datos.denom,datos.prov);
 			if(!insertarAP(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
