@@ -3,7 +3,7 @@
 #define MAX_TEXTO_PROV 25
 
 struct tNodo{
-    char * provincias[2]
+    char * provincias[2];
      int mov_compartidos;
      struct tNodo * cola;
 };
