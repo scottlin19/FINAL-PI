@@ -50,11 +50,30 @@ struct listaAeropuertoCDT {
 };
 
 
-
-static int 
-comparaMov(tAeropuertoP a1,tAeropuertoP a2)
+int //Devuelve 0 si no coinciden provincias, 1 si coinciden provincias,  2 si hubo error
+sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[])
 {
-	return a1->mov_totales - a2->mov_totales;
+	 int sonDistintitas = 0;
+	char * p1 = NULL;
+	char * p2 = NULL;
+	if(strcmp(lista->primero->datos.oaci,origen)  > 0 || (lista->primero->datos.oaci,destino) > 0){
+		printf("Error: no se encuentra alguno de los aeropuertos en la lista.\n");
+		return 2;
+	}
+	for(tAeropuertoP aux = lista->primero; aux != NULL && !sonDistintas; aux = aux->cola){
+		if(p1 == NULL && strcmp(aux->datos.oaci,origen) == 0){
+			p1 = aux->datos.prov;
+		}
+		if(p2 == NULL && strcmp(aux->datos.oaci,destino) == 0){
+			p2 = aux->datos.prov;
+		}
+		if(p1 != NULL && p2 != NULL && strcmp(p1,p2) != 0){
+			sonDistintas = 1;
+			provincias[0] = 
+		}
+	}
+	
+	return sonDistintas
 
 }
 
@@ -87,7 +106,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 
 void
 printLista(listaAeropuertoADT lista)
-{
+
 	int i = 1;
 	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
 			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov,aux->mov_totales);
