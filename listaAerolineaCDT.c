@@ -23,11 +23,11 @@
 #define DIAS_SEMANA 7
 
 #define MAX_TEXTO 250
-#define MAX_OACI 10
+#define MAX_OACI 15
 #define MAX_NOMBRE 30
-#define MAX_CLASE 30
-#define MAX_TIPO 12
-#define MAX_CLASIF 40 
+#define MAX_CLASE 40
+#define MAX_TIPO 15
+#define MAX_CLASIF 15 
 
 struct tAerolinea {
 	char  nombre[40];
@@ -110,7 +110,7 @@ insertarAL( listaAerolineaADT lista, char * nombre)
 	if(ok){
 		(lista->cabotaje_total)++;
 	}
-	printListaAL(lista);
+	//printListaAL(lista);
 	return ok;
 }
 
@@ -238,9 +238,8 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		
 	}
 	printListaAL(listaAL);
-	printListaPares(listaPares);
 	printLista(listaAP);
-	
+	printListaPares(listaPares);
 	return 0;
 }
 
