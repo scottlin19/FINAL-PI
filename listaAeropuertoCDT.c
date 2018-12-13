@@ -223,10 +223,10 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 		
 			token = strtok(s,";");
 			cont = 0;
-			valido = 1;
+			
 			tDatosAP  datos;
 			while((token != NULL) && valido){
-
+				printf("token: %s, ",token);
 				if(cont == OACI){
 					if(strcmp(token," ") == 0){
 						valido = 0;
@@ -246,16 +246,18 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 				cont++;
 
 				token =  strtok(NULL, ";");
-				if(valido){ //Si es valido el aeropuerto tiene OACI
+				
+
+			}	
+			putchar('\n');
+			if(valido){ //Si es valido el aeropuerto tiene OACI
 					printf("%d : OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",i++,datos.oaci,datos.denom,datos.prov);
 					if(!insertarAP(lista,datos)){
 						printf("Error al cargar datos \n");
 						return 1;
 					}
 
-				}
-
-			}		
+			}
 			
 	
 	}
