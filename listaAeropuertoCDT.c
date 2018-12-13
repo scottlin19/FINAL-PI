@@ -172,7 +172,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 		//	printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			
-			int comp;
+			int comp = 0;
 			//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
 			if( ((primero->cola != NULL ) && ((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0)) || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
 						
