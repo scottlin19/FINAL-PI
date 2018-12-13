@@ -34,7 +34,7 @@ typedef struct tDatosAP{
 }tDatosAP;
 
 struct tAeropuerto {
-	tDatosAP  * datos;	
+	tDatosAP  datos;	
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
@@ -60,10 +60,10 @@ comparaMov(tAeropuertoP a1,tAeropuertoP a2)
 
 
 static tAeropuertoP
-insertarAPRec(tAeropuertoP primero,tDatosAP * datos, int * ok)
+insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos->oaci,datos->oaci)) > 0){
+	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
@@ -90,12 +90,12 @@ printLista(listaAeropuertoADT lista)
 {
 	int i = 1;
 	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
-			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->datos->oaci,aux->datos->denom,aux->datos->prov,aux->mov_totales);
+			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov,aux->mov_totales);
 	}
 
 }
 static int
-insertarAP( listaAeropuertoADT lista, tDatosAP * datos)
+insertarAP( listaAeropuertoADT lista, tDatosAP  datos)
 {
 	int ok =0 ;
 	lista->primero = insertarAPRec(lista->primero, datos, &ok);
@@ -117,7 +117,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 		if(primero == NULL){
 			printf("primero es NULL \n");
 			return primero;
-		}else if((c = strcmp(primero->datos->oaci,oaci)) == 0){
+		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
 				
 
 			if(strcmp(clase,"Regular") == 0){
@@ -200,7 +200,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 		token = strtok(s,";");
 		cont = 0;
 		valido = 1;
-		tDatosAP *  datos = malloc(sizeof(tDatosAP)); 
+		tDatosAP  datos;
 		while((token != NULL) && valido){
 			
 			if(cont == OACI){
@@ -209,14 +209,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 							
 				}else{		
 					
-					strcpy(datos->oaci,token);
+					strcpy(datos.oaci,token);
 				}
 				
 			}else if(valido && cont == DENOMINACION){	
-					strcpy(datos->denom,token);
+					strcpy(datos.denom,token);
 				
 			}else if(valido && cont == PROVINCIA){	
-					strcpy(datos->prov,token);
+					strcpy(datos.prov,token);
 					
 			}	
 			cont++;
@@ -225,7 +225,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
-			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos->oaci,datos->denom,datos->prov);
+			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
 			if(!insertarAP(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
@@ -269,9 +269,9 @@ void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 		tAeropuertoP aux = listaAeropuerto->primero;
 		fprintf(archivoDest, "OACI;Denominación;Movimientos\n");
 		while(aux != NULL){
-			printf("oaci vale %s\n", aux->datos->oaci);
+			printf("oaci vale %s\n", aux->datos.oaci);
 			if (aux->mov_totales != 0){
-				fprintf(archivoDest, "%s;%s;%d\n", aux->datos->oaci, aux->datos->denom, aux->mov_totales);
+				fprintf(archivoDest, "%s;%s;%d\n", aux->datos.oaci, aux->datos.denom, aux->mov_totales);
 			}
 			aux = aux->cola;
 		}
