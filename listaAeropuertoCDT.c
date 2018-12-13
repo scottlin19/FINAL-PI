@@ -83,7 +83,7 @@ static tAeropuertoP
 insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) >= 0){
+	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error:No se pudo utilizar malloc\n");
@@ -97,6 +97,9 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 		return aux;
 	}else if(c <0){
 		primero->cola = insertarAPRec(primero->cola,datos,ok);
+	}else{
+		printf("REPETIDO VIEJA \n");
+		*ok = 1;
 	}
 	return primero;
 	
@@ -216,14 +219,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 	
 	fgets(s,MAX_TEXTO,archA);
 	while(fgets(s,MAX_TEXTO,archA )!= NULL){
-		//printf(" %d :%s \n",i,s);
+		printf(" %d :%s \n",i,s);
 		
 			token = strtok(s,";");
 			cont = 0;
 			valido =1;
 			tDatosAP  datos;
 			while((token != NULL) && valido){
-				//printf("token: %s, ",token);
+				printf("token: %s ",token);
 				if(cont == OACI){
 					if(strcmp(token," ") == 0){
 						valido = 0;
@@ -248,13 +251,14 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			}	
 			putchar('\n');
 			if(valido){ //Si es valido el aeropuerto tiene OACI
-					//printf("%d : OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",i++,datos.oaci,datos.denom,datos.prov);
+					printf("%d : OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",i,datos.oaci,datos.denom,datos.prov);
 					if(!insertarAP(lista,datos)){
 						printf("Error al cargar datos \n");
 						return 1;
 					}
 
 			}
+		i++;
 			
 	
 	}
