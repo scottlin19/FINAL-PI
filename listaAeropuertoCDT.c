@@ -49,7 +49,7 @@ struct listaAeropuertoCDT {
 	tAeropuertoP proximo;
 };
 
-char * 
+static char * 
 obtenerProvincia(listaAeropuertoADT lista,char * oaci)
 {
 	char * prov = NULL;
@@ -107,9 +107,9 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 
 void
 printLista(listaAeropuertoADT lista)
-
+{
 	int i = 1;
-	for(tAeropuertoP aux = lista->primero; aux!= NULL; aux = aux->cola,i++){
+	for(tAeropuertoP aux = lista->primero; aux!= NULL;i++, aux = aux->cola){
 			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov,aux->mov_totales);
 	}
 
