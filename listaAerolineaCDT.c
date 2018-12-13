@@ -202,7 +202,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		}
 		
 		
-		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
+		//printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasificacion=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
 		char * aux;
 		if(strcmp(datos.clasificacion,"Internacional") == 0){
 			if(strcmp(datos.tipo,"Despegue") == 0){
@@ -212,9 +212,9 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 			}
 		}else{// Es cabotaje;
 			char * provincias[2];
-			printf("Es cabotaje \n");
+			//printf("Es cabotaje \n");
 			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
-				printf(" %s != %s \n",provincias[0],provincias [1]);
+				//printf(" %s != %s \n",provincias[0],provincias [1]);
 				if(!insertarPares(listaPares,provincias)){
 					printf("Error al insertar en la lista de pares.\n.");
 					return 1;
