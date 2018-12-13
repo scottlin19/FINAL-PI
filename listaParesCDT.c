@@ -29,7 +29,7 @@ void printListaPares(listaParesADT lista)
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
-	return ((strcmp(provs1[0],provs2[0]) == 0) && (strcmp(provs1[1],provs2[1]) == 0) ) || ( (strcmp(provs1[0],provs2[1]) == 0) && (strcmp(provs1[1],provs2[0]) == 0) ));
+	return (((strcmp(provs1[0],provs2[0]) == 0) && (strcmp(provs1[1],provs2[1]) == 0) ) || ( (strcmp(provs1[0],provs2[1]) == 0) && (strcmp(provs1[1],provs2[0]) == 0) ));
 }
 
 static nodoP
