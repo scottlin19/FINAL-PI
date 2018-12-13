@@ -29,14 +29,7 @@ void printListaPares(listaParesADT lista)
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
-	if(( (strcmp(provs1[0],provs2[0]) == 0) && (strcmp(provs1[1],provs2[1]) == 0) ) || ( (strcmp(provs1[0],provs2[1]) == 0) && (strcmp(provs1[1],provs2[0]) == 0) )){
-		printf("coinciden provincias \n");
-		return 1;
-		
-	}else{
-		printf("%s %s / %s %s no coinciden \n",provs1[0],provs1[1],provs2[0],provs2[1]);
-		return 0;
-	}
+	return (strcmp(provs1[0],provs2[0]) == 0) && (strcmp(provs1[1],provs2[1]) == 0) ) || ( (strcmp(provs1[0],provs2[1]) == 0) && (strcmp(provs1[1],provs2[0]) == 0) ));
 }
 
 static nodoP
@@ -57,12 +50,12 @@ insertarParesRec(nodoP primero,char * provincias[], int * ok)
        		aux->cola = primero;
 		aux->mov_compartidos = 1;
        		*ok = 1;
-		printf("Agrego par: %s %s \n",aux->provincias[0],aux->provincias[1]);
+	//	printf("Agrego par: %s %s \n",aux->provincias[0],aux->provincias[1]);
      		return aux;
       	}
 	    
     }else if(coincidenProv(primero->provincias,provincias)){
-	    printf("coinciden provincias \n");
+	   // printf("coinciden provincias \n");
 	(primero->mov_compartidos)++;
         *ok = 1;
     }else{
@@ -84,7 +77,7 @@ int insertarPares(listaParesADT lista,char * provincias[])
 {
     int ok = 0;
     lista->primero = insertarParesRec(lista->primero,provincias,&ok);
-	printListaPares(lista);
+	//printListaPares(lista);
     return ok;
 }
 
