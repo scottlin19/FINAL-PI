@@ -95,6 +95,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 			aux->cola = primero;
 		
 			aux->datos = datos;
+			printf("%d :NUEVO OACI: %s\nNUEVA DENOM: %s\n NUEVA PROV: %s\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov);
 		
 			*ok = 1;
 		}
@@ -198,7 +199,7 @@ agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, i
 	int agregado = 0;
 	//printf("entro a agregarMovap\n");
 	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
-	printLista(lista);
+	//printLista(lista);
 	return agregado;
 }
 int
