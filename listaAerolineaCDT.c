@@ -178,6 +178,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 					case TIPO:
 						strcpy(datos.tipo,token);
 					break;
+						
 					case ORIGEN:
 						
 						strcpy(datos.origen,token);
@@ -203,7 +204,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		}
 		
 		
-		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasi=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
+		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasi=%s\ntipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
 		printf(" clasi = %s \n",datos.clasificacion);
 		char * aux;
 		if(strcmp(datos.clasificacion,"Internacional") == 0){
