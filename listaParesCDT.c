@@ -49,6 +49,7 @@ insertarParesRec(nodoP primero,char * provincias[], int * ok)
        		aux->cola = primero;
 		aux->mov_compartidos = 1;
        		*ok = 1;
+		printf("Agrego par: %s %s \n",aux->provincias[0],aux->provincias[1]);
      		return aux;
       	}
 	    
