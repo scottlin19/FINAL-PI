@@ -218,7 +218,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archA);
 	while(fgets(s,MAX_TEXTO,archA) != NULL){
-		
+		printf(" %d :%s \n",i,s);
 		token = strtok(s,";");
 		cont = 0;
 		valido = 1;
