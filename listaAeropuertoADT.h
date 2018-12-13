@@ -5,7 +5,8 @@
  * simplemente encadenada ordenada, sin repeticiones 
  */
 
-
+#ifndef LISTAPADT_H_
+#define LISTAPADT_H_
 
 /* El siguiente tipo define el TAD Lista.
  * Se lo define como puntero a "cierta estructura"
@@ -136,3 +137,4 @@ void query3(listaAeropuertoADT listaAP, int *ok);
 
 void
 printLista(listaAeropuertoADT lista);
+#endif
