@@ -17,6 +17,13 @@ struct listaParesCDT{
     
 };
 
+void printListaPares(listaParesADT lista)
+{	int i = 1;
+	for(nodoP aux = lista->primero; aux != NULL; i++,aux = aux->cola){
+		printf("P1: %s P2: %s mov_compartidos: %d \n",i,aux->provincias[0],aux->provincias[1],mov_compartidos);
+	}
+}
+
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
@@ -64,6 +71,7 @@ int insertarPares(listaParesADT lista,char * provincias[])
 {
     int ok = 0;
     lista->primero = insertarParesRec(lista->primero,provincias,&ok);
+	printfListaPares(lista);
     return ok;
 }
 
@@ -74,7 +82,7 @@ listaParesADT nuevaListaPares(void)
 
 void query4(listaParesADT lista, int *ok){
 	FILE * archivoDest = fopen("pares_provincias.csv", "w+t");
-	if (archivoDest == NULL){
+	if (archivo == NULL){
 		printf("Error al crear/reemplazar archivo\n");
 		*ok = 1;
 	}
@@ -82,7 +90,7 @@ void query4(listaParesADT lista, int *ok){
 		nodoP aux = lista->primero;
 		fprintf(archivoDest, "Provincia A;Provincia B;Movimientos\n");
 		while (aux != NULL){
-			fprintf(archivoDest, "%s;%s;%d\n", aux->provincias[0], aux->provincias[1], aux->mov_compartidos);
+			fprintf(archivoDest, "%s;%s;%d\n", provincias[0], provincias[1], aux->mov_compartido);
 			aux = aux->cola;
 		}
 		fclose(archivoDest);
