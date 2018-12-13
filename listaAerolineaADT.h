@@ -1,8 +1,8 @@
 
 
 
-#ifndef LISTALADT_H_
-#define LISTALADT_H_
+#ifndef LISTAALADT_H_
+#define LISTAALADT_H_
 typedef struct listaAerolineaCDT* listaAerolineaADT;
 
 listaAerolineaADT nuevaListaAL(void);
