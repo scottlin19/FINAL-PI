@@ -1,14 +1,10 @@
 #include <stdio.h>
 
 
-struct tProvincia{
-  char oaci[10];
-  char nombre[25];
-};
+#define MAX_TEXTO_PROV 25
 
 struct tNodo{
-      tProvincia origen;
-     tProvincia destino;
+    char * provincias[2]
      int mov_compartidos;
      struct tNodo * cola;
 };
@@ -21,31 +17,35 @@ struct listaParesCDT{
 };
 
 static int
-coincidePar(nodeP nodo,char * origen, char * destino)
+coincidenProv(char * provs1[], char * provs2[])
 {
-  return ((strcmp(nodo->origen.oaci,origen)== 0) && (strcmp(nodo->destino.oaci,destino) == 0 ));
-  
+	return ((prov1[0] == prov2[0]) && (prov1[1] == prov2[1])) || ((prov1[0] == prov2[1]) && (prov1[1] == prov2[0]));
 }
 
-
 static nodoP
-insertarParesRec(nodoP primero, char * origen, char * destino, int * ok)
+insertarParesRec(nodoP primero,char * provincias[], int * ok)
 {
     if(primero == NULL){
       nodoP aux = calloc(1,sizeof(struct tNodo));
       if(aux == NULL){
         printf("Error: no se pudo crear el nodo. \n");
       }else {
-        strcpy(aux->origen.oaci,origen);
+      	if(strcmp(provincias[0],provincias[1]) < 0){
+		aux->provincias[0] =provincias[0];
+		aux->provincias[1]= provincias[1];
+	}else{
+		aux->provincias[0] =provincias[1];
+		aux->provincias[1]= provincias[0];
+	}
         aux->cola = primero;
          *ok = 1;
         return aux;
       }
-    }else if(coincidePar(primero,origen,destino)){
-        (primero->mov_compartidos)++;
-       *ok = 1;
+    }else if(coincidenProv(primero->provincias,provincias)){
+	(primero->mov_compartidos)++;
+        *ok = 1;
     }else{
-        primero->cola = insertarParesRec(primero->cola,origen,destino,ok);
+        primero->cola = insertarParesRec(primero->cola,provincias,ok);
         if((primero->cola != NULL )&& (primero->mov_compartidos - primero->cola->mov_compartidos) < 0){		
 		tAeropuertoP aux = primero->cola->cola;
 		primero->cola->cola = primero;
@@ -59,11 +59,11 @@ insertarParesRec(nodoP primero, char * origen, char * destino, int * ok)
 
 }
 
-int insertarPares(listaParesADT lista,char * origen, char * destino)
+int insertarPares(listaParesADT lista,char * provincias[])
 {
-     int ok = 0;
-    lista->primero = insertarParesRec(lista->primero,origen,destino,&ok);
-  return ok;
+    int ok = 0;
+    lista->primero = insertarParesRec(lista->primero,provincias,&ok);
+    return ok;
 }
 
 
@@ -77,7 +77,7 @@ void query5(listaParesADT lista, int *ok){
 		nodoP aux = lista->primero;
 		fprintf(archivoDest, "Provincia A;Provincia B;Movimientos\n");
 		while (aux != NULL){
-			fprintf(archivoDest, "%s;%s;%d\n", provincias[0], provincias[1], aux->mov_compartidos);
+			fprintf(archivoDest, "%s;%s;%d\n", provincias[0], provincias[1], aux->mov_compartido);
 			aux = aux->cola;
 		}
 		fclose(archivoDest);
