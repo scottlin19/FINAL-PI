@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "listaParesADT.h"
-#define MAX_TEXTO_PROV 25
+
 
 struct tNodo{
     char * provincias[2];
