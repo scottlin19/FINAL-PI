@@ -153,7 +153,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		cont = 0;
 		tDatosAL  datos; 
 		while(token != NULL){
-			//printf("token = %s \n",token);
+			printf("token = %s \n",token);
 			//printf("cont = %d \n",cont);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
