@@ -29,7 +29,14 @@ void printListaPares(listaParesADT lista)
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
-	return ((provs1[0] == provs2[0]) && (provs1[1] == provs2[1])) || ((provs1[0] == provs2[1]) && (provs1[1] == provs2[0]));
+	if(((provs1[0] == provs2[0]) && (provs1[1] == provs2[1])) || ((provs1[0] == provs2[1]) && (provs1[1] == provs2[0]))){
+		printf("coinciden provincias \n");
+		return 1;
+		
+	}else{
+		printf("%s %s / %s %s no coinciden \n",provs1[0],provs1[1],provs2[0],provs2[1]);
+		return 0;
+	}
 }
 
 static nodoP
