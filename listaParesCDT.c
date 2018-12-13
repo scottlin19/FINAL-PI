@@ -67,6 +67,10 @@ int insertarPares(listaParesADT lista,char * provincias[])
     return ok;
 }
 
+listaParesADT nuevaListaPares(void)
+{
+	return calloc(1,sizeof(struct listaParesCDT));
+}
 
 void query5(listaParesADT lista, int *ok){
 	FILE * archivoDest = fopen("pares_provincias.csv", "w+t");
