@@ -30,7 +30,7 @@ typedef struct tMov{
 typedef struct tDatosAP{
 	char  oaci[20]; 
 	char  denom[70];
-	char  prov[50];
+	char  prov[30];
 }tDatosAP;
 
 struct tAeropuerto {
@@ -172,7 +172,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 		//	printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
 			
-			int comp = 0;
+			int comp;
 			//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
 			if( ((primero->cola != NULL ) && ((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0)) || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
 						
@@ -245,7 +245,7 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
-			//printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
+			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
 			if(!insertarAP(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
