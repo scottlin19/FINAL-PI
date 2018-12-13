@@ -203,10 +203,15 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				aux = datos.destino;
 			}
 		}else{// Es cabotaje;
-			if(!insertarPares(listaPares,datos.origen,datos.destino)){
-				printf("Error al insertar en la lista de pares.\n.");
-				return 1;
+			char * provincias[2];
+			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
+				if(!insertarPares(listaPares,provincias)){
+					printf("Error al insertar en la lista de pares.\n.");
+					return 1;
+				}
 			}
+			
+			
 			aux = datos.origen;
 		}
 		if(!agregarMovAP(listaAP,aux,datos.clase,datos.clasificacion,datos.dia)){
