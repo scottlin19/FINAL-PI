@@ -238,8 +238,9 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 		
 	}
 	printListaAL(listaAL);
-	printLista(listaAP);
 	printListaPares(listaPares);
+	printLista(listaAP);
+	
 	return 0;
 }
 
