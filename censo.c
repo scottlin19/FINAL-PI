@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
 	if (cargarDatosAP(listaAP, "../aer.csv")){
 		printf("funca\n");
 	}
-	if (cargarDatosAL(listaAL, listaAP, "../mov.csv")){
+	if (cargarDatosAL(listaAL, listaAP,listaPares, "../mov.csv")){
 		printf("funca\n");
 	}
 	
