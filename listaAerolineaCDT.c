@@ -22,7 +22,7 @@
 
 #define DIAS_SEMANA 7
 
-#define MAX_TEXTO 250
+#define MAX_TEXTO 400
 #define MAX_OACI 15
 #define MAX_NOMBRE 30
 #define MAX_CLASE 40
@@ -149,7 +149,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 		
 		token = strtok(s,";");
-		//printf("token  = %s\n",token);
+		printf("%s\n",s);
 		cont = 0;
 		tDatosAL  datos; 
 		while(token != NULL){
