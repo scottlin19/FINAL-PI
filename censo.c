@@ -22,8 +22,8 @@ int main(int argc, char * argv[])
 	printf("ok vale %d\n", ok);
 	query3(listaAP, &ok);
 	printf("ok vale %d\n", ok);
-	//query4(listaPares, &ok);	
-	//printf("ok vale %d\n", ok);
+	query4(listaPares, &ok);	
+	printf("ok vale %d\n", ok);
 	query5(listaAL,&ok);
 	printf("ok vale %d\n", ok);
 	return ok;
