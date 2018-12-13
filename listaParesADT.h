@@ -3,7 +3,7 @@
 
 typedef struct listaParesCDT * listaParesADT;
 
-int insertarPares(listaParesADT lista,char * origen, char * destino);
+int insertarPares(nodoP primero,char * provincias[], int * ok);
 
 void query5(listaParesADT lista, int *ok);
 #endif
