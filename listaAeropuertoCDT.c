@@ -95,7 +95,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 			aux->cola = primero;
 		
 			aux->datos = datos;
-			printf("%d :NUEVO OACI: %s\nNUEVA DENOM: %s\n NUEVA PROV: %s\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov);
+			printf("NUEVO OACI: %s\nNUEVA DENOM: %s\n NUEVA PROV: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
 		
 			*ok = 1;
 		}
