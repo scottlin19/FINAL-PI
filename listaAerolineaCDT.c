@@ -162,7 +162,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				
 				 
 				
-			}else if(cont != 1 && cont != 4 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
+			}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
 			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
 			
 				switch(cont){
