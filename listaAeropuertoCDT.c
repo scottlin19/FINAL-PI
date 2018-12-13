@@ -16,8 +16,12 @@
 #define DENOMINACION 4
 #define PROVINCIA 21
 #define DIAS_SEMANA 7
+
 #define MAX_DENOM 70
+#define MAX_OACI 20
+#define MAX_PROV  70
 #define MAX_TEXTO 300
+
 #define REGULAR 0
 #define NO_REGULAR 1
 #define VUELO_PRIVADO 2
@@ -28,9 +32,9 @@ typedef struct tMov{
 }tMov;
 
 typedef struct tDatosAP{
-	char  oaci[20]; 
-	char  denom[70];
-	char  prov[100];
+	char  oaci[MAX_OACI]; 
+	char  denom[MAX_DENOM];
+	char  prov[MAX_PROV];
 }tDatosAP;
 
 struct tAeropuerto {
@@ -98,8 +102,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 	}else if(c <0){
 		primero->cola = insertarAPRec(primero->cola,datos,ok);
 	}else{
-		printf("REPETIDO VIEJA \n");
-		*ok = 1;
+		printf("Error: aeropuerto repetido en el archivo. \n");
 	}
 	return primero;
 	
