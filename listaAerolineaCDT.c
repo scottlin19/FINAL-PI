@@ -15,12 +15,19 @@
 #define ORIGEN 5
 #define DESTINO  6
 #define NOMBRE 7
-#define DIAS_SEMANA 7
-#define MAX_TEXTO 250
+
 #define REGULAR 0
 #define NO_REGULAR 1
 #define VUELO_PRIVADO 2
 
+#define DIAS_SEMANA 7
+
+#define MAX_TEXTO 250
+#define MAX_OACI 10
+#define MAX_NOMBRE 30
+#define MAX_CLASE 25
+#define MAX_TIPO 12
+#define MAX_CLASIF 40 
 
 struct tAerolinea {
 	char  nombre[40];
@@ -31,12 +38,12 @@ struct tAerolinea {
 typedef struct tAerolinea * tAerolineaP;
 
 typedef struct tDatosAL{
-	char  origen[10];
-	char  destino[10];
-	char  nombre[30];
-	char  clase[25];
-	char tipo[15];
-	char  clasificacion[40];
+	char  origen[MAX_OACI];
+	char  destino[MAX_OACI];
+	char  nombre[MAX_NOMBRE];
+	char  clase[MAX_CLASE];
+	char tipo[MAX_TIPO];
+	char  clasificacion[MAX_CLASIF];
 	int dia;
 }tDatosAL;
 
@@ -60,16 +67,16 @@ printListaAL(listaAerolineaADT lista)
 }
 
 static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
-	printf("primero: %s nombre: %s \n",primero->nombre,nombre);
+	
 	if( primero == NULL)
 	{
-		printf("primer AL == NULL \n");
+		
 		tAerolineaP aux = calloc(1,sizeof( struct tAerolinea ));
 		if (aux == NULL){
 			printf("Error: No hay lugar para otro nodo\n");
 		
 		}else{
-			printf("crea aux; \n");
+			
 			aux->cola = primero;
 			strcpy(aux->nombre,nombre);
 			aux->cant_mov_cabotaje= 1;
@@ -78,12 +85,12 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 		}
 		return aux;
 	}else if(strcmp(primero->nombre,nombre) == 0){
-		printf("%s == %s \n",primero->nombre,nombre);
+		
 		(primero->cant_mov_cabotaje)++;
 		*ok = 1;
 		
 	}else{	
-		printf("sig \n");
+
 		primero->cola = insertarALRec( primero->cola, nombre, ok);
 		if((primero->cola != NULL) && (primero->cant_mov_cabotaje - primero->cola->cant_mov_cabotaje) < 0){
 				tAerolineaP aux = primero->cola->cola;
@@ -124,7 +131,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 {
 	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
-	printf("asd 1 \n");
+	
 	if(archM == NULL){
 		printf("Error al abrir el archivo. \n");
 	
@@ -137,10 +144,10 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
 	
-		printf("asd 2 \n");
+		
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
-		printf("ss = %s\n",s);
+		
 		token = strtok(s,";");
 		//printf("token  = %s\n",token);
 		cont = 0;
@@ -205,7 +212,9 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 			}
 		}else{// Es cabotaje;
 			char * provincias[2];
+			printf("Es cabotaje \n");
 			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
+				printf(" %s != %s \n",provincias[0],provincias [1]);
 				if(!insertarPares(listaPares,provincias)){
 					printf("Error al insertar en la lista de pares.\n.");
 					return 1;
