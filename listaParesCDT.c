@@ -35,27 +35,29 @@ static nodoP
 insertarParesRec(nodoP primero,char * provincias[], int * ok)
 {
     if(primero == NULL){
-      nodoP aux = calloc(1,sizeof(struct tNodo));
-      if(aux == NULL){
-        printf("Error: no se pudo crear el nodo. \n");
-      }else {
-      	if(strcmp(provincias[0],provincias[1]) < 0){
-		aux->provincias[0] =provincias[0];
-		aux->provincias[1]= provincias[1];
-	}else{
-		aux->provincias[0] =provincias[1];
-		aux->provincias[1]= provincias[0];
-	}
-        aux->cola = primero;
-         *ok = 1;
-        return aux;
-      }
+    	nodoP aux = calloc(1,sizeof(struct tNodo));
+      	if(aux == NULL){
+		printf("Error: no se pudo crear el nodo. \n");
+      	}else {
+      		if(strcmp(provincias[0],provincias[1]) < 0){
+			aux->provincias[0] =provincias[0];
+			aux->provincias[1]= provincias[1];
+		}else{
+			aux->provincias[0] =provincias[1];
+			aux->provincias[1]= provincias[0];
+		}
+       		aux->cola = primero;
+       		*ok = 1;
+     		return aux;
+      	}
+	    
     }else if(coincidenProv(primero->provincias,provincias)){
+	    printf("coinciden provincias \n");
 	(primero->mov_compartidos)++;
         *ok = 1;
     }else{
         primero->cola = insertarParesRec(primero->cola,provincias,ok);
-        if((primero->cola != NULL )&& (primero->mov_compartidos - primero->cola->mov_compartidos) < 0){		
+        if((primero->cola != NULL )&& ((primero->mov_compartidos - primero->cola->mov_compartidos) < 0)){		
 		nodoP aux = primero->cola->cola;
 		primero->cola->cola = primero;
 		primero = primero->cola;
@@ -72,7 +74,6 @@ int insertarPares(listaParesADT lista,char * provincias[])
 {
     int ok = 0;
     lista->primero = insertarParesRec(lista->primero,provincias,&ok);
-	printListaPares(lista);
     return ok;
 }
 
