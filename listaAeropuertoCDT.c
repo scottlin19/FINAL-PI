@@ -19,8 +19,8 @@
 
 #define MAX_DENOM 70
 #define MAX_OACI 20
-#define MAX_PROV  100
-#define MAX_TEXTO 300
+#define MAX_PROV  70
+#define MAX_TEXTO 400
 
 #define REGULAR 0
 #define NO_REGULAR 1
