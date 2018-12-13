@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "listaParesADT.h"
 #define MAX_TEXTO_PROV 25
 
@@ -18,7 +20,7 @@ struct listaParesCDT{
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
-	return ((prov1[0] == prov2[0]) && (prov1[1] == prov2[1])) || ((prov1[0] == prov2[1]) && (prov1[1] == prov2[0]));
+	return ((provs1[0] == provs2[0]) && (provs1[1] == provs2[1])) || ((provs1[0] == provs2[1]) && (provs1[1] == provs2[0]));
 }
 
 static nodoP
@@ -46,7 +48,7 @@ insertarParesRec(nodoP primero,char * provincias[], int * ok)
     }else{
         primero->cola = insertarParesRec(primero->cola,provincias,ok);
         if((primero->cola != NULL )&& (primero->mov_compartidos - primero->cola->mov_compartidos) < 0){		
-		tAeropuertoP aux = primero->cola->cola;
+		nodoP aux = primero->cola->cola;
 		primero->cola->cola = primero;
 		primero = primero->cola;
 		primero->cola->cola = aux;
