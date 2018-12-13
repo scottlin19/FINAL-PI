@@ -72,7 +72,7 @@ listaParesADT nuevaListaPares(void)
 	return calloc(1,sizeof(struct listaParesCDT));
 }
 
-void query5(listaParesADT lista, int *ok){
+void query4(listaParesADT lista, int *ok){
 	FILE * archivoDest = fopen("pares_provincias.csv", "w+t");
 	if (archivo == NULL){
 		printf("Error al crear/reemplazar archivo\n");
