@@ -5,7 +5,7 @@
 #include <string.h>
 #include "listaAeropuertoADT.h"
 #include "listaAerolineaADT.h"
-
+#include "listaParesADT.h"
 
 #define FECHA 0
 #define CLASE 2
@@ -119,7 +119,7 @@ esAerolinea(char * nombre)
 }
 
 int
-cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
+cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM)
 {
 	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
@@ -202,11 +202,15 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,char * pathM)
 			}else{
 				aux = datos.destino;
 			}
-		}else{
+		}else{// Es cabotaje;
+			if(!insertarPares(listaPares,datos.origen,datos.destino)){
+				printf("Error al insertar en la lista de pares.\n.");
+				return 1;
+			}
 			aux = datos.origen;
 		}
 		if(!agregarMovAP(listaAP,aux,datos.clase,datos.clasificacion,datos.dia)){
-			printf("Error al sumarle un movimiento al aeropuerto. \n");
+			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			return 1;
 		}
 		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
