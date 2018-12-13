@@ -129,7 +129,7 @@ static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
 {	
 	//printf("entro a AGREGAR REC \n");
-	printf("origen = %s\nclase=%s\nclasificacion=%s\n",oaci,clase,clasif);
+
 	//printf("oaci primero2 : %s \n",primero->datos->oaci);
 	int c;
 	int claseIndex;
@@ -174,7 +174,6 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			int comp;
 			//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
 			if((primero->cola != NULL )&& ((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0) || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
-					printf("me los intercambia \n");
 						
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
@@ -245,15 +244,15 @@ cargarDatosAP(listaAeropuertoADT lista, char * pathA)
 			
 		}		
 		if(valido){ //Si es valido el aeropuerto tiene OACI
-			printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
+			//printf("OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",datos.oaci,datos.denom,datos.prov);
 			if(!insertarAP(lista,datos)){
 				printf("Error al cargar datos \n");
 				return 1;
 			}
-			printf("se inserto bien \n");
+			
 		}
 	}
-	printLista(lista);
+	
 	//printf("oaci p: %s denom p %s, prov p :%s \n",lista->primero->datos->oaci,lista->primero->datos->denom,lista->primero->datos->prov);
 	return 0;
 }
