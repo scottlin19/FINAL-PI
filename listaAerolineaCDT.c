@@ -27,7 +27,7 @@
 #define MAX_NOMBRE 30
 #define MAX_CLASE 40
 #define MAX_TIPO 10
-#define MAX_CLASIF 20
+#define MAX_CLASIF 40
 
 struct tAerolinea {
 	char  nombre[40];
