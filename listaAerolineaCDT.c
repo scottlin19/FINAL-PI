@@ -185,9 +185,9 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 					break;
 						
 					case ORIGEN:
-						
+						printf("clasificacion = %s \n",datos.clasificacion);
 						strcpy(datos.origen,token);
-						
+						printf("clasificacion = %s \n",datos.clasificacion);
 					break;
 						
 					case DESTINO:
