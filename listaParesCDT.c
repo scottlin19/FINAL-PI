@@ -16,7 +16,7 @@ struct listaParesCDT{
     nodoP primero;
     
 };
-
+/*
 void printListaPares(listaParesADT lista)
 {
 	int i = 1;
@@ -25,7 +25,7 @@ void printListaPares(listaParesADT lista)
 		printf("%d P1: %s P2: %s mov_compartidos: %d \n",i,aux->provincias[0],aux->provincias[1],aux->mov_compartidos);
 	}
 }
-
+*/
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
