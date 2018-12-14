@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include "listaAeropuertoADT.h"
 #include "listaParesADT.h"
 #include "listaAerolineaADT.h"
