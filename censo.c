@@ -76,6 +76,9 @@ int main(int argc, char * argv[])
 	
 	query5(listaAL,&ok);
 	
+	freePares(listaPares);
+	freeAL(listaAL);
+	freeAP(listaAP);
 	return ok;
 	
 
