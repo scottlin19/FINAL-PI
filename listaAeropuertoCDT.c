@@ -234,9 +234,8 @@ void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 		tAeropuertoP aux = listaAeropuerto->primero;
 		fprintf(archivoDest, "OACI;Denominación;Movimientos\n");
 		while(aux != NULL){
-			printf("oaci vale %s\n", aux->datos.oaci);
 			if (aux->mov_totales != 0){
-				fprintf(archivoDest, "%s;%s;%d\n", aux->datos.oaci, aux->datos.denom, aux->mov_totales);
+				fprintf(archivoDest, "%s;%s;%d\n", aux->oaci, aux->denom, aux->mov_totales);
 			}
 			aux = aux->cola;
 		}
