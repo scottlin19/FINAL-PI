@@ -3,19 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
-#include "listaAeropuertoADT.h"
-#include "listaParesADT.h"
 #include "listaAerolineaADT.h"
 
 
-#define FECHA 0
-#define CLASE 2
-#define CLASIFICACION 3
-#define TIPO 4
-#define ORIGEN 5
-#define DESTINO  6
-#define NOMBRE 7
+#define MAX_NOMBRE 30
 
 #define REGULAR 0
 #define NO_REGULAR 1
@@ -23,12 +14,7 @@
 
 #define DIAS_SEMANA 7
 
-#define MAX_TEXTO 400
-#define MAX_OACI 15
-#define MAX_NOMBRE 40
-#define MAX_CLASE 40
-#define MAX_TIPO 10
-#define MAX_CLASIF 40
+
 
 struct tAerolinea {
 	char  nombre[MAX_NOMBRE];
@@ -38,16 +24,7 @@ struct tAerolinea {
 };
 typedef struct tAerolinea * tAerolineaP;
 
-typedef struct tDatosAL{
-	char  origen[MAX_OACI];
-	char  destino[MAX_OACI];
-	char  nombre[MAX_NOMBRE];
-	char  clase[MAX_CLASE];
-	char  clasificacion[MAX_CLASIF];
-	char tipo[MAX_TIPO];
-	
-	int dia;
-}tDatosAL;
+
 
 struct listaAerolineaCDT{
 	
@@ -56,7 +33,7 @@ struct listaAerolineaCDT{
 	int cabotaje_total;
 
 };
-
+/*
 void
 printListaAL(listaAerolineaADT lista)
 {
@@ -67,7 +44,7 @@ printListaAL(listaAerolineaADT lista)
 	}
 
 }
-
+*/
 static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	
 	if( primero == NULL)
@@ -103,8 +80,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	}
 	return primero;
 }
-
-static int
+int 
 insertarAL( listaAerolineaADT lista, char * nombre)
 {
 	int ok =0 ;
@@ -112,147 +88,18 @@ insertarAL( listaAerolineaADT lista, char * nombre)
 	if(ok){
 		(lista->cabotaje_total)++;
 	}
-	//printListaAL(lista);
+	
 	return ok;
 }
 
-static int
-diaDeLaSemana(int d, int m, int a)
-{
-	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
-}
 
-static int
+int
 esAerolinea(char * nombre)
 {
 	return ((strcmp(nombre," ") != 0 )&& (strcmp(nombre,"N/A") != 0));
 }
 
-int
-cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM)
-{
-	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
-	
-	
-	if(archM == NULL){
-		printf("Error al abrir el archivo. \n");
-	
-	}
-	
-	int d,m,a;
-	int cont = 0;	
-	char * token;
-	
-	char  s[MAX_TEXTO];
-	fgets(s,MAX_TEXTO,archM);
-	int i = 1;
-		
-	tDatosAL  datos; 
-	while(fgets(s,MAX_TEXTO,archM) != NULL){
-		printf(" %d :%s \n",i,s);
-		token = strtok(s,";");
-		
-		
-		cont = 0;
-		
-		while(token != NULL){
-			printf("token = %s \n",token);
-			printf("cont = %d \n",cont);
-			printf("clasi = %s \n",datos.clasificacion);
-			if(cont == 0){
-				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
-				datos.dia = diaDeLaSemana(d,m,a);
-				printf("d = %d, m = %d, a = %d  dia = %d\n",d,m,a,datos.dia);
-				
-				 
-				
-			}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
-			//	fscanf(archM,"%[^;]",s); //Extraigo la string hasta ;
-			
-				switch(cont){
-					case CLASE:
-						
-						strcpy(datos.clase,token);
-					break;
-						
-					case CLASIFICACION:
-						
-						strcpy(datos.clasificacion,token);
-						
-					break;
-						
-					case TIPO:
-						
-						strcpy(datos.tipo,token);
-					break;
-						
-					case ORIGEN:
-						printf("clasificacion = %s \n",datos.clasificacion);
-						strcpy(datos.origen,token);
-						printf("clasificacion = %s \n",datos.clasificacion);
-					break;
-						
-					case DESTINO:
 
-						strcpy(datos.destino,token);
-						
-					break;
-						
-					case NOMBRE:
-	
-						strcpy(datos.nombre,token);
-						
-					break;
-				}
-				//cont++;
-			}
-			cont++;
-			
-			token =  strtok(NULL,";");
-		}
-		
-		
-		printf("MOV:clasi=%s\nnombre = %s\norigen = %s\ndestino = %s\nclase=%s\ntipo = %s \n",datos.clasificacion,datos.nombre,datos.origen,datos.destino,datos.clase,datos.tipo);
-		
-		char * aux;
-		
-		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
-			char * provincias[2];
-			printf("Es cabotaje \n");
-			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
-				//printf(" %s != %s \n",provincias[0],provincias [1]);
-				if(!insertarPares(listaPares,provincias)){
-					printf("Error al insertar en la lista de pares.\n.");
-					return 1;
-				}
-			}
-			
-		}
-		if(strcmp(datos.tipo,"Despegue") == 0){
-			aux = datos.origen;
-		}else{
-			aux = datos.destino;
-		}
-		printf("aux = %s \n",aux);
-		if(!agregarMovAP(listaAP,aux,datos.clase,datos.clasificacion,datos.dia)){
-			printf("Error al sumarle un movimiento al aeropuerto.\n");
-			return 1;
-		}
-		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
-		
-			if( !insertarAL(listaAL,datos.nombre)){
-				printf("Error al insertar los datos de la aerolinea.\n");
-				return 1;
-			}
-		}
-		i++;
-		
-	}
-	printListaAL(listaAL);
-	printLista(listaAP);
-	printListaPares(listaPares);
-	return 0;
-}
 
 listaAerolineaADT
 nuevaListaAL(void)
@@ -260,17 +107,6 @@ nuevaListaAL(void)
 	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
 
-void freeAL(listaAerolineaADT listaAL){
-	tAerolineaP actual = listaAL->primero, aux;
-	while(actual != NULL){
-	aux = actual->cola;
-	free(actual);
-	actual = aux;
-	}
-	free(listaAL);
-}
-
-	
 void query5(listaAerolineaADT listaAL, int *ok){
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
@@ -282,9 +118,9 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		tAerolineaP aux = listaAL->primero;
 		int porcentaje;
 		while (aux != NULL){
-			porcentaje = ((double)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
+			porcentaje = ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
 			if (porcentaje > 0){
-				fprintf(archivoDest, "%s;%g%%\n", aux->nombre, porcentaje);
+				fprintf(archivoDest, "%s;%d%\n", aux->nombre, porcentaje);
 			}
 			aux = aux->cola;
 		}
