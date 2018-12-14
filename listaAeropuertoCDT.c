@@ -109,7 +109,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 	
 
 }
-
+/*
 void
 printLista(listaAeropuertoADT lista)
 {
@@ -120,6 +120,7 @@ printLista(listaAeropuertoADT lista)
 	}
 
 }
+*/
 int
 insertarAP( listaAeropuertoADT lista, char * oaci, char * denom,char * prov)
 {
