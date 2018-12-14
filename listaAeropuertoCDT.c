@@ -136,13 +136,13 @@ static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
 {	
 	
-	int c;
+	
 	int claseIndex;
 
 		if(primero == NULL){
-			printf("primero es NULL \n");
+		
 			return primero;
-		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
+		}else if(strcmp(primero->oaci,oaci) == 0){
 				
 
 			if(strcmp(clase,"Regular") == 0){
@@ -179,7 +179,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			if(primero->cola != NULL ){
 				
 				if( ((comp = (primero->mov_totales - primero->cola->mov_totales)) < 0) ||
-				   ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
+				   ((comp == 0) &&  (strcmp(primero->oaci,primero->cola->oaci) > 0) )){
 						
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
