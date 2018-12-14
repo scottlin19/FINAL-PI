@@ -15,11 +15,11 @@ int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
 #define MAX_NOMBRE 30
 #define MAX_CLASE 40
 #define MAX_TIPO 10
-#define MAX_CLASIF 40
+#define MAX_CLASIF 30
 
-#define MAX_OACI 15
-#define MAX_DENOM 70
-#define MAX_PROV  70
+#define MAX_OACI 10
+#define MAX_DENOM 30
+#define MAX_PROV 40
 
 #define OACI 1
 #define DENOMINACION 4
