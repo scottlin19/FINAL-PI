@@ -102,12 +102,12 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 	char  s[MAX_TEXTO];
 	tDatosAP  datos;
 	char * aux;
-  
+  	int i = 1;
 	fgets(s,MAX_TEXTO,archA); //Me salto la primera linea del archivo que contiene los nombres  de los campos.
 	
 	
 	while(fgets(s,MAX_TEXTO,archA )!= NULL){
-		
+		printf("se colgo en cargar AP %d \n",i++);
 			token = strtok(s,";");
 			cont = 0;
 			valido =1;
@@ -178,8 +178,10 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
 	tDatosMov  datos; 
 	char * aux;
+	
+	int i = 1;
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
-
+printf("se colgo en cargar MOV %d \n",i++);
 		token = strtok(s,";");	
 		cont = 0;
 		
