@@ -59,22 +59,27 @@ int main(int argc, char * argv[])
 	listaAeropuertoADT listaAP = nuevaListaAP();
 	listaAerolineaADT listaAL = nuevaListaAL();
 	listaParesADT listaPares = nuevaListaPares();
-	if (!cargarAeropuertos(listaAP, argv[1])){
+	if (cargarAeropuertos(listaAP, argv[1])){
 		return 1;
 	}
-	if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
+	if (cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		return 1;
 	}
 	query1(listaAP, &ok);
 	printf("se hizo la query 1\n");
+
 	query2(listaAP, &ok);
+	printf("se hizo la query 2\n");
 	
 	query3(listaAP, &ok);
+	printf("se hizo la query 3\n");
 
 	query4(listaPares, &ok);	
-	
+	printf("se hizo la query 4\n");
+
 	query5(listaAL,&ok);
+	printf("se hizo la query 5\n");
 	
 	freePares(listaPares);
 	freeAL(listaAL);
