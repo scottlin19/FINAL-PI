@@ -30,7 +30,7 @@
 #define MAX_CLASIF 40
 
 struct tAerolinea {
-	char  nombre[40];
+	char  nombre[MAX_NOMBRE];
 	int cant_mov_cabotaje;
 
 	struct tAerolinea * cola;
@@ -145,14 +145,14 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	fgets(s,MAX_TEXTO,archM);
 	int i = 1;
 		
-	
+	tDatosAL  datos; 
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 		printf(" %d :%s \n",i,s);
 		token = strtok(s,";");
 		
 		
 		cont = 0;
-		tDatosAL  datos; 
+		
 		while(token != NULL){
 			printf("token = %s \n",token);
 			printf("cont = %d \n",cont);
@@ -172,12 +172,15 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 						
 						strcpy(datos.clase,token);
 					break;
+						
 					case CLASIFICACION:
 						
 						strcpy(datos.clasificacion,token);
-						printf(" clasi = %s \n",datos.clasificacion);
+						
 					break;
+						
 					case TIPO:
+						
 						strcpy(datos.tipo,token);
 					break;
 						
@@ -186,15 +189,15 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 						strcpy(datos.origen,token);
 						
 					break;
-					case DESTINO:
 						
-					
+					case DESTINO:
+
 						strcpy(datos.destino,token);
 						
 					break;
+						
 					case NOMBRE:
-						
-						
+	
 						strcpy(datos.nombre,token);
 						
 					break;
@@ -203,18 +206,14 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 			}
 			cont++;
 			
-			token =  strtok(NULL, ";");
+			token =  strtok(NULL,";");
 		}
 		
 		
-		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasi=%s\ntipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
-		printf("clasi = %s \n",datos.clasificacion);
+		printf("MOV:clasi=%s\nnombre = %s\norigen = %s\ndestino = %s\nclase=%s\ntipo = %s \n",datos.clasificacion,datos.nombre,datos.origen,datos.destino,datos.clase,,datos.tipo);
+		
 		char * aux;
-		if(strcmp(datos.tipo,"Despegue") == 0){
-			aux = datos.origen;
-		}else{
-			aux = datos.destino;
-		}
+		
 		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
 			char * provincias[2];
 			printf("Es cabotaje \n");
@@ -226,9 +225,13 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				}
 			}
 			
-			
-			aux = datos.origen;
 		}
+		if(strcmp(datos.tipo,"Despegue") == 0){
+			aux = datos.origen;
+		}else{
+			aux = datos.destino;
+		}
+		printf("aux = %s \n");
 		if(!agregarMovAP(listaAP,aux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			return 1;
