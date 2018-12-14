@@ -137,13 +137,13 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 					}else if(valido && cont == PROVINCIA){	
           					datos.prov =	aux;
 					}	
-					cont++;
 
-					token =  strtok(NULL, ";");	
 				
 				
 				}
-				
+				cont++;
+
+				token =  strtok(NULL, ";");	
 
 			}	
 			
