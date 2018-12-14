@@ -7,9 +7,8 @@ typedef struct listaAerolineaCDT* listaAerolineaADT;
 
 listaAerolineaADT nuevaListaAL(void);
 
-int
-cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM);
-
+int insertarAL( listaAerolineaADT lista, char * nombre);
+int esAerolinea(char * nombre);
 void query5(listaAerolineaADT listaAL, int *ok);
 
 #endif
