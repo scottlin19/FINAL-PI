@@ -60,11 +60,11 @@ int main(int argc, char * argv[])
 	listaAerolineaADT listaAL = nuevaListaAL();
 	listaParesADT listaPares = nuevaListaPares();
 	if (!cargarAeropuertos(listaAP, argv[1])){
-		printf("hola 1\n");
+		return 1;
 	}
 	if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
-		printf("hola 2\n");
+		return 1;
 	}
 	query1(listaAP, &ok);
 	printf("se hizo la query 1\n");
