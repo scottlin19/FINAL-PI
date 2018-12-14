@@ -145,7 +145,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 	
 	
 	}
-
+	fclose(archA);
 	return 0;
 }
 
@@ -241,6 +241,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			}
 		}
 	}
+		fclose(archM);
 		return 0;
 
 }
