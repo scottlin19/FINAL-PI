@@ -31,14 +31,12 @@ typedef struct tMov{
 	int cant_internacional;
 }tMov;
 
-typedef struct tDatosAP{
-	char  oaci[MAX_OACI]; 
-	char  denom[MAX_DENOM];
-	char  prov[MAX_PROV];
-}tDatosAP;
+
 
 struct tAeropuerto {
-	tDatosAP  datos;	
+	char  oaci[MAX_OACI];
+	char denom[MAX_DENOM];
+	char prov[MAX_PROV];
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
 	int mov_totales;
 	struct tAeropuerto * cola;
@@ -84,7 +82,7 @@ sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * 
 
 
 static tAeropuertoP
-insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
+insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * ok)
 {
 	int c;
 	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
@@ -94,9 +92,10 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 		}else{
 			aux->cola = primero;
 		
-			aux->datos = datos;
-			printf("NUEVO OACI: %s\nNUEVA DENOM: %s\n NUEVA PROV: %s\n",aux->datos.oaci,aux->datos.denom,aux->datos.prov);
-		
+			strcpy(aux->oaci,datos.oaci);
+			strcpy(aux->denom,datos.denom);
+			strcpy(aux->prov,datos.prov);
+				
 			*ok = 1;
 		}
 		return aux;
@@ -104,6 +103,7 @@ insertarAPRec(tAeropuertoP primero,tDatosAP  datos, int * ok)
 		primero->cola = insertarAPRec(primero->cola,datos,ok);
 	}else{
 		printf("Error: aeropuerto repetido en el archivo. \n");
+		*ok = 1;
 	}
 	return primero;
 	
@@ -121,11 +121,11 @@ printLista(listaAeropuertoADT lista)
 
 }
 int
-insertarAP( listaAeropuertoADT lista, tDatosAP  datos)
+insertarAP( listaAeropuertoADT lista, char * oaci, char * denom,char * prov)
 {
 	int ok =0 ;
-	lista->primero = insertarAPRec(lista->primero, datos, &ok);
-	//printLista(lista);
+	lista->primero = insertarAPRec(lista->primero, oaci,denom,prov, &ok);
+	
 	return ok;
 }
 
@@ -134,9 +134,7 @@ insertarAP( listaAeropuertoADT lista, tDatosAP  datos)
 static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
 {	
-	//printf("entro a AGREGAR REC \n");
-
-	//printf("oaci primero2 : %s \n",primero->datos->oaci);
+	
 	int c;
 	int claseIndex;
 
@@ -148,30 +146,29 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 
 			if(strcmp(clase,"Regular") == 0){
 				claseIndex = REGULAR;
-			//	printf("2 IF \n");
+			
 			}else if(strcmp(clase,"No Regular") == 0){
-				//printf("3 IF \n");
+				
 				claseIndex = NO_REGULAR;	
 			}else{
-				//printf("4 IF \n");
+			
 				claseIndex = VUELO_PRIVADO;
 			}
 			if(strcmp(clasif,"Cabotaje") == 0){
-				//printf("5 IF \n");
+				
 				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
 			}else{
-				//printf("6 IF \n");
+				
 				(primero->cant_mov[dia][claseIndex].cant_internacional)++;
 				
 			}
 			
 			(primero->mov_totales)++;
-		//	 printf("ELSE \n");
 			*agregado = 1;
-			return primero;
-
 			
+			return primero;
+		
 		}else{
 			//printf("ELSE 2 \n");
 		//	printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
@@ -200,78 +197,9 @@ agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, i
 	int agregado = 0;
 	//printf("entro a agregarMovap\n");
 	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
-	printf("asd 2 \n");
-	//printLista(lista);
 	return agregado;
 }
-int
-cargarDatosAP(listaAeropuertoADT lista, char * pathA)
-{
 
-	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
-		
-	if(archA == NULL){
-		printf("Error al abrir los archivos. \n");
-		return 1;
-	
-	}
-		
-	int cont;	
-	int valido;
-	char * token;
-	int i = 1;
-	
-	char  s[MAX_TEXTO];
-	
-	fgets(s,MAX_TEXTO,archA);
-	while(fgets(s,MAX_TEXTO,archA )!= NULL){
-		printf(" %d :%s \n",i,s);
-		
-			token = strtok(s,";");
-			cont = 0;
-			valido =1;
-			tDatosAP  datos;
-			while((token != NULL) && valido){
-				printf("token: %s ",token);
-				if(cont == OACI){
-					if(strcmp(token," ") == 0){
-						valido = 0;
-
-					}else{		
-
-						strcpy(datos.oaci,token);
-					}
-
-				}else if(valido && cont == DENOMINACION){	
-						strcpy(datos.denom,token);
-
-				}else if(valido && cont == PROVINCIA){	
-						strcpy(datos.prov,token);
-
-				}	
-				cont++;
-
-				token =  strtok(NULL, ";");
-				
-
-			}	
-			putchar('\n');
-			if(valido){ //Si es valido el aeropuerto tiene OACI
-					printf("%d : OACI: %s\nDENOM: %s\nPROVINCIA: %s\n",i,datos.oaci,datos.denom,datos.prov);
-					if(!insertarAP(lista,datos)){
-						printf("Error al cargar datos \n");
-						return 1;
-					}
-
-			}
-		i++;
-			
-	
-	}
-	printLista(lista);
-	//printf("oaci p: %s denom p %s, prov p :%s \n",lista->primero->datos->oaci,lista->primero->datos->denom,lista->primero->datos->prov);
-	return 0;
-}
 listaAeropuertoADT
 nuevaListaAP( void )
 {
