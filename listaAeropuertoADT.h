@@ -18,6 +18,9 @@ typedef struct listaAeropuertoCDT * listaAeropuertoADT;
 int insertarAP( listaAeropuertoADT lista, char * oaci, char * denom, char * prov);
 int sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[]);
 int agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia);
+void query1(listaAeropuertoADT listaAeropuerto, int *ok);
+void query2(listaAeropuertoADT listaAeropuerto, int *ok);
+void query3(listaAeropuertoADT listaAP, int *ok);
 
 /* Función de comparación para ordenar las componentes del TAD.
  * De no servir este código el usuario debe cambiarlo por el
@@ -112,14 +115,8 @@ listaAeropuertoADT nuevaListaAP(void);
 /**
  * Funciones para poder iterar sobre la lista
  */
-void alPrincipioAP(listaAeropuertoADT listaAeropuerto);
 
-//int tieneProximo(const listADT list);
-int tieneProxAP(const listaAeropuertoADT lista);
-//listElementT next(listADT list);
 
-void proximoAP(listaAeropuertoADT listaAeropuerto);
-/**
  * Ejemplo de implementación "funcional"
  * inject recibe una funcion y la aplica a cada elemento de la lista
  */
@@ -131,10 +128,6 @@ void proximoAP(listaAeropuertoADT listaAeropuerto);
  * */
 //listADT map(const listADT list, listElementT (*fn) (listElementT));
 
-void query1(listaAeropuertoADT listaAeropuerto, int *ok);
-void query2(listaAeropuertoADT listaAeropuerto, int *ok);
-void query3(listaAeropuertoADT listaAP, int *ok);
 
-void
-printLista(listaAeropuertoADT lista);
+
 #endif
