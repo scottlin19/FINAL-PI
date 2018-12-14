@@ -57,8 +57,8 @@ obtenerProvincia(listaAeropuertoADT lista,char * oaci)
 	char * prov = NULL;
 	int listo = 0;
 	for(tAeropuertoP aux = lista->primero; !listo && aux != NULL;aux = aux->cola){
-		if(strcmp(aux->datos.oaci,oaci) == 0){
-			prov = aux->datos.prov;
+		if(strcmp(aux->oaci,oaci) == 0){
+			prov = aux->prov;
 		}
 	}
 	return prov;
