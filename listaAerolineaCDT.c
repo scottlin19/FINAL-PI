@@ -251,6 +251,8 @@ nuevaListaAL(void)
 	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
 
+//void freeAL(listaAerolineaADT listaAL){
+
 void query5(listaAerolineaADT listaAL, int *ok){
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
@@ -263,7 +265,7 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		int porcentaje;
 		while (aux != NULL){
 			porcentaje = ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
-			fprintf(archivoDest, "%s;%d%\n", aux->nombre, porcentaje);
+			fprintf(archivoDest, "%s;%d%%\n", aux->nombre, porcentaje);
 			aux = aux->cola;
 		}
 		fclose(archivoDest);
