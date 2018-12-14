@@ -57,8 +57,8 @@ obtenerProvincia(listaAeropuertoADT lista,char * oaci)
 	char * prov = NULL;
 	int listo = 0;
 	for(tAeropuertoP aux = lista->primero; !listo && aux != NULL;aux = aux->cola){
-		if(strcmp(aux->datos.oaci,oaci) == 0){
-			prov = aux->datos.prov;
+		if(strcmp(aux->oaci,oaci) == 0){
+			prov = aux->prov;
 		}
 	}
 	return prov;
@@ -85,7 +85,7 @@ static tAeropuertoP
 insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
+	if(primero == NULL || (c = strcmp(primero->oaci,oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error: No hay lugar para otro nodo\n");
@@ -100,7 +100,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 		}
 		return aux;
 	}else if(c <0){
-		primero->cola = insertarAPRec(primero->cola,datos,ok);
+		primero->cola = insertarAPRec(primero->cola,oaci,denom,prov,ok);
 	}else{
 		printf("Error: aeropuerto repetido en el archivo. \n");
 		*ok = 1;
@@ -109,7 +109,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 	
 
 }
-
+/*
 void
 printLista(listaAeropuertoADT lista)
 {
@@ -120,6 +120,7 @@ printLista(listaAeropuertoADT lista)
 	}
 
 }
+*/
 int
 insertarAP( listaAeropuertoADT lista, char * oaci, char * denom,char * prov)
 {
@@ -135,13 +136,13 @@ static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
 {	
 	
-	int c;
+	
 	int claseIndex;
 
 		if(primero == NULL){
-			printf("primero es NULL \n");
+		
 			return primero;
-		}else if((c = strcmp(primero->datos.oaci,oaci)) == 0){
+		}else if(strcmp(primero->oaci,oaci) == 0){
 				
 
 			if(strcmp(clase,"Regular") == 0){
@@ -178,7 +179,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			if(primero->cola != NULL ){
 				
 				if( ((comp = (primero->mov_totales - primero->cola->mov_totales)) < 0) ||
-				   ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
+				   ((comp == 0) &&  (strcmp(primero->oaci,primero->cola->oaci) > 0) )){
 						
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
