@@ -85,7 +85,7 @@ static tAeropuertoP
 insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * ok)
 {
 	int c;
-	if(primero == NULL || (c = strcmp(primero->datos.oaci,datos.oaci)) > 0){
+	if(primero == NULL || (c = strcmp(primero->oaci,oaci)) > 0){
 		tAeropuertoP aux = calloc(1,sizeof(struct tAeropuerto));
 		if(aux == NULL){
 			printf("Error: No hay lugar para otro nodo\n");
@@ -100,7 +100,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 		}
 		return aux;
 	}else if(c <0){
-		primero->cola = insertarAPRec(primero->cola,datos,ok);
+		primero->cola = insertarAPRec(primero->cola,oaci,denom,prov,ok);
 	}else{
 		printf("Error: aeropuerto repetido en el archivo. \n");
 		*ok = 1;
