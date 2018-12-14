@@ -120,7 +120,7 @@ printLista(listaAeropuertoADT lista)
 	}
 
 }
-static int
+int
 insertarAP( listaAeropuertoADT lista, tDatosAP  datos)
 {
 	int ok =0 ;
@@ -176,10 +176,11 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 			//printf("ELSE 2 \n");
 		//	printf("origen: %s oaci data: %s \n",primero->datos->oaci,oaci);
 			primero->cola = agregarMovAPrec(primero->cola,oaci,clase,clasif,dia,agregado);
-			
+			printf("asd 1 \n");
 			int comp=0;
-			//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
-			if( ((primero->cola != NULL ) && ((comp =(primero->mov_totales - primero->cola->mov_totales)) < 0)) || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
+			if(primero->cola != NULL ){
+				//printf("%s movs: %d,  %s movs: %d \n",primero->datos->oaci,primero->mov_totales,primero->cola->datos->oaci,primero->cola->mov_totales);
+				if( ((comp = (primero->mov_totales - primero->cola->mov_totales)) < 0) || ((comp == 0) &&  (strcmp(primero->datos.oaci,primero->cola->datos.oaci) > 0) )){
 						
 						tAeropuertoP aux = primero->cola->cola;
 						primero->cola->cola = primero;
@@ -187,7 +188,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 						primero->cola->cola = aux;
 				}
 		
-			
+			}
 			
 		}
 	
@@ -199,6 +200,7 @@ agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, i
 	int agregado = 0;
 	//printf("entro a agregarMovap\n");
 	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
+	printf("asd 2 \n");
 	//printLista(lista);
 	return agregado;
 }
@@ -349,7 +351,7 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		*ok = 1;
 	}
 	else {
-		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos");
+		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos\n");
 		tAeropuertoP aux = listaAeropuerto->primero;
 		int i,j, dia;
 		char *clasificacion[2][4] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}};
@@ -371,7 +373,7 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		}
 		for (i = 0; i < 2; i++){
 			for (j = 1; j < 4; j++){
-				fprintf(archivoDest, "%s;%s;%d", clasificacion[i][0],clasificacion[i][j], total[i][j-1]);
+				fprintf(archivoDest, "%s;%s;%d\n", clasificacion[i][0],clasificacion[i][j], total[i][j-1]);
 			}
 		}
 		fclose(archivoDest);

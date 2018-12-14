@@ -12,6 +12,8 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 
 void freeAL(listaAerolineaADT listaAL);
 
+int insertarAL( listaAerolineaADT lista, char * nombre);
+int esAerolinea(char * nombre);
 void query5(listaAerolineaADT listaAL, int *ok);
 
 #endif

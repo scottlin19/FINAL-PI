@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "listaAeropuertoADT.h"
 #include "listaParesADT.h"
 #include "listaAerolineaADT.h"
@@ -24,13 +25,13 @@
 
 #define MAX_TEXTO 400
 #define MAX_OACI 15
-#define MAX_NOMBRE 30
+#define MAX_NOMBRE 40
 #define MAX_CLASE 40
 #define MAX_TIPO 10
 #define MAX_CLASIF 40
 
 struct tAerolinea {
-	char  nombre[40];
+	char  nombre[MAX_NOMBRE];
 	int cant_mov_cabotaje;
 
 	struct tAerolinea * cola;
@@ -42,8 +43,9 @@ typedef struct tDatosAL{
 	char  destino[MAX_OACI];
 	char  nombre[MAX_NOMBRE];
 	char  clase[MAX_CLASE];
-	char tipo[MAX_TIPO];
 	char  clasificacion[MAX_CLASIF];
+	char tipo[MAX_TIPO];
+	
 	int dia;
 }tDatosAL;
 
@@ -143,18 +145,20 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 	
 	char  s[MAX_TEXTO];
 	fgets(s,MAX_TEXTO,archM);
-	
+	int i = 1;
 		
-	
+	tDatosAL  datos; 
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
-		
+		printf(" %d :%s \n",i,s);
 		token = strtok(s,";");
-		printf("%s\n",s);
+		
+		
 		cont = 0;
-		tDatosAL  datos; 
+		
 		while(token != NULL){
 			printf("token = %s \n",token);
-			//printf("cont = %d \n",cont);
+			printf("cont = %d \n",cont);
+			printf("clasi = %s \n",datos.clasificacion);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);
@@ -170,28 +174,32 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 						
 						strcpy(datos.clase,token);
 					break;
+						
 					case CLASIFICACION:
 						
 						strcpy(datos.clasificacion,token);
-						printf(" clasi = %s \n",datos.clasificacion);
+						
 					break;
+						
 					case TIPO:
+						
 						strcpy(datos.tipo,token);
 					break;
+						
 					case ORIGEN:
-						
+						printf("clasificacion = %s \n",datos.clasificacion);
 						strcpy(datos.origen,token);
-						
+						printf("clasificacion = %s \n",datos.clasificacion);
 					break;
-					case DESTINO:
 						
-					
+					case DESTINO:
+
 						strcpy(datos.destino,token);
 						
 					break;
+						
 					case NOMBRE:
-						
-						
+	
 						strcpy(datos.nombre,token);
 						
 					break;
@@ -199,22 +207,18 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				//cont++;
 			}
 			cont++;
-			token =  strtok(NULL, ";");
+			
+			token =  strtok(NULL,";");
 		}
 		
 		
-		printf("MOV: nombre = %s\norigen = %s\ndestino = %s\nclase=%s\nclasi=%s tipo = %s \n",datos.nombre,datos.origen,datos.destino,datos.clase,datos.clasificacion,datos.tipo);
-		printf(" clasi = %s \n",datos.clasificacion);
+		printf("MOV:clasi=%s\nnombre = %s\norigen = %s\ndestino = %s\nclase=%s\ntipo = %s \n",datos.clasificacion,datos.nombre,datos.origen,datos.destino,datos.clase,datos.tipo);
+		
 		char * aux;
-		if(strcmp(datos.clasificacion,"Internacional") == 0){
-			if(strcmp(datos.tipo,"Despegue") == 0){
-				aux = datos.origen;
-			}else{
-				aux = datos.destino;
-			}
-		}else{// Es cabotaje;
+		
+		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
 			char * provincias[2];
-			//printf("Es cabotaje \n");
+			printf("Es cabotaje \n");
 			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
 				//printf(" %s != %s \n",provincias[0],provincias [1]);
 				if(!insertarPares(listaPares,provincias)){
@@ -223,9 +227,13 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				}
 			}
 			
-			
-			aux = datos.origen;
 		}
+		if(strcmp(datos.tipo,"Despegue") == 0){
+			aux = datos.origen;
+		}else{
+			aux = datos.destino;
+		}
+		printf("aux = %s \n",aux);
 		if(!agregarMovAP(listaAP,aux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			return 1;
@@ -237,6 +245,7 @@ cargarDatosAL(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT
 				return 1;
 			}
 		}
+		i++;
 		
 	}
 	printListaAL(listaAL);
@@ -264,8 +273,10 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		tAerolineaP aux = listaAL->primero;
 		int porcentaje;
 		while (aux != NULL){
-			porcentaje = ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
-			fprintf(archivoDest, "%s;%d%%\n", aux->nombre, porcentaje);
+			porcentaje = ((double)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
+			if (porcentaje > 0){
+				fprintf(archivoDest, "%s;%g%%\n", aux->nombre, porcentaje);
+			}
 			aux = aux->cola;
 		}
 		fclose(archivoDest);
