@@ -120,7 +120,7 @@ printLista(listaAeropuertoADT lista)
 	}
 
 }
-static int
+int
 insertarAP( listaAeropuertoADT lista, tDatosAP  datos)
 {
 	int ok =0 ;
