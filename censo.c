@@ -10,10 +10,10 @@ int main(int argc, char * argv[])
 	listaAeropuertoADT listaAP = nuevaListaAP();
 	listaAerolineaADT listaAL = nuevaListaAL();
 	listaParesADT listaPares = nuevaListaPares();
-	if (cargarDatosAP(listaAP, argv[1])){
+	if (cargarDatosAP(listaAP, "../aer.csv")){
 		printf("funca\n");
 	}
-	if (cargarDatosAL(listaAL, listaAP,listaPares, argv[2])){
+	if (cargarDatosAL(listaAL, listaAP,listaPares, "../mov.csv")){
 		printf("funca\n");
 	}
 	query1(listaAP, &ok);
