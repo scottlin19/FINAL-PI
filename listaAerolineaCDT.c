@@ -42,8 +42,9 @@ typedef struct tDatosAL{
 	char  destino[MAX_OACI];
 	char  nombre[MAX_NOMBRE];
 	char  clase[MAX_CLASE];
-	char tipo[MAX_TIPO];
 	char  clasificacion[MAX_CLASIF];
+	char tipo[MAX_TIPO];
+	
 	int dia;
 }tDatosAL;
 
