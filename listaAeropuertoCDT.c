@@ -351,7 +351,7 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		*ok = 1;
 	}
 	else {
-		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos");
+		fprintf(archivoDest, "Clasificación de Vuelo;Clase de Vuelo;Movimientos\n");
 		tAeropuertoP aux = listaAeropuerto->primero;
 		int i,j, dia;
 		char *clasificacion[2][4] = {{"Cabotaje", "Regular", "No Regular", "Vuelo Privado"}, {"Internacional", "Regular", "No Regular", "Vuelo Privado"}};
@@ -373,7 +373,7 @@ void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 		}
 		for (i = 0; i < 2; i++){
 			for (j = 1; j < 4; j++){
-				fprintf(archivoDest, "%s;%s;%d", clasificacion[i][0],clasificacion[i][j], total[i][j-1]);
+				fprintf(archivoDest, "%s;%s;%d\n", clasificacion[i][0],clasificacion[i][j], total[i][j-1]);
 			}
 		}
 		fclose(archivoDest);
