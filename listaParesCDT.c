@@ -86,6 +86,15 @@ listaParesADT nuevaListaPares(void)
 	return calloc(1,sizeof(struct listaParesCDT));
 }
 
+void freePares(listaParesADT listaPares){
+	nodoP actual = listaPares->primero, aux;
+	while (actual != NULL){
+		aux = actual->cola;
+		free(actual);
+		actual = aux;
+	}
+	free(listaPares);
+}
 void query4(listaParesADT lista, int *ok){
 	FILE * archivoDest = fopen("pares_provincias.csv", "w+t");
 	if (archivoDest == NULL){

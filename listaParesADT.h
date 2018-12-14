@@ -7,5 +7,6 @@ int insertarPares(listaParesADT lista,char * provincias[]);
 
 listaParesADT nuevaListaPares(void);
 void printListaPares(listaParesADT lista);
+void freePares(listaParesADT listaPares);
 void query4(listaParesADT lista, int *ok);
 #endif
