@@ -259,9 +259,18 @@ nuevaListaAL(void)
 {
 	return calloc(1,sizeof(struct listaAerolineaCDT));
 }
-
-//void freeAL(listaAerolineaADT listaAL){
-
+/*
+void freeAL(listaAerolineaADT listaAL){
+	tAerolineaP actual = listaAl->primero, aux;
+	while(actual != NULL){
+	aux = actual->tail;
+	free(actual);
+	actual = aux;
+	}
+	free(listaAL);
+}
+*/
+	
 void query5(listaAerolineaADT listaAL, int *ok){
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
