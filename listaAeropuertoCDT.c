@@ -92,9 +92,9 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 		}else{
 			aux->cola = primero;
 		
-			strcpy(aux->oaci,datos.oaci);
-			strcpy(aux->denom,datos.denom);
-			strcpy(aux->prov,datos.prov);
+			strcpy(aux->oaci,oaci);
+			strcpy(aux->denom,denom);
+			strcpy(aux->prov,prov);
 				
 			*ok = 1;
 		}
