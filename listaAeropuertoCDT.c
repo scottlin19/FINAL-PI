@@ -272,6 +272,15 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 	fclose(archivoDest);
 }
 
+void freeAP(listaAeropuertoADT listaAP){
+	tAeropuertoP actual = listaAP->primero, aux;
+	while (actual != NULL){
+		aux = actual->cola;
+		free(actual);
+		actual = aux;
+	}
+	free(listaAP);
+}
 
 void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 	FILE * archivoDest = fopen("composicion.csv", "w+t");

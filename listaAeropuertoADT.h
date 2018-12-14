@@ -59,6 +59,7 @@ listaAeropuertoADT nuevaListaAP(void);
  */
 
 
+void freeAP(listaAeropuertoADT listaAP);
 
 
 #endif
