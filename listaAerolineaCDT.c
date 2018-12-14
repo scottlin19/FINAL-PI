@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "listaAeropuertoADT.h"
 #include "listaParesADT.h"
 #include "listaAerolineaADT.h"
@@ -24,7 +25,7 @@
 
 #define MAX_TEXTO 400
 #define MAX_OACI 15
-#define MAX_NOMBRE 30
+#define MAX_NOMBRE 40
 #define MAX_CLASE 40
 #define MAX_TIPO 10
 #define MAX_CLASIF 40
@@ -268,11 +269,12 @@ void query5(listaAerolineaADT listaAL, int *ok){
 	else {
 		fprintf(archivoDest,"Aerolínea;Porcentaje\n");
 		tAerolineaP aux = listaAL->primero;
-		int porcentaje;
+		double porcentaje;
 		while (aux != NULL){
-			porcentaje = ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
+			porcentaje = ((double)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
+			printf("porcentaje vale %g\n", porcentaje);
 			if (porcentaje > 0){
-				fprintf(archivoDest, "%s;%d%\n", aux->nombre, porcentaje);
+				fprintf(archivoDest, "%s;%g%%\n", aux->nombre, porcentaje);
 			}
 			aux = aux->cola;
 		}
