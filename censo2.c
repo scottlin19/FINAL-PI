@@ -275,7 +275,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					break;
 						
 					case DESTINO:
-						
+						printf("destino = %s \n",token);
             					strcpy(destino,token);
 									
 					break;
