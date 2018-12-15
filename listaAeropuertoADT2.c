@@ -8,9 +8,7 @@
 
 #define DIAS_SEMANA 7
 
-#define REGULAR 0
-#define NO_REGULAR 1
-#define VUELO_PRIVADO 2
+
 
 typedef struct tMov{
 	int cant_cabotaje;
@@ -120,7 +118,7 @@ insertarAP( listaAeropuertoADT lista, char * oaci, char * denom,char * prov)
 
 
 static tAeropuertoP
-agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, int dia, int * agregado)
+agregarMovAPrec(tAeropuertoP primero,char * oaci,int clase, int clasif, int dia, int * agregado)
 {	
 	
 	
@@ -132,17 +130,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 		}else if(strcmp(primero->oaci,oaci) == 0){
 				
 
-			if(strcmp(clase,"Regular") == 0){
-				claseIndex = REGULAR;
-			
-			}else if(strcmp(clase,"No Regular") == 0){
-				
-				claseIndex = NO_REGULAR;	
-			}else{
-			
-				claseIndex = VUELO_PRIVADO;
-			}
-			if(strcmp(clasif,"Cabotaje") == 0){
+			if(clasif == CABOTAJE){
 				
 				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
 				
@@ -181,7 +169,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	return primero;
 }
 int
-agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
+agregarMovAP(listaAeropuertoADT lista,int* oaci,int clase, int clasif, int dia)
 {
 	int agregado = 0;
 
