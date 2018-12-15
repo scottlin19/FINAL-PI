@@ -96,16 +96,6 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 
 }
 
-void
-printLista(listaAeropuertoADT lista)
-{
-	int i = 1;
-	printf("Lista aeropuertos \n");
-	for(tAeropuertoP aux = lista->primero; aux!= NULL;i++, aux = aux->cola){
-			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->oaci,aux->denom,aux->prov,aux->mov_totales);
-	}
-}
-
 int
 insertarAP( listaAeropuertoADT lista, char * oaci, char * denom,char * prov)
 {
@@ -182,7 +172,18 @@ nuevaListaAP( void )
 	return calloc(1, sizeof(struct listaAeropuertoCDT));
 }
 
-
+void freeAP(listaAeropuertoADT listaAP){
+	tAeropuertoP actual = listaAP->primero, aux;
+	while (actual != NULL){
+		aux = actual->cola;
+		free(actual->denom);
+	
+		free(actual->prov);
+		free(actual);
+		actual = aux;
+	}
+	free(listaAP);
+}
 
 void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
@@ -232,18 +233,7 @@ void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 	fclose(archivoDest);
 }
 
-void freeAP(listaAeropuertoADT listaAP){
-	tAeropuertoP actual = listaAP->primero, aux;
-	while (actual != NULL){
-		aux = actual->cola;
-		free(actual->denom);
-	//	printf(" libero aux = %s \n",actual->prov);
-		free(actual->prov);
-		free(actual);
-		actual = aux;
-	}
-	free(listaAP);
-}
+
 
 void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 	FILE * archivoDest = fopen("composicion.csv", "w+t");
