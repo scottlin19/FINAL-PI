@@ -14,6 +14,7 @@ int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
 #define MAX_CLASIF 15
 #define MAX_CLASE 40
 #define MAX_TIPO 12
+#define MAX_OACI 5
 
 #define OACI 1
 #define DENOMINACION 4
@@ -29,14 +30,14 @@ int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
 #define NOMBRE 7
 
 typedef struct tDatosAP{
-  char * oaci;
-  char * denom;
+  char  oaci[MAX_OACI];
+  char  denom;
   char * prov;
 }tDatosAP;
 
 typedef struct tDatosMov{
-	char * origen;
-	char  * destino;
+	char  origen[MAX_OACI];
+	char   destino[MAX_OACI];
 	char  * nombre;
 	char  clase[MAX_CLASE];
 	char   clasificacion[MAX_CLASIF];
@@ -127,16 +128,9 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			while((token != NULL) && valido){
 				if(cont == OACI || cont == DENOMINACION || cont == PROVINCIA){
 					
-					aux = malloc(strlen(token) +1);
-					if(aux == NULL){
-						printf("Error: no se pudo usar malloc. \n");
-						return 0;
-					}
-					strcpy(aux,token);
 					
 					//printf("aux = %s \n",aux);
 					
-				
 					if(cont == OACI){
 						if(strcmp(token," ") == 0){
 							valido = 0;
@@ -148,12 +142,21 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 							
 						}
 
-					}else if(valido && cont == DENOMINACION){	
-        					datos.denom = aux;
-
-					}else if(valido && cont == PROVINCIA){	
-          					datos.prov =	aux;
-					
+					}else if(valido){
+								
+						aux = malloc(strlen(token) +1);
+						if(aux == NULL){
+							printf("Error: no se pudo usar malloc. \n");
+							return 0;
+						}
+						strcpy(aux,token);
+						
+						if(cont == DENOMINACION){
+							datos.denom = aux;
+						}else{
+							datos.prov = aux;
+						}
+						
 					}
 
 				
@@ -168,7 +171,6 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			if(valido){ //Si es valido el aeropuerto tiene OACI
 					if(!insertarAP(lista,datos.oaci,datos.denom,datos.prov)){
 						printf("Error al cargar datos \n");
-						free(datos.oaci);
 						free(datos.denom);
 						free(datos.prov);
 						return 0;
@@ -185,7 +187,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 int
 cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM)
 {
-FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
+	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 		
 	if(archM == NULL){
 		printf("Error al abrir el archivo. \n");
@@ -198,8 +200,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	fgets(s,MAX_TEXTO,archM);
 	
 	tDatosMov  datos; 
-	char * aux;
-	
+	char * oaciAux;
+	int esCabotaje;
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 
@@ -210,34 +212,6 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);		
-			}else if(cont == ORIGEN || cont == DESTINO ||  cont == NOMBRE ){ //Si es un campo que me interesa extraigo la data;
-				
-				aux = malloc(strlen(token) +1);
-				strcpy(aux,token);
-				printf("aux = %s \n",aux);
-				if(aux == NULL){
-					printf("Error: no se pudo usar malloc. \n");
-					return 0;
-				}
-					
-				
-				switch(cont){
-					
-					case ORIGEN:		
-            					datos.origen  = aux;
-					break;
-						
-					case DESTINO:
-             					datos.destino = aux;	
-					break;
-						
-					case NOMBRE:
-            					datos.nombre = aux;		
-					break;
-					
-				}
-			
-				//cont++;
 			}else if(cont == CLASE || cont == CLASIFICACION || cont == TIPO){
 				switch(cont){
 						
@@ -250,41 +224,57 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					break;
 						
 					case TIPO:
+						
             					strcpy(datos.tipo,token);		
 					break;
+					case ORIGEN:	
+						if(strcmp(datos.origen,"Despegue") == 0){
+            						strcpy(datos.origen,token);
+							oaciAux =datos.origen;
+						}
+					break;
+						
+					case DESTINO:
+						if(strcmp(datos.origen,"Aterrizaje") == 0){
+            						strcpy(datos.destino,token);
+							oaciAux =datos.destino;
+						}
+             					
+					break;
+						
+					case NOMBRE:
+						if(strcmp(datos.clasificacion,"Cabotaje") == 0){
+							esCabotaje = 1;
+							datos.nombre = malloc(strlen(token) +1);
+							if(datos.nombre == NULL){
+								printf("Error: no se pudo usar malloc. \n");
+								return 0;
+							}
+							strcpy(datos.nombre,token);
+						}	
+					break;
 				}
-			}
+			} //Si es un campo que me interesa extraigo la data;			
+		
 			cont++;
 			
 			token =  strtok(NULL,";");
 		}
 		
 	
-		
-		char * oaciAux;
-		if(strcmp(datos.tipo,"Despegue") == 0){
-			oaciAux = datos.origen;
-		}else{
-			oaciAux = datos.destino;
-		}
-
 		if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
-			free(datos.origen);
-			free(datos.destino);
 			free(datos.nombre);
 			return 0;
 		}
 	
-		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
+		if(esCabotaje){// Es cabotaje;
 			char * provincias[2];
 			
 			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
 			
 				if(!insertarPares(listaPares,provincias)){
 					printf("Error al insertar en la lista de pares.\n.");
-					free(datos.origen);
-					free(datos.destino);
 					free(datos.nombre);
 					return 0;
 				}
@@ -301,12 +291,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 				free(datos.nombre);
 			}
 			
-		}else{
-			free(datos.nombre);
 		}
 		
-		free(datos.origen);
-		free(datos.destino);
 		
 	}
 		fclose(archM);
