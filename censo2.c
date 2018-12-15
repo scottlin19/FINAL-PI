@@ -29,7 +29,7 @@ int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
 
 typedef struct tDatosAP{
   char  oaci[MAX_OACI];
-  char  denom;
+  char  * denom;
   char * prov;
 }tDatosAP;
 
@@ -132,11 +132,11 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 					if(cont == OACI){
 						if(strcmp(token," ") == 0){
 							valido = 0;
-							free(aux);
+							
 
 						}else{		
           
-         						datos.oaci = aux;
+         						strcpy(datos.oaci,token);
 							
 						}
 
