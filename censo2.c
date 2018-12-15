@@ -198,13 +198,13 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	
 	tDatosMov  datos; 
 	char * oaciAux;
-	int esCabotaje;
+	int esCabotaje = 0;
 	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 
 		token = strtok(s,";");	
 		cont = 0;
-		
+		esCabotaje = 0;
 		while(token != NULL){
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
