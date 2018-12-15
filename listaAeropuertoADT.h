@@ -12,7 +12,7 @@
 #define OACI 1   //Número del campo donde se encuentra el OACI en el aeropuertos.csv
 #define DENOMINACION 4 //Número del campo donde se encuentra la denominación en el aeropuertos.csv
 #define PROVINCIA 21 //Número del campo donde se encuentra la provincia en el aeropuertos.csv
-#define MAX_OACI 5 //Cantidad de letras de un OACI + el '\0'
+#define MAX_OACI 10 //Cantidad de letras de un OACI + el '\0'
 
 
 /* El siguiente tipo define el TAD Lista.
