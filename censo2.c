@@ -258,6 +258,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			free(datos.origen);
 			free(datos.destino);
+			free(datos.nombre);
 			return 1;
 		}
 		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
