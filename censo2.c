@@ -301,6 +301,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 				free(datos.nombre);
 			}
 			
+		}else{
+			free(datos.nombre);
 		}
 		
 		free(datos.origen);
