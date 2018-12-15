@@ -12,7 +12,15 @@
 #define OACI 1   //Número del campo donde se encuentra el OACI en el aeropuertos.csv
 #define DENOMINACION 4 //Número del campo donde se encuentra la denominación en el aeropuertos.csv
 #define PROVINCIA 21 //Número del campo donde se encuentra la provincia en el aeropuertos.csv
-#define MAX_OACI 10 //Cantidad de letras de un OACI + el '\0'
+#define MAX_OACI 5 //Cantidad de letras de un OACI + el '\0'
+
+#define REGULAR 0
+#define NO_REGULAR 1
+#define VUELO_PRIVADO 2
+
+#define CABOTAJE 0
+#define INTERNACIONAL 1
+#define NA 2
 
 
 /* El siguiente tipo define el TAD Lista.
@@ -65,7 +73,7 @@ int insertarAP( listaAeropuertoADT listaAP, char * oaci, char * denom, char * pr
  * Precondicion:	Lista que sea valida, previamente creada y cargada con los datos de aeropuertos.csv.
  * Postcondicion: 	Lista con 1 movimiento más y reordenada, si encontró el aeropuerto, sino la lista no varía.
  */
-int agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia);
+int agregarMovAP(listaAeropuertoADT lista,char * oaci,int clase, int clasif, int dia);
 
 
 
