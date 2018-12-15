@@ -52,7 +52,7 @@ void freePares(listaParesADT listaPares);
 			    movimientos de todo tipo que comparten ambas provincias. 
  * ----------------------------------------------------
  *  Precondicion:           Lista que sea valida y que los archivos "aeropuertos.csv", "movimientos.csv" hayan sido cargados correctamente.
- *  Postcondicion:          -
+ *  Postcondicion:          Lista invariante y archivo creado o reemplazado.
  */
 void query4(listaParesADT listaPares, int *ok);
 #endif
