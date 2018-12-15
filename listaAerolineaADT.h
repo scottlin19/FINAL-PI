@@ -38,8 +38,8 @@ int insertarAL( listaAerolineaADT lista, char * nombre);
  * ----------------------------------------------------
  * Descripcion:             Retorna 1 si el string que se pasa es diferente del espacio o del N/A, 0 en caso contrario..
  * ----------------------------------------------------
- * Precondicion:            -
- * Postcondicion:           -- (lista invariante).
+ * Precondicion:            - 
+ * Postcondicion:           -
  */
 int esAerolinea(char * nombre);
 
