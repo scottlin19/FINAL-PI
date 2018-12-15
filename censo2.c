@@ -264,11 +264,11 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					break;
 						
 					case TIPO:
-						printf("ORIGEN = %s \n",token);
+						
             					strcpy(tipo,token);		
 					break;
 					case ORIGEN:	
-					
+					printf("ORIGEN = %s \n",token);
             					strcpy(origen,token);
 							
 					
