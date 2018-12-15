@@ -207,7 +207,7 @@ nuevaListaAP( void )
 void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 	FILE * archivoDest = fopen("movimientos_aeropuertos.csv", "w+t");
 	if (archivoDest == NULL){
-		printf("Error al crear/reemplazar archivo");
+		printf("Error al crear/reemplazar archivo \"movimientos_aeropuertos.csv\"\n");
 		*ok = 1;
 	}
 	else {
@@ -226,7 +226,7 @@ void query1(listaAeropuertoADT listaAeropuerto, int *ok){
 void query2(listaAeropuertoADT listaAeropuerto, int *ok){
 	FILE * archivoDest = fopen("dia_semana.csv", "w+t");
 	if (archivoDest == NULL){
-		printf("Error al crear/reemplazar archivo.\n");
+		printf("Error al crear/reemplazar archivo \"dia_semana.csv\"\n");
 		*ok = 1;
 	}
 	else {
@@ -271,7 +271,7 @@ void freeAP(listaAeropuertoADT listaAP){
 void query3(listaAeropuertoADT listaAeropuerto, int *ok){
 	FILE * archivoDest = fopen("composicion.csv", "w+t");
 	if (archivoDest == NULL){
-		printf("Error al crear/reemplazar archivo.\n");
+		printf("Error al crear/reemplazar archivo \"composicion.csv\"\n");
 		*ok = 1;
 	}
 	else {
