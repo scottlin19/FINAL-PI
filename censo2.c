@@ -50,30 +50,17 @@ int cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,lista
 #define MAX_CLASE 40 //Máxima cantidad de letras para las clases de los movimientos.
 #define MAX_TIPO 12 //Máxima cantidad de letras para los tipos de los movimientos.
 
-#define FECHA 0
+//Numero del campo dentro de cada oración de movimientos
+#define FECHA 0      
 #define CLASE 2
 #define CLASIFICACION 3
 #define TIPO 4
 #define ORIGEN 5
 #define DESTINO  6
-#define NOMBRE 7
+#define NOMBRE 7        
 
-typedef struct tDatosAP{
-  char  oaci[MAX_OACI];
-  char  * denom;
-  char * prov;
-}tDatosAP;
 
-typedef struct tDatosMov{
-	char  origen[MAX_OACI];
-	char   destino[MAX_OACI];
-	char  * nombre;
-	char  clase[MAX_CLASE];
-	char   clasificacion[MAX_CLASIF];
-	char  tipo[MAX_TIPO];
-	
-	int dia;
-}tDatosMov;
+
 
 
 
@@ -132,29 +119,35 @@ int
 cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 {
 
-	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
+	FILE * archA = fopen(pathA,"rt"); //Abro archivo de aeropuertos.
 		
-	if(archA == NULL){
+	if(archA == NULL){  //Si el archivo no se pudo abrir retorno 1.
 		printf("Error al abrir los archivos. \n");
 		return 1;
 	
 	}
-		
+	
+	//Variables que necesito para guardar los datos del archivo de aeropuertos.
+	char  oaci[MAX_OACI];
+ 	char  * denom;
+	char * prov;
+	
+	//Variales auxiliares
 	int cont;	
 	int valido;
 	char * token;
 	char  s[MAX_TEXTO];
-	tDatosAP  datos;
 	char * aux;
   	
-	fgets(s,MAX_TEXTO,archA); //Me salto la primera linea del archivo que contiene los nombres  de los campos.
+	fgets(s,MAX_TEXTO,archA); //Salteo la primera línea del archívo de aeropuertos.
 	
 	
-	while(fgets(s,MAX_TEXTO,archA )!= NULL){
+	while(fgets(s,MAX_TEXTO,archA )!= NULL){ //Mientras haya aeropuertos que leer, que lea.
 		
-			token = strtok(s,";");
+			token = strtok(s,";"); //Divido cada oracion de aeropuertos en strings, usando como delimitador el ;
+		
 			cont = 0;
-			valido =1;
+			valido = 1;
 			
 			while((token != NULL) && valido){
 				if(cont == OACI || cont == DENOMINACION || cont == PROVINCIA){
@@ -169,7 +162,7 @@ cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 
 						}else{		
           
-         						strcpy(datos.oaci,token);
+         						strcpy(oaci,token);
 							
 						}
 
@@ -183,9 +176,9 @@ cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 						strcpy(aux,token);
 						
 						if(cont == DENOMINACION){
-							datos.denom = aux;
+							denom = aux;
 						}else{
-							datos.prov = aux;
+							prov = aux;
 						}
 						
 					}
@@ -200,10 +193,10 @@ cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 			}	
 			
 			if(valido){ //Si es valido el aeropuerto tiene OACI
-					if(!insertarAP(listaAP,datos.oaci,datos.denom,datos.prov)){
+					if(!insertarAP(listaAP,oaci,denom,prov)){
 						printf("Error al cargar datos \n");
-						free(datos.denom);
-						free(datos.prov);
+						free(denom);
+						free(prov);
 						return 0;
 					}
 
@@ -218,78 +211,92 @@ cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 int
 cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM)
 {
-	FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
+	FILE * archM = fopen(pathM,"rt"); //Abro archivo de movimientos.
 		
-	if(archM == NULL){
+	if(archM == NULL){   //Si el archivo no se pudo abrir retorno 1.
 		printf("Error al abrir el archivo. \n");
+		return 1;
 	}
 	
-	int d,m,a;
-	int cont = 0;	
-	char * token;	
-	char  s[MAX_TEXTO];	
-	fgets(s,MAX_TEXTO,archM);
+	//Variables donde guardo la informacion que necesito de los movimientos
+	int dia;
+	char  clase[MAX_CLASE];
+	char   clasificacion[MAX_CLASIF];
+	char  tipo[MAX_TIPO];
+	char  origen[MAX_OACI];
+	char   destino[MAX_OACI];
+	char  * nombre;
 	
-	tDatosMov  datos; 
-	char * oaciAux;
-	int esCabotaje = 0;
+	//Variables auxiliares
+	char  s[MAX_TEXTO];
 	char * provincias[2];
-	while(fgets(s,MAX_TEXTO,archM) != NULL){
+	char * token;		
+	char * oaciAux;
+	int d,m,a;
+	int cont;	
+	int esCabotaje ;
+	
+	fgets(s,MAX_TEXTO,archM); //Salteo la primera línea del archívo de movimientos.
+	
 
-		token = strtok(s,";");	
+	
+	while(fgets(s,MAX_TEXTO,archM) != NULL){ //Mientras haya movimientos que leer, que lea.
+
+		token = strtok(s,";");	//Divido cada oracion de movimientos en strings, usando como delimitador el ;
 		cont = 0;
 		esCabotaje = 0;
-		while(token != NULL){
+		
+		while(token != NULL){ //Mientras haya campos que leer, que los lea.
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
-				datos.dia = diaDeLaSemana(d,m,a);		
+				dia = diaDeLaSemana(d,m,a);		
 			}else{
 				switch(cont){
 						
 					case CLASE:		
-            					strcpy(datos.clase,token);
+            					strcpy(clase,token);
 					break;
 						
 					case CLASIFICACION:
-             					strcpy(datos.clasificacion,token);	
+             					strcpy(clasificacion,token);	
 					break;
 						
 					case TIPO:
 						
-            					strcpy(datos.tipo,token);		
+            					strcpy(tipo,token);		
 					break;
 					case ORIGEN:	
 					
-            					strcpy(datos.origen,token);
+            					strcpy(origen,token);
 							
 					
 					break;
 						
 					case DESTINO:
 						
-            					strcpy(datos.destino,token);
+            					strcpy(destino,token);
 									
 					break;
 						
 					case NOMBRE:
-						if(strcmp(datos.clasificacion,"Cabotaje") == 0){
+						if(strcmp(clasificacion,"Cabotaje") == 0){
 							esCabotaje = 1;
 							datos.nombre = malloc(strlen(token) +1);
-							if(datos.nombre == NULL){
+							if(nombre == NULL){
 								printf("Error: no se pudo usar malloc. \n");
 								return 0;
 							}
-							strcpy(datos.nombre,token);
-							if(esAerolinea(datos.nombre)){
+							strcpy(nombre,token);
+							if(esAerolinea(nombre)){
 		
-								if( !insertarAL(listaAL,datos.nombre)){
+								if( !insertarAL(listaAL,nombre)){
 									printf("Error al insertar los datos de la aerolinea.\n");
-									free(datos.nombre);
+									free(nombre);
 									return 0;
 								}
 							}else{
 				
-								free(datos.nombre);
+								free(nombre);
 							}
 						}	
 					break;
@@ -302,18 +309,18 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 		}
 		
 		if(strcmp(datos.tipo,"Despegue") == 0){
-			oaciAux = datos.origen;
+			oaciAux = origen;
 		}else {
-			oaciAux =datos.destino;
+			oaciAux =destino;
 		}
 		
-		if(agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
+		if(agregarMovAP(listaAP,oaciAux,clase,clasificacion,dia)){
 			
-				if(esCabotaje && sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
+				if(esCabotaje && sonDistintasProv(listaAP,origen,destino,provincias)){
 			
 					if(!insertarPares(listaPares,provincias)){
 						printf("Error al insertar en la lista de pares.\n.");
-						free(datos.nombre);
+						free(nombre);
 						return 0;
 					}
 				}
