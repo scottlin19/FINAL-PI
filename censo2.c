@@ -210,8 +210,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);		
-			}else if(/*cont == ORIGEN || cont == DESTINO  ||*/ cont == NOMBRE){ //Si es un campo que me interesa extraigo la data;
-				
+			}else if( cont == NOMBRE){ //Si es un campo que me interesa extraigo la data;
+				//cont == ORIGEN || cont == DESTINO  || 
 				aux = malloc(strlen(token) +1);
 				strcpy(aux,token);
 				printf("aux = %s \n",aux);
@@ -219,7 +219,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					printf("Error: no se pudo usar malloc. \n");
 					return 0;
 				}
-				switch(cont){
+				datos.nombre = aux;	
+				/*switch(cont){
 					/*	
 					case ORIGEN:		
             					datos.origen  = aux;
@@ -228,11 +229,12 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					case DESTINO:
              					datos.destino = aux;	
 					break;
-						*/
+						
 					case NOMBRE:
             					datos.nombre = aux;		
 					break;
 				}
+			*/
 				//cont++;
 			}else if(cont == CLASE || cont == CLASIFICACION || cont == TIPO){
 				switch(cont){
