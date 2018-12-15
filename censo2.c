@@ -297,7 +297,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					return 0;
 				}
 			}else{
-				printnf("no es aerolinea, nombre = %s \n",datos.nombre);
+				printf("no es aerolinea, nombre = %s \n",datos.nombre);
 				free(datos.nombre);
 			}
 			
