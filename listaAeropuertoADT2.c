@@ -251,6 +251,9 @@ void freeAP(listaAeropuertoADT listaAP){
 	tAeropuertoP actual = listaAP->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
+		free(actual->oaci);
+		free(actual->denom);
+		free(actual->prov);
 		free(actual);
 		actual = aux;
 	}
