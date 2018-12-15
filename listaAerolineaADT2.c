@@ -5,13 +5,6 @@
 
 
 
-#define REGULAR 0
-#define NO_REGULAR 1
-#define VUELO_PRIVADO 2
-
-#define DIAS_SEMANA 7
-
-
 
 struct tAerolinea {
 	char * nombre;
