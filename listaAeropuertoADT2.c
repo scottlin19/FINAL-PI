@@ -256,8 +256,11 @@ void freeAP(listaAeropuertoADT listaAP){
 	tAeropuertoP actual = listaAP->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
+		printf(" libero aux = %s \n",actual->oaci);
 		free(actual->oaci);
+		printf(" libero aux = %s \n",actual->denom);
 		free(actual->denom);
+		printf(" libero aux = %s \n",actual->prov);
 		free(actual->prov);
 		free(actual);
 		actual = aux;
