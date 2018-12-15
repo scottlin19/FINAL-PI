@@ -219,7 +219,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	tDatosMov  datos; 
 	char * oaciAux;
 	int esCabotaje = 0;
-	
+	char * provincias[2];
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 
 		token = strtok(s,";");	
@@ -268,10 +268,21 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 								return 0;
 							}
 							strcpy(datos.nombre,token);
+							if(esAerolinea(datos.nombre)){
+		
+								if( !insertarAL(listaAL,datos.nombre)){
+									printf("Error al insertar los datos de la aerolinea.\n");
+									free(datos.nombre);
+									return 0;
+								}
+							}else{
+				
+								free(datos.nombre);
+							}
 						}	
 					break;
 				}
-			} //Si es un campo que me interesa extraigo la data;			
+			} 			
 		
 			cont++;
 			
@@ -283,38 +294,21 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 		}else {
 			oaciAux =datos.destino;
 		}
-		printf("oaciAux = %s \n",oaciAux);
-		if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
-			printf("Error al sumarle un movimiento al aeropuerto.\n");
-			free(datos.nombre);
-			return 0;
+		
+		if(agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
+			
+				if(esCabotaje && sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
+			
+					if(!insertarPares(listaPares,provincias)){
+						printf("Error al insertar en la lista de pares.\n.");
+						free(datos.nombre);
+						return 0;
+					}
+				}
 		}
 	
-		if(esCabotaje){// Es cabotaje;
-			char * provincias[2];
-			
-			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
-			
-				if(!insertarPares(listaPares,provincias)){
-					printf("Error al insertar en la lista de pares.\n.");
-					free(datos.nombre);
-					return 0;
-				}
-			}
-			if(esAerolinea(datos.nombre)){
 		
-				if( !insertarAL(listaAL,datos.nombre)){
-					printf("Error al insertar los datos de la aerolinea.\n");
-					free(datos.nombre);
-					return 0;
-				}
-			}else{
-				//printf("no es aerolinea, nombre = %s \n",datos.nombre);
-				free(datos.nombre);
-			}
-			
-		}
-		
+
 		
 	}
 		fclose(archM);
