@@ -56,7 +56,7 @@ int main(int argc, char * argv[])
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		ok = 1;
 	}
-	if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
+	else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		ok = 1;
 	
