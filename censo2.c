@@ -220,8 +220,9 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					return 0;
 				}
 				datos.nombre = aux;	
+				printf("asd 1");
 				/*switch(cont){
-					/*	
+					
 					case ORIGEN:		
             					datos.origen  = aux;
 					break;
@@ -273,6 +274,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			free(datos.nombre);
 			return 0;
 		}*/
+		printf("asd 2");
 		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
 		/*	char * provincias[2];
 			
