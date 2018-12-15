@@ -30,7 +30,7 @@ struct listaAerolineaCDT{
 	int cabotaje_total;
 
 };
-/*
+
 void
 printListaAL(listaAerolineaADT lista)
 {
@@ -41,7 +41,7 @@ printListaAL(listaAerolineaADT lista)
 	}
 
 }
-*/
+
 static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	
 	if( primero == NULL)
@@ -87,7 +87,7 @@ insertarAL( listaAerolineaADT lista, char * nombre)
 	if(ok){
 		(lista->cabotaje_total)++;
 	}
-	
+	printListaAL(lista);
 	return ok;
 }
 
