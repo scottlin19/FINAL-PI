@@ -38,8 +38,8 @@ int cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA);
 			Retorna 1 en caso contrario.
 			
  * -------------------------------------------------------------------
- * Precondicion:	Lista válida, previamente creada.	
- * Postcondicion: 	Lista cargada con la data de aeropuertos.
+ * Precondicion:	Listas válidas, previamente creadas.La listaAP debe estar cargada con la data de aeropuertos.	
+ * Postcondicion: 	Listas ordenadas de aeropuertos, aerolineas y pares de provincias con datos cargados.
  */
 int cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM);
 
