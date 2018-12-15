@@ -13,7 +13,7 @@
 #define DENOMINACION 4
 #define PROVINCIA 21
 
-#define MAX_OACI 4
+#define MAX_OACI 5
 
 
 /* El siguiente tipo define el TAD Lista.
