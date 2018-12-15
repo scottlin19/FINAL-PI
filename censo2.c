@@ -135,6 +135,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 					if(cont == OACI){
 						if(strcmp(token," ") == 0){
 							valido = 0;
+							free(aux);
 
 						}else{		
           
@@ -277,6 +278,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					printf("Error al insertar los datos de la aerolinea.\n");
 					return 1;
 				}
+			}else{
+				free(datos.nombre);
 			}
 			
 		}
