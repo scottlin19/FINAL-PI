@@ -109,6 +109,7 @@ void freeAL(listaAerolineaADT listaAL){
 	tAerolineaP actual = listaAL->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
+		printf(" libero aux = %s \n",actual->nombre);
 		free(actual->nombre);
 		free(actual);
 		actual = aux;
