@@ -151,9 +151,8 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 
 					}else if(valido && cont == PROVINCIA){	
           					datos.prov =	aux;
-					}else{
-						free(aux);
-					}	
+					
+					}
 
 				
 				
