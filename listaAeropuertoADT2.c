@@ -60,13 +60,18 @@ int //Devuelve 1 si no coinciden provincias, 0 si coinciden provincias
 sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[])
 {
 	char * prov1 = obtenerProvincia(lista,origen);
+	free(origen);
 	if(prov1 != NULL){
+	
 		char * prov2 = obtenerProvincia(lista,destino);
+		free(destino);
 		if((prov2 != NULL) && (strcmp(prov1,prov2) != 0)){
 			provincias[0] = prov1;
 			provincias[1] = prov2;
 			return 1;
 		}
+	}else{
+		free(destino);	
 	}
 	return 0;
 }
