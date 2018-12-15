@@ -59,25 +59,26 @@ int cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,lista
 #define DESTINO  6
 #define NOMBRE 7        
 
-
-
-
-
-
 int main(int argc, char * argv[])
 {
 	int ok = 0;
+	//Creo lista de aeropuertos, de aerolineas y de pares de provincias que comparten movimientos.
+	
 	listaAeropuertoADT listaAP = nuevaListaAP();
 	listaAerolineaADT listaAL = nuevaListaAL();
 	listaParesADT listaPares = nuevaListaPares();
+	
+	//Cargo data de aeropuertos a la lista y si hubo error, ok = 1
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		ok = 1;
 	}
+	//Cargo data de movimientos a las lista y si hubo error, ok = 1
 	if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		ok = 1;
 	
 	}
+	//Si no hubo errores, hago las querys
 	if(!ok){	
 		query1(listaAP, &ok);
 		
@@ -94,6 +95,7 @@ int main(int argc, char * argv[])
 		query5(listaAL,&ok);
 		
 	}
+	//Destruyo las listas y libero espacio reservado.
 	freeAP(listaAP);
 	freeAL(listaAL);
 	freePares(listaPares);
