@@ -263,7 +263,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 		}else {
 			oaciAux =datos.destino;
 		}
-		
+		printf("oaciAux = %s \n",oaciAux);
 		if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			free(datos.nombre);
