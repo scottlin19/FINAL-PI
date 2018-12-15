@@ -8,7 +8,7 @@
 #include "listaAerolineaADT.h"
 
 /* Funcion:  		cargarAeropuertos
- * Uso:  		res = cargarAeropuertos(lista,pathA);
+ * Uso:  		if( cargarAeropuertos(lista,pathA) ...
  * -------------------------------------------------------------------
  * Descripción: 	Abre el archívo que contiene la data de los aeropuertos, extrae el OACI de cada aeropuerto, y si este no es " ", 
  			extrae la denominación, la provincia y llama a insertarAP para agregar el aeropuerto a la lista.
@@ -22,7 +22,7 @@ int cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA);
 
 
 /* Funcion:  		cargarMovimientos
- * Uso:  		res = cargarMovimientos(listaAL,listaAP,listaPares,pathM);
+ * Uso:  		if( cargarMovimientos(listaAL,listaAP,listaPares,pathM) ...
  * -------------------------------------------------------------------
  * Descripción: 	
  * -------------------------------------------------------------------
