@@ -121,8 +121,6 @@ static tAeropuertoP
 agregarMovAPrec(tAeropuertoP primero,char * oaci,int clase, int clasif, int dia, int * agregado)
 {	
 	
-	
-	int claseIndex;
 
 		if(primero == NULL){
 			
@@ -132,11 +130,11 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,int clase, int clasif, int dia,
 
 			if(clasif == CABOTAJE){
 				
-				(primero->cant_mov[dia][claseIndex].cant_cabotaje)++;
+				(primero->cant_mov[dia][clase].cant_cabotaje)++;
 				
 			}else{
 				
-				(primero->cant_mov[dia][claseIndex].cant_internacional)++;
+				(primero->cant_mov[dia][clase].cant_internacional)++;
 				
 			}
 			
