@@ -54,8 +54,8 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 		}else{
 			
 			aux->cola = primero;
-      aux->nombre = nombre;
-	
+      			aux->nombre = nombre;
+		
 			aux->cant_mov_cabotaje= 1;
 			
 			*ok = 1;
@@ -64,6 +64,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	}else if(strcmp(primero->nombre,nombre) == 0){
 		
 		(primero->cant_mov_cabotaje)++;
+		free(nombre);
 		*ok = 1;
 		
 	}else{	
