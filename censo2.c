@@ -7,16 +7,36 @@
 #include "listaParesADT.h"
 #include "listaAerolineaADT.h"
 
+/* Funcion:  		cargarAeropuertos
+ * Uso:  		res = cargarAeropuertos(lista,pathA);
+ * -------------------------------------------------------------------
+ * Descripción: 	Abre el archívo que contiene la data de los aeropuertos, extrae el OACI de cada aeropuerto, y si este no es " ", 
+ 			extrae la denominación, la provincia y llama a insertarAP para agregar el aeropuerto a la lista.
+ 			Retorna 0 si se pudo abrir el archivo y agregar todos los aeropuertos válidos a la lista,
+			retorna 1 en el caso contrario o si habían aeropuertos repetidos en el archívo.
+ * -------------------------------------------------------------------
+ * Precondicion:	Lista válida, previamente creada.
+ * Postcondicion: 	Lista cargada con la data de aeropuertos.
+ */
+int cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA);
+
+
+/* Funcion:  		cargarMovimientos
+ * Uso:  		res = cargarMovimientos(listaAL,listaAP,listaPares,pathM);
+ * -------------------------------------------------------------------
+ * Descripción: 	
+ * -------------------------------------------------------------------
+ * Precondicion:	Lista válida, previamente creada.	
+ * Postcondicion: 	Lista cargada con la data de aeropuertos.
+ */
 int cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaParesADT listaPares,char * pathM);
-int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
-
-#define MAX_TEXTO 400
-#define MAX_CLASIF 15
-#define MAX_CLASE 40
-#define MAX_TIPO 12
 
 
 
+#define MAX_TEXTO 400 //Máxima cantidad de letras para cada oración de los archívos. Si esta se supera los resultados de las querys serán erróneos.
+#define MAX_CLASIF 15 //Máxima cantidad de letras para las clasificaciones de los movimientos.
+#define MAX_CLASE 40 //Máxima cantidad de letras para las clases de los movimientos.
+#define MAX_TIPO 12 //Máxima cantidad de letras para los tipos de los movimientos.
 
 #define FECHA 0
 #define CLASE 2
@@ -95,7 +115,7 @@ diaDeLaSemana(int d, int m, int a)
 
 
 int
-cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
+cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 {
 
 	FILE * archA = fopen(pathA,"rt"); //Abro archivo aeropuerto.csv
@@ -166,7 +186,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			}	
 			
 			if(valido){ //Si es valido el aeropuerto tiene OACI
-					if(!insertarAP(lista,datos.oaci,datos.denom,datos.prov)){
+					if(!insertarAP(listaAP,datos.oaci,datos.denom,datos.prov)){
 						printf("Error al cargar datos \n");
 						free(datos.denom);
 						free(datos.prov);
