@@ -51,17 +51,17 @@ int main(int argc, char * argv[])
 {
 	int ok = 0;
 	listaAeropuertoADT listaAP = nuevaListaAP();
-	listaAerolineaADT listaAL = nuevaListaAL();
-	listaParesADT listaPares = nuevaListaPares();
+	//listaAerolineaADT listaAL = nuevaListaAL();
+	//listaParesADT listaPares = nuevaListaPares();
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		return 1;
 	}
-	else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
+	/*else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		return 1;
 	
-	}
-	else {		
+	}*/
+	/*else {		
 		query1(listaAP, &ok);
 		printf("se hizo la query 1, ok vale %d\n", ok);
 	
@@ -76,10 +76,10 @@ int main(int argc, char * argv[])
 	
 		query5(listaAL,&ok);
 		printf("se hizo la query 5, ok vale %d\n", ok);
-	}
+	}*/
 	freeAP(listaAP);
-	freeAL(listaAL);
-	freePares(listaPares);
+	//freeAL(listaAL);
+	//freePares(listaPares);
 
 	
 	return ok;
@@ -140,7 +140,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 					if(cont == OACI){
 						if(strcmp(token," ") == 0){
 							valido = 0;
-							//free(aux);
+							free(aux);
 
 						}else{		
           
