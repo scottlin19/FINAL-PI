@@ -209,7 +209,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);		
-			}else if(cont == CLASE || cont == CLASIFICACION || cont == TIPO){
+			}else if(cont != 1 && cont != 8 && cont != 9){
 				switch(cont){
 						
 					case CLASE:		
