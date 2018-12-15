@@ -241,18 +241,7 @@ printf("se colgo en cargar MOV %d \n",i++);
 			token =  strtok(NULL,";");
 		}
 		
-		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
-			char * provincias[2];
-			
-			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
-			
-				if(!insertarPares(listaPares,provincias)){
-					printf("Error al insertar en la lista de pares.\n.");
-					return 1;
-				}
-			}
-			
-		}
+	
 		
 		char * oaciAux;
 		if(strcmp(datos.tipo,"Despegue") == 0){
@@ -265,13 +254,27 @@ printf("se colgo en cargar MOV %d \n",i++);
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			return 1;
 		}
-		if(esAerolinea(datos.nombre) && strcmp(datos.clasificacion,"Cabotaje") == 0){
-		
-			if( !insertarAL(listaAL,datos.nombre)){
-				printf("Error al insertar los datos de la aerolinea.\n");
-				return 1;
+		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
+			char * provincias[2];
+			
+			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
+			
+				if(!insertarPares(listaPares,provincias)){
+					printf("Error al insertar en la lista de pares.\n.");
+					return 1;
+				}
 			}
+			if(esAerolinea(datos.nombre)){
+		
+				if( !insertarAL(listaAL,datos.nombre)){
+					printf("Error al insertar los datos de la aerolinea.\n");
+					return 1;
+				}
+			}
+			
 		}
+		
+		
 	}
 		fclose(archM);
 		return 0;
