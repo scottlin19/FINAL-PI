@@ -21,7 +21,7 @@ listaAerolineaADT nuevaListaAL(void);
 
 
 /* Funcion:                 insertarAL
- * Uso:                     insertarAL(listaAL, "Aerolineas Argentinas");
+ * Uso:                     res = insertarAL(listaAL, "Aerolineas Argentinas");
  * ----------------------------------------------------
  * Descripcion:             Inserta un nuevo nodo con el nombre de la aerolínea, y le suma 1 movimiento.
  * 			                    Si la aerolínea ya existia, le suma un movimiento.
@@ -34,12 +34,12 @@ listaAerolineaADT nuevaListaAL(void);
 int insertarAL( listaAerolineaADT lista, char * nombre);
 
 /* Funcion:                 esAerolinea
- * Uso:                     esAerolinea("Aerolineas Argentinas");
+ * Uso:                     res = esAerolinea("Aerolineas Argentinas");
  * ----------------------------------------------------
  * Descripcion:             Retorna 1 si el string que se pasa es diferente del espacio o del N/A, 0 en caso contrario..
  * ----------------------------------------------------
  * Precondicion:            -
- * Postcondicion:           -
+ * Postcondicion:           -- (lista invariante).
  */
 int esAerolinea(char * nombre);
 
@@ -57,13 +57,13 @@ void freeAL(listaAerolineaADT listaAL);
  * Uso:                     query5(listaAL, &ok);
  * ----------------------------------------------------
  * Descripcion:             Crea o reemplaza si ya existe el archivo "porcentaje_cabotaje.csv", donde cada línea de la salida 
- * 			    contenga separados por ‘;’ el nombre de la aerolínea y el porcentaje de movimientos 
- * 			    donde Clasificación de Vuelo es Cabotaje de esa aerolínea respecto del 
- * 			    total de movimientos de cabotaje de todas las aerolíneas.
- * 			    Aquellos movimientos de cabotaje que no tengan asociados una aerolinea o sea N/A son descartados.
+ * 			                    contenga separados por ‘;’ el nombre de la aerolínea y el porcentaje de movimientos 
+ * 			                    donde Clasificación de Vuelo es Cabotaje de esa aerolínea respecto del total de movimientos
+ * 			                    de cabotaje de todas las aerolíneas.
+ * 			                    Aquellos movimientos de cabotaje que no tengan asociados una aerolinea o sea N/A son descartados.
  * ----------------------------------------------------
  * Precondicion:            Lista y archivos "aerpuertos.csv", "movimientos.csv", validos. 
- * Postcondicion:           -
+ * Postcondicion:           Lista invariante y nuevo archívo creado/reemplazado.
  */
 void query5(listaAerolineaADT listaAL, int *ok);
 
