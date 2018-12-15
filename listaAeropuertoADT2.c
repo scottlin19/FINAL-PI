@@ -6,12 +6,7 @@
 #include "listaAeropuertoADT.h"
 
 
-#define OACI 1
-#define DENOMINACION 4
-#define PROVINCIA 21
 #define DIAS_SEMANA 7
-
-
 
 #define REGULAR 0
 #define NO_REGULAR 1
@@ -25,7 +20,7 @@ typedef struct tMov{
 
 
 struct tAeropuerto {
-	char  * oaci;
+	char   oaci[MAX_OACI];
 	char * denom;
 	char * prov;
 	tMov cant_mov[DIAS_SEMANA][3]; //  0 = Regulares, 1 = Vuelos no regulares , 2= Vuelos privados;
