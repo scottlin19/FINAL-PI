@@ -51,7 +51,7 @@ obtenerProvincia(listaAeropuertoADT lista,char * oaci)
 }
 
 
-int //Devuelve 1 si no coinciden provincias, 0 si coinciden provincias
+int 
 sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[])
 {
 	char * prov1 = obtenerProvincia(lista,origen);
@@ -127,9 +127,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	int claseIndex;
 
 		if(primero == NULL){
-			printf("El aeropuerto( %s ) no se encuentra \n",oaci);
 			
-			*agregado = 1;
 			return primero;
 		}else if(strcmp(primero->oaci,oaci) == 0){
 				
@@ -186,9 +184,9 @@ int
 agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia)
 {
 	int agregado = 0;
-	//printf("entro a agregarMovap\n");
+
 	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
-	//printLista(lista);
+	
 	return agregado;
 }
 
