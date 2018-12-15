@@ -16,16 +16,7 @@ struct listaParesCDT{
     nodoP primero;
     
 };
-/*
-void printListaPares(listaParesADT lista)
-{
-	int i = 1;
- 	printf("Lista pares: \n");
-	for(nodoP aux = lista->primero; aux != NULL; i++,aux = aux->cola){
-		printf("%d P1: %s P2: %s mov_compartidos: %d \n",i,aux->provincias[0],aux->provincias[1],aux->mov_compartidos);
-	}
-}
-*/
+
 static int
 coincidenProv(char * provs1[], char * provs2[])
 {
@@ -50,12 +41,11 @@ insertarParesRec(nodoP primero,char * provincias[], int * ok)
        		aux->cola = primero;
 		aux->mov_compartidos = 1;
        		*ok = 1;
-	//	printf("Agrego par: %s %s \n",aux->provincias[0],aux->provincias[1]);
      		return aux;
       	}
 	    
     }else if(coincidenProv(primero->provincias,provincias)){
-	   // printf("coinciden provincias \n");
+	 
 	(primero->mov_compartidos)++;
         *ok = 1;
     }else{
@@ -77,7 +67,6 @@ int insertarPares(listaParesADT lista,char * provincias[])
 {
     int ok = 0;
     lista->primero = insertarParesRec(lista->primero,provincias,&ok);
-	//printListaPares(lista);
     return ok;
 }
 
