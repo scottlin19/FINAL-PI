@@ -124,7 +124,9 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			while((token != NULL) && valido){
 				if(cont == OACI || cont == DENOMINACION || cont == PROVINCIA){
 					aux = malloc(strlen(token) +1);
+					
 					strcpy(aux,token);
+					printf("aux = %s \n",aux);
 					if(aux == NULL){
 						printf("Error: no se pudo usar malloc. \n");
 						return 1;
@@ -190,7 +192,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	
 	int i = 1;
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
-printf("se colgo en cargar MOV %d \n",i++);
+
 		token = strtok(s,";");	
 		cont = 0;
 		
@@ -202,6 +204,7 @@ printf("se colgo en cargar MOV %d \n",i++);
 				
 				aux = malloc(strlen(token) +1);
 				strcpy(aux,token);
+				printf("aux = %s \n",aux);
 				if(aux == NULL){
 					printf("Error: no se pudo usar malloc. \n");
 					return 1;
