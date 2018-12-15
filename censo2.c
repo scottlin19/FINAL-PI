@@ -24,7 +24,19 @@ int cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA);
 /* Funcion:  		cargarMovimientos
  * Uso:  		if( cargarMovimientos(listaAL,listaAP,listaPares,pathM) ...
  * -------------------------------------------------------------------
- * Descripción: 	Abre el archívo que contiene la data de los movimientos.
+ * Descripción: 	Abre el archívo que contiene la data de los movimientos. Extraigo la fecha,clase,clasificación,tipo,origen
+ 			destino y nombre de aerolíena en cada movimiento.
+			Si la clasificacion es cabotaje y  el nombre pertenece a una aerolínea, lo mando como parametro en insertarLA, 
+			para agregarlo a la lista de aerolíneas.
+			Luego si el tipo es despegue/aterrizaje mando el origen/destino a la funcion agregarMovAP, para que le sume un
+			movimiento a dicho aeropuerto en la lista de aeropuertos.
+			Si el aeropuerto se encontró en la lista y el mov. era cabotaje, llamo a sonDistintasProv, para obtener las
+			provincias de los OACI origen y destino y mandarlas como parametró en la función insertarPares, la cual
+			agrega  y/o suma un movimiento a los pares de provincias que comparten movimientos.
+			
+			Retorna 0 si se pudo abrir el archívo y no ocurrió ningún error en las funciones utilizadas.
+			Retorna 1 en caso contrario.
+			
  * -------------------------------------------------------------------
  * Precondicion:	Lista válida, previamente creada.	
  * Postcondicion: 	Lista cargada con la data de aeropuertos.
