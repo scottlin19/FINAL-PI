@@ -13,6 +13,8 @@
 #define DENOMINACION 4
 #define PROVINCIA 21
 
+#define MAX_OACI 4
+
 
 /* El siguiente tipo define el TAD Lista.
  * Se lo define como puntero a "cierta estructura"
