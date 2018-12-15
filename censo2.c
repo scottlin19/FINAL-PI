@@ -52,7 +52,7 @@ int main(int argc, char * argv[])
 	int ok = 0;
 	listaAeropuertoADT listaAP = nuevaListaAP();
 	listaAerolineaADT listaAL = nuevaListaAL();
-	//listaParesADT listaPares = nuevaListaPares();
+	listaParesADT listaPares = nuevaListaPares();
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		ok = 1;
 	}
