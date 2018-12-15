@@ -107,7 +107,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 	
 
 }
-/*
+
 void
 printLista(listaAeropuertoADT lista)
 {
@@ -117,7 +117,7 @@ printLista(listaAeropuertoADT lista)
 			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov,aux->mov_totales);
 	}
 }
-*/
+
 int
 insertarAP( listaAeropuertoADT lista, char * oaci, char * denom,char * prov)
 {
@@ -197,6 +197,7 @@ agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, i
 	int agregado = 0;
 	//printf("entro a agregarMovap\n");
 	lista->primero = agregarMovAPrec(lista->primero,oaci,clase,clasif,dia,&agregado);
+	printLista(lista);
 	return agregado;
 }
 
