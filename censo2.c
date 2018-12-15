@@ -53,10 +53,10 @@ int main(int argc, char * argv[])
 	listaAeropuertoADT listaAP = nuevaListaAP();
 	listaAerolineaADT listaAL = nuevaListaAL();
 	listaParesADT listaPares = nuevaListaPares();
-	if (cargarAeropuertos(listaAP, argv[1])){
+	if (!cargarAeropuertos(listaAP, argv[1])){
 		return 1;
 	}
-	else if (cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
+	else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		return 1;
 	
@@ -130,7 +130,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 					aux = malloc(strlen(token) +1);
 					if(aux == NULL){
 						printf("Error: no se pudo usar malloc. \n");
-						return 1;
+						return 0;
 					}
 					strcpy(aux,token);
 					
@@ -168,7 +168,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			if(valido){ //Si es valido el aeropuerto tiene OACI
 					if(!insertarAP(lista,datos.oaci,datos.denom,datos.prov)){
 						printf("Error al cargar datos \n");
-						return 1;
+						return 0;
 					}
 
 			}
@@ -176,7 +176,7 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 	
 	}
 	fclose(archA);
-	return 0;
+	return 1;
 }
 
 int
@@ -214,7 +214,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 				//printf("aux = %s \n",aux);
 				if(aux == NULL){
 					printf("Error: no se pudo usar malloc. \n");
-					return 1;
+					return 0;
 				}
 				switch(cont){
 						
@@ -266,7 +266,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			free(datos.origen);
 			free(datos.destino);
 			free(datos.nombre);
-			return 1;
+			return 0;
 		}
 		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
 			char * provincias[2];
@@ -275,14 +275,14 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			
 				if(!insertarPares(listaPares,provincias)){
 					printf("Error al insertar en la lista de pares.\n.");
-					return 1;
+					return 0;
 				}
 			}
 			if(esAerolinea(datos.nombre)){
 		
 				if( !insertarAL(listaAL,datos.nombre)){
 					printf("Error al insertar los datos de la aerolinea.\n");
-					return 1;
+					return 0;
 				}
 			}else{
 				free(datos.nombre);
@@ -293,7 +293,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 		
 	}
 		fclose(archM);
-		return 0;
+		return 1;
 
 }
 
