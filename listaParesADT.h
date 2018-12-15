@@ -1,6 +1,10 @@
 #ifndef LISTAPARESADT_H_
 #define LISTAPARESADT_H_
 
+/* El siguiente tipo define el TAD Lista.
+ * Se lo define como puntero a "cierta estructura"
+ * para ocultar la real representacion de la misma
+ */
 typedef struct listaParesCDT * listaParesADT;
 
 
@@ -9,7 +13,7 @@ typedef struct listaParesCDT * listaParesADT;
  * ----------------------------------------------------
  * Descripcion:             Inicializa la lista. No hay error posible.
  * ----------------------------------------------------
- *  Precondicion:           
+ *  Precondicion:           -
  *  Postcondicion:          Lista creada.
  */
 listaParesADT nuevaListaPares(void);
