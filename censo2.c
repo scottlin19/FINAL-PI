@@ -236,7 +236,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	char * oaciAux;
 	int d,m,a;
 	int cont;	
-	int esCabotaje ;
+	
 	
 	fgets(s,MAX_TEXTO,archM); //Salteo la primera línea del archívo de movimientos.
 	
