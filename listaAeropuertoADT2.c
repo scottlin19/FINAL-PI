@@ -60,18 +60,15 @@ int //Devuelve 1 si no coinciden provincias, 0 si coinciden provincias
 sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[])
 {
 	char * prov1 = obtenerProvincia(lista,origen);
-	free(origen);
 	if(prov1 != NULL){
 	
 		char * prov2 = obtenerProvincia(lista,destino);
-		free(destino);
+	
 		if((prov2 != NULL) && (strcmp(prov1,prov2) != 0)){
 			provincias[0] = prov1;
 			provincias[1] = prov2;
 			return 1;
 		}
-	}else{
-		free(destino);	
 	}
 	return 0;
 }
@@ -87,9 +84,9 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 			printf("Error: No hay lugar para otro nodo\n");
 		}else{
 			aux->cola = primero;
-		  aux->oaci = oaci;
-      aux->denom = denom;
-      aux->prov = prov;
+		  	aux->oaci = oaci;
+   	 		aux->denom = denom;
+     			aux->prov = prov;
 				
 			*ok = 1;
 		}
@@ -98,9 +95,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 		primero->cola = insertarAPRec(primero->cola,oaci,denom,prov,ok);
 	}else{
 		printf("Error: aeropuerto repetido en el archivo. \n");
-		free(oaci);
-		free(denom);
-		free(prov);
+		
 		
 	}
 	return primero;
@@ -262,11 +257,11 @@ void freeAP(listaAeropuertoADT listaAP){
 	tAeropuertoP actual = listaAP->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
-		printf(" libero aux = %s \n",actual->oaci);
+	//	printf(" libero aux = %s \n",actual->oaci);
 		free(actual->oaci);
-		printf(" libero aux = %s \n",actual->denom);
+	//	printf(" libero aux = %s \n",actual->denom);
 		free(actual->denom);
-		printf(" libero aux = %s \n",actual->prov);
+	//	printf(" libero aux = %s \n",actual->prov);
 		free(actual->prov);
 		free(actual);
 		actual = aux;
