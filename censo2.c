@@ -56,7 +56,7 @@ int main(int argc, char * argv[])
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		ok = 1;
 	}
-	else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
+	if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		ok = 1;
 	
@@ -301,8 +301,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			
 		}
 		
-		free(datos.origen);
-		free(datos.destino);
+		//free(datos.origen);
+		//free(datos.destino);
 		
 	}
 		fclose(archM);
