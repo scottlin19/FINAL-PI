@@ -138,6 +138,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 
 		if(primero == NULL){
 			printf("El aeropuerto no se encuentra \n");
+			printf("oaci: %s \n",oaci);
 			*agregado = 1;
 			return primero;
 		}else if(strcmp(primero->oaci,oaci) == 0){
