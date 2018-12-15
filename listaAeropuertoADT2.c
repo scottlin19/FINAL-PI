@@ -114,7 +114,7 @@ printLista(listaAeropuertoADT lista)
 	int i = 1;
 	printf("Lista aeropuertos \n");
 	for(tAeropuertoP aux = lista->primero; aux!= NULL;i++, aux = aux->cola){
-			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->datos.oaci,aux->datos.denom,aux->datos.prov,aux->mov_totales);
+			printf("%d : OACI: %s, DENOM: %s PROV: %s MOVS: %d\n",i,aux->oaci,aux->denom,aux->prov,aux->mov_totales);
 	}
 }
 
