@@ -24,7 +24,7 @@ int cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA);
 /* Funcion:  		cargarMovimientos
  * Uso:  		if( cargarMovimientos(listaAL,listaAP,listaPares,pathM) ...
  * -------------------------------------------------------------------
- * Descripción: 	
+ * Descripción: 	Abre el archívo que contiene la data de los movimientos.
  * -------------------------------------------------------------------
  * Precondicion:	Lista válida, previamente creada.	
  * Postcondicion: 	Lista cargada con la data de aeropuertos.
@@ -107,10 +107,12 @@ int main(int argc, char * argv[])
 
 }
 
+
+//Retorna el dia de la semana segun el dia, mes y año :0 es domingo, 1 es lunes, etc;
 static int
 diaDeLaSemana(int d, int m, int a)
 {
-	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; //Retorna el dia de la semana 0 es domingo, 1 es lunes, etc;
+	return   (d+=m<3?a--:a-2,23*m/9+d+4+a/4-a/100+a/400)%7  ; 
 }
 
 
@@ -229,7 +231,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);		
-			}else if(cont != 1 && cont != 8 && cont != 9){
+			}else{
 				switch(cont){
 						
 					case CLASE:		
@@ -246,17 +248,15 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					break;
 					case ORIGEN:	
 					
-            						strcpy(datos.origen,token);
+            					strcpy(datos.origen,token);
 							
 					
 					break;
 						
 					case DESTINO:
 						
-            						strcpy(datos.destino,token);
-							
-					
-             					
+            					strcpy(datos.destino,token);
+									
 					break;
 						
 					case NOMBRE:
