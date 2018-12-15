@@ -11,7 +11,10 @@ int cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,lista
 int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
 
 #define MAX_TEXTO 400
-
+#define MAX_CLASIF 15
+#define MAX_CLASE 40
+#define MAX_TIPO 12
+#define MAX_
 #define OACI 1
 #define DENOMINACION 4
 #define PROVINCIA 21
@@ -26,7 +29,7 @@ int cargarAeropuertos(listaAeropuertoADT lista, char * pathA);
 #define NOMBRE 7
 
 typedef struct tDatosAP{
-	char * oaci;
+  char * oaci;
   char * denom;
   char * prov;
 }tDatosAP;
@@ -35,9 +38,9 @@ typedef struct tDatosMov{
 	char * origen;
 	char  * destino;
 	char  * nombre;
-	char  * clase;
-	char  * clasificacion;
-	char * tipo;
+	char  clase[MAX_CLASE];
+	char   clasificacion[MAX_CLASIF];
+	char  tipo[MAX_TIPO];
 	
 	int dia;
 }tDatosMov;
@@ -107,12 +110,12 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 	char  s[MAX_TEXTO];
 	tDatosAP  datos;
 	char * aux;
-  	int i = 1;
+  	
 	fgets(s,MAX_TEXTO,archA); //Me salto la primera linea del archivo que contiene los nombres  de los campos.
 	
 	
 	while(fgets(s,MAX_TEXTO,archA )!= NULL){
-		printf("se colgo en cargar AP %d \n",i++);
+		
 			token = strtok(s,";");
 			cont = 0;
 			valido =1;
@@ -194,7 +197,7 @@ printf("se colgo en cargar MOV %d \n",i++);
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);		
-			}else if(cont != 1 && cont != 8 && cont != 9){ //Si es un campo que me interesa extraigo la data;
+			}else if(cont == ORIGEN || cont == DESTINO  || cont == NOMBRE){ //Si es un campo que me interesa extraigo la data;
 				
 				aux = malloc(strlen(token) +1);
 				strcpy(aux,token);
@@ -203,19 +206,6 @@ printf("se colgo en cargar MOV %d \n",i++);
 					return 1;
 				}
 				switch(cont){
-					case CLASE:	
-						datos.clase = aux;
-						
-					break;
-						
-					case CLASIFICACION:	
-            					datos.clasificacion = aux;
-						
-					break;
-						
-					case TIPO:	
-           					datos.tipo = aux;
-					break;
 						
 					case ORIGEN:		
             					datos.origen  = aux;
@@ -230,6 +220,21 @@ printf("se colgo en cargar MOV %d \n",i++);
 					break;
 				}
 				//cont++;
+			}else if(cont == CLASE || cont == CLASIFICACION || cont == TIPO){
+				switch(cont){
+						
+					case CLASE:		
+            					strcpy(datos.clase,token);
+					break;
+						
+					case CLASIFICACION:
+             					strcpy(datos.clasificacion,token);	
+					break;
+						
+					case TIPO:
+            					strcpy(datos.tipo,token);		
+					break;
+				}
 			}
 			cont++;
 			
