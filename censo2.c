@@ -222,9 +222,9 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	
 	//Variables donde guardo la informacion que necesito de los movimientos
 	int dia;
-	char  clase[MAX_CLASE];
-	char   clasificacion[MAX_CLASIF];
-	char  tipo[MAX_TIPO];
+	int  clase; // 0 = Regular, 1= No Regular, 2 = Vuelo Privado 
+	int   clasificacion; //0 = Cabotaje, 1 = Internacional , 2 = N/A
+	int  tipo; // 0 = Despegue , 1 = Aterrizaje
 	char  origen[MAX_OACI];
 	char   destino[MAX_OACI];
 	char  * nombre;
@@ -256,33 +256,50 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 				switch(cont){
 						
 					case CLASE:		
-            					strcpy(clase,token);
+						if(strcmp(token,"Regular") == 0){
+							clase = REGULAR;
+						}else if(strcmp(token,"No Regular") == 0){
+							clase = NO_REGULAR;
+						}else{
+							clase = VUELO_PRIVADO;
+						}
 					break;
 						
 					case CLASIFICACION:
-             					strcpy(clasificacion,token);	
+             					if(strcmp(token,"Cabotaje") == 0){
+							clasificacion = CABOTAJE;
+						}else if(strcmp(token,"Internacional") == 0){
+							clasificacion = INTERNACIONAL;
+						}else{
+							clasificacion = NA;
+						}		
 					break;
 						
 					case TIPO:
 						
-            					strcpy(tipo,token);		
+            					if(strcmp(token,"Despegue") == 0){
+							tipo = 0;
+						}else{
+							tipo = 1;
+						}		
 					break;
 					case ORIGEN:	
-					printf("ORIGEN = %s \n",token);
-            					strcpy(origen,token);
-							
+						if(!((clase == VUELO_PRIVADO) &&(tipo == ATERRIZAJE)) ){
+            						strcpy(origen,token);
+						}
 					
 					break;
 						
 					case DESTINO:
-						printf("destino = %s \n",token);
-            					strcpy(destino,token);
+						if(!( (clase == VUELO_PRIVADO) && (tipo == DESPEGUE) ){
+            						strcpy(destino,token);
+						}
 									
 					break;
 						
 					case NOMBRE:
-						if(strcmp(clasificacion,"Cabotaje") == 0){
-							esCabotaje = 1;
+						if(clasificacion == CABOTAJE){
+						
 							nombre = malloc(strlen(token) +1);
 							if(nombre == NULL){
 								printf("Error: no se pudo usar malloc. \n");
@@ -310,7 +327,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 			token =  strtok(NULL,";");
 		}
 		
-		if(strcmp(tipo,"Despegue") == 0){
+		if(tipo == DESPEGUE){
 			oaciAux = origen;
 		}else {
 			oaciAux =destino;
@@ -318,7 +335,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 		
 		if(agregarMovAP(listaAP,oaciAux,clase,clasificacion,dia)){
 			
-				if(esCabotaje && sonDistintasProv(listaAP,origen,destino,provincias)){
+				if((clasificacion == CABOTAJE) && sonDistintasProv(listaAP,origen,destino,provincias)){
 			
 					if(!insertarPares(listaPares,provincias)){
 						printf("Error al insertar en la lista de pares.\n.");
