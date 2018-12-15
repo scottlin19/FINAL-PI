@@ -36,7 +36,7 @@ listaAeropuertoADT nuevaListaAP(void);
 
 
 /* Funcion:  		insertarAP
- * Uso:  	        res = insertAP(listAP, oaci, denom, prov);
+ * Uso:  	        if( insertAP(listAP, oaci, denom, prov) ...
  * -------------------------------------------------------------------
  * Descripción: 	Inserta un elemento en la lista ordenada,
  *  			usando la función de comparación Compare.
@@ -52,26 +52,25 @@ int insertarAP( listaAeropuertoADT listaAP, char * oaci, char * denom, char * pr
 
 
 /* Funcion:  		agregarMovAP
- * Uso:  	       	res = agregarMovAP(listAP, oaci, clase, clasif,dia);
+ * Uso:  	       	if( agregarMovAP(listAP, oaci, clase, clasif,dia) ... 
  * -------------------------------------------------------------------
  * Descripción: 	Busca un aeropuerto con un OACI igual al que se
  			manda por parámetro. Si lo encuentra, le suma un 
 			movimiento segun la clase, clasificación y dia del movimiento.
 			Luego reordena si es necesario la lista de mayor a menor respecto
 			a cantidad de movimientos,y si las cantidades son iguales,
-			se los ordena alfabeticamente.
-			Si no lo encuentra envia un mensaje de error.	
-			Retorna ?
+			se los ordena alfabéticamente y retorna 1.
+			Si no lo encuentra retorna 0.
  * -------------------------------------------------------------------
  * Precondicion:	Lista que sea valida, previamente creada y cargada con los datos de aeropuertos.csv.
- * Postcondicion: 	Lista con 1 movimiento más y reordenada, si encontró el aeropuerto.
+ * Postcondicion: 	Lista con 1 movimiento más y reordenada, si encontró el aeropuerto, sino la lista no varía.
  */
 int agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia);
 
 
 
 /* Funcion:  		sonDistintasProv
- * Uso:  	       	res = sonDistintasProv(listAP, origen, destino, provincias);
+ * Uso:  	       	if( sonDistintasProv(listAP, origen, destino, provincias) ...
  * -------------------------------------------------------------------
  * Descripción: 	Busca en la lista de aeropuertos los OACI origen y destino y guarda sus provincias
  			en orden alfabético en el vector provincias.
@@ -95,45 +94,9 @@ int sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, cha
  */
 void freeAP(listaAeropuertoADT listaAP);
 
-/* Funcion: 		query1
- * Uso: 		query1(listaAP, &ok);
- * -------------------------------------------------------------------
- * Descripción: 	Crea o reemplaza si ya existe el archivo "movimientos_aeropuerto.csv", donde cada línea del archivo
- * 			contenga separados por ; el código OACI, la denominación 
- * 			y la cantidad de movimientos del aeropuerto (contabilizando únicamente despegues que 
- * 			tengan al aeropuerto como origen y aterrizajes que tengan al aeropuerto como destino).
- * 			El orden de impresión es descendente por movimientos y luego alfabéticamente por código OACI.
- * -------------------------------------------------------------------
- * Precondicion:	Lista de aeropuertos y archivos "aeropuertos.csv", "movimientos.csv", validos.
- * Postcondicion: 	Lista invariante y archivo creado o reemplazado.
- */
+
 void query1(listaAeropuertoADT listaAeropuerto, int *ok);
-
-/* Funcion: 		query2
- * Uso: 		query2(listaAP, &ok);
- * -------------------------------------------------------------------
- * Descripción: 	Crea o reemplaza si ya existe el archivo "dia_semana.csv", donde cada línea del archivo 
- * 			contenga separados por ‘;’ el día de la semana, la cantidad de movimientos de cabotaje 
- * 			para ese día, la cantidad de movimientos internacionales para ese día y la suma de ambos movimientos.
- * -------------------------------------------------------------------
- * Precondicion:	Lista de aeropuertos y archivos "aeropuertos.csv", "movimientos.csv", validos.
- * Postcondicion: 	Lista invariante y archivo creado o reemplazado.
- */
 void query2(listaAeropuertoADT listaAeropuerto, int *ok);
-
-/* Funcion: 		query3
- * Uso: 		query3(listaAP, &ok);
- * -------------------------------------------------------------------
- * Descripción: 	Crea o reemplaza si ya existe el archivo "composicion.csv", donde cada línea del archivo 
- * 			contenga separados por ‘;’ el total de movimientos por Clasificación de Vuelo 
- * 			(con las categorías Cabotaje e Internacional) y por Clase de Vuelo 
- * 			(con las categorías Regular, No Regular y Vuelo Privado).
- * 			La clase de vuelo “Vuelo Privado” contempla a las clases de vuelo 
- * 			“Vuelo Privado con Matrícula Nacional” y “Vuelo Privado con Matrícula Extranjera”.
- * -------------------------------------------------------------------
- * Precondicion:	Lista de aeropuertos y archivos "aeropuertos.csv", "movimientos.csv", validos.
- * Postcondicion: 	Lista invariante y archivo creado o reemplazado.
- */
 void query3(listaAeropuertoADT listaAP, int *ok);
 
 #endif
