@@ -79,7 +79,7 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 			printf("Error: No hay lugar para otro nodo\n");
 		}else{
 			aux->cola = primero;
-		  	aux->oaci = oaci;
+		  	strcpy(aux->oaci,oaci);
    	 		aux->denom = denom;
      			aux->prov = prov;
 				
@@ -127,8 +127,8 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	int claseIndex;
 
 		if(primero == NULL){
-			printf("El aeropuerto no se encuentra \n");
-			printf("oaci: %s \n",oaci);
+			printf("El aeropuerto( %s ) no se encuentra \n",oaci);
+			
 			*agregado = 1;
 			return primero;
 		}else if(strcmp(primero->oaci,oaci) == 0){
