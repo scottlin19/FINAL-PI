@@ -52,15 +52,15 @@ int main(int argc, char * argv[])
 	int ok = 0;
 	listaAeropuertoADT listaAP = nuevaListaAP();
 	//listaAerolineaADT listaAL = nuevaListaAL();
-	//listaParesADT listaPares = nuevaListaPares();
+	listaParesADT listaPares = nuevaListaPares();
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		return 1;
 	}
-	/*else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
+	else if (!cargarMovimientos(listaAL, listaAP,listaPares, argv[2])){
 		
 		return 1;
 	
-	}*/
+	}
 	/*else {		
 		query1(listaAP, &ok);
 		printf("se hizo la query 1, ok vale %d\n", ok);
@@ -79,7 +79,7 @@ int main(int argc, char * argv[])
 	}*/
 	freeAP(listaAP);
 	//freeAL(listaAL);
-	//freePares(listaPares);
+	freePares(listaPares);
 
 	
 	return ok;
@@ -168,6 +168,9 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			if(valido){ //Si es valido el aeropuerto tiene OACI
 					if(!insertarAP(lista,datos.oaci,datos.denom,datos.prov)){
 						printf("Error al cargar datos \n");
+						free(oaci);
+						free(denom);
+						free(prov);
 						return 0;
 					}
 
@@ -211,7 +214,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 				
 				aux = malloc(strlen(token) +1);
 				strcpy(aux,token);
-				//printf("aux = %s \n",aux);
+				printf("aux = %s \n",aux);
 				if(aux == NULL){
 					printf("Error: no se pudo usar malloc. \n");
 					return 0;
@@ -282,6 +285,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 		
 				if( !insertarAL(listaAL,datos.nombre)){
 					printf("Error al insertar los datos de la aerolinea.\n");
+					free(datos.nombre);
 					return 0;
 				}
 			}else{
@@ -290,6 +294,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			
 		}
 		
+		free(datos.origen);
+		free(datos.destino);
 		
 	}
 		fclose(archM);
