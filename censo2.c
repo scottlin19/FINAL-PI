@@ -310,7 +310,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 			token =  strtok(NULL,";");
 		}
 		
-		if(strcmp(datos.tipo,"Despegue") == 0){
+		if(strcmp(tipo,"Despegue") == 0){
 			oaciAux = origen;
 		}else {
 			oaciAux =destino;
