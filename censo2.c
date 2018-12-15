@@ -125,20 +125,19 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 				if(cont == OACI || cont == DENOMINACION || cont == PROVINCIA){
 					
 					aux = malloc(strlen(token) +1);
-					
-					strcpy(aux,token);
-					
-					
-					//printf("aux = %s \n",aux);
 					if(aux == NULL){
 						printf("Error: no se pudo usar malloc. \n");
 						return 1;
 					}
+					strcpy(aux,token);
+					
+					//printf("aux = %s \n",aux);
+					
 				
 					if(cont == OACI){
 						if(strcmp(token," ") == 0){
 							valido = 0;
-							free(aux);
+							//free(aux);
 
 						}else{		
           
