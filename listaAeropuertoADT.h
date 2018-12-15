@@ -94,9 +94,45 @@ int sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, cha
  */
 void freeAP(listaAeropuertoADT listaAP);
 
-
+/* Funcion: 		query1
+ * Uso: 		query1(listaAP, &ok);
+ * -------------------------------------------------------------------
+ * Descripción: 	Crea o reemplaza si ya existe el archivo "movimientos_aeropuerto.csv", donde cada línea del archivo
+ * 			contenga separados por ; el código OACI, la denominación 
+ * 			y la cantidad de movimientos del aeropuerto (contabilizando únicamente despegues que 
+ * 			tengan al aeropuerto como origen y aterrizajes que tengan al aeropuerto como destino).
+ * 			El orden de impresión es descendente por movimientos y luego alfabéticamente por código OACI.
+ * -------------------------------------------------------------------
+ * Precondicion:	Lista de aeropuertos y archivos "aeropuertos.csv", "movimientos.csv", validos.
+ * Postcondicion: 	Lista invariante y archivo creado o reemplazado.
+ */
 void query1(listaAeropuertoADT listaAeropuerto, int *ok);
+
+/* Funcion: 		query2
+ * Uso: 		query2(listaAP, &ok);
+ * -------------------------------------------------------------------
+ * Descripción: 	Crea o reemplaza si ya existe el archivo "dia_semana.csv", donde cada línea del archivo 
+ * 			contenga separados por ‘;’ el día de la semana, la cantidad de movimientos de cabotaje 
+ * 			para ese día, la cantidad de movimientos internacionales para ese día y la suma de ambos movimientos.
+ * -------------------------------------------------------------------
+ * Precondicion:	Lista de aeropuertos y archivos "aeropuertos.csv", "movimientos.csv", validos.
+ * Postcondicion: 	Lista invariante y archivo creado o reemplazado.
+ */
 void query2(listaAeropuertoADT listaAeropuerto, int *ok);
+
+/* Funcion: 		query3
+ * Uso: 		query3(listaAP, &ok);
+ * -------------------------------------------------------------------
+ * Descripción: 	Crea o reemplaza si ya existe el archivo "composicion.csv", donde cada línea del archivo 
+ * 			contenga separados por ‘;’ el total de movimientos por Clasificación de Vuelo 
+ * 			(con las categorías Cabotaje e Internacional) y por Clase de Vuelo 
+ * 			(con las categorías Regular, No Regular y Vuelo Privado).
+ * 			La clase de vuelo “Vuelo Privado” contempla a las clases de vuelo 
+ * 			“Vuelo Privado con Matrícula Nacional” y “Vuelo Privado con Matrícula Extranjera”.
+ * -------------------------------------------------------------------
+ * Precondicion:	Lista de aeropuertos y archivos "aeropuertos.csv", "movimientos.csv", validos.
+ * Postcondicion: 	Lista invariante y archivo creado o reemplazado.
+ */
 void query3(listaAeropuertoADT listaAP, int *ok);
 
 #endif
