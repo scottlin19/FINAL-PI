@@ -263,7 +263,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 		}else{
 			oaciAux = datos.destino;
 		}
-*7
+*/
 		/*if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			free(datos.origen);
