@@ -123,11 +123,11 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			
 			while((token != NULL) && valido){
 				if(cont == OACI || cont == DENOMINACION || cont == PROVINCIA){
-					if(valido){
+					
 					aux = malloc(strlen(token) +1);
 					
 					strcpy(aux,token);
-					}
+					
 					
 					//printf("aux = %s \n",aux);
 					if(aux == NULL){
@@ -151,6 +151,8 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 
 					}else if(valido && cont == PROVINCIA){	
           					datos.prov =	aux;
+					}else{
+						free(aux);
 					}	
 
 				
