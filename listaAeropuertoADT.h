@@ -8,6 +8,12 @@
 #ifndef LISTAPADT_H_
 #define LISTAPADT_H_
 
+
+#define OACI 1
+#define DENOMINACION 4
+#define PROVINCIA 21
+#define DIAS_SEMANA 7
+
 /* El siguiente tipo define el TAD Lista.
  * Se lo define como puntero a "cierta estructura"
  * para ocultar la real representacion de la misma
