@@ -210,8 +210,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			if(cont == 0){
 				sscanf(token,"%02d/%02d/%04d",&d,&m,&a);
 				datos.dia = diaDeLaSemana(d,m,a);		
-			}else if( cont == NOMBRE){ //Si es un campo que me interesa extraigo la data;
-				//cont == ORIGEN || cont == DESTINO  || 
+			}else if(cont == ORIGEN || cont == DESTINO  ){ //Si es un campo que me interesa extraigo la data;
+				//||  cont == NOMBRE
 				aux = malloc(strlen(token) +1);
 				strcpy(aux,token);
 				printf("aux = %s \n",aux);
@@ -219,9 +219,9 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					printf("Error: no se pudo usar malloc. \n");
 					return 0;
 				}
-				datos.nombre = aux;	
-				printf("asd 1");
-				/*switch(cont){
+					
+				
+				switch(cont){
 					
 					case ORIGEN:		
             					datos.origen  = aux;
@@ -230,12 +230,13 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					case DESTINO:
              					datos.destino = aux;	
 					break;
-						
+					/*	
 					case NOMBRE:
             					datos.nombre = aux;		
 					break;
+					*/
 				}
-			*/
+			
 				//cont++;
 			}else if(cont == CLASE || cont == CLASIFICACION || cont == TIPO){
 				switch(cont){
@@ -260,23 +261,23 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 		
 	
 		
-	/*	char * oaciAux;
+		char * oaciAux;
 		if(strcmp(datos.tipo,"Despegue") == 0){
 			oaciAux = datos.origen;
 		}else{
 			oaciAux = datos.destino;
 		}
-*/
-		/*if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
+
+		if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			free(datos.origen);
 			free(datos.destino);
 			free(datos.nombre);
 			return 0;
-		}*/
-		printf("asd 2");
+		}
+	
 		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
-		/*	char * provincias[2];
+			char * provincias[2];
 			
 			if(sonDistintasProv(listaAP,datos.origen,datos.destino,provincias)){
 			
@@ -287,8 +288,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 					free(datos.nombre);
 					return 0;
 				}
-			}*/
-			if(esAerolinea(datos.nombre)){
+			}
+			/*if(esAerolinea(datos.nombre)){
 		
 				if( !insertarAL(listaAL,datos.nombre)){
 					printf("Error al insertar los datos de la aerolinea.\n");
@@ -298,11 +299,11 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 			}else{
 				free(datos.nombre);
 			}
-			
+			*/
 		}
 		
-		//free(datos.origen);
-		//free(datos.destino);
+		free(datos.origen);
+		free(datos.destino);
 		
 	}
 		fclose(archM);
