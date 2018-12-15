@@ -29,6 +29,14 @@ int insertarAL( listaAerolineaADT lista, char * nombre);
 
 int esAerolinea(char * nombre);
 
+/* Funcion:                freeAL
+ * Uso:                    freeAL(listaAL);
+ * ---------------------------------------------
+ * Descripcion:            Destruye la lista, liberandorecursos alocados.
+ * ---------------------------------------------
+ * Precondicion:           Lista que sea valida. 
+ * Postcondicion:          -
+ */
 void freeAL(listaAerolineaADT listaAL);
 
 void query5(listaAerolineaADT listaAL, int *ok);
