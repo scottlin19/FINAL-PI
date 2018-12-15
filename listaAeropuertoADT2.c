@@ -98,7 +98,10 @@ insertarAPRec(tAeropuertoP primero,char * oaci, char * denom,char * prov, int * 
 		primero->cola = insertarAPRec(primero->cola,oaci,denom,prov,ok);
 	}else{
 		printf("Error: aeropuerto repetido en el archivo. \n");
-		*ok = 1;
+		free(oaci);
+		free(denom);
+		free(prov);
+		
 	}
 	return primero;
 	
@@ -134,7 +137,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,char * clase, char * clasif, in
 	int claseIndex;
 
 		if(primero == NULL){
-		
+			
 			return primero;
 		}else if(strcmp(primero->oaci,oaci) == 0){
 				
