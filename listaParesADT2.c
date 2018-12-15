@@ -98,7 +98,7 @@ void freePares(listaParesADT listaPares){
 void query4(listaParesADT lista, int *ok){
 	FILE * archivoDest = fopen("pares_provincias.csv", "w+t");
 	if (archivoDest == NULL){
-		printf("Error al crear/reemplazar archivo\n");
+		printf("Error al crear/reemplazar archivo \"pares_provincias.csv\"\n");
 		*ok = 1;
 	}
 	else {
