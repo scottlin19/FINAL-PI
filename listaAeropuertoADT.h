@@ -23,20 +23,12 @@
 typedef struct listaAeropuertoCDT * listaAeropuertoADT;
 
 //Carga Datos del archivo aeropuertos.csv , devuelve 1 si hubo un error y 0 si no.
-int insertarAP( listaAeropuertoADT lista, char * oaci, char * denom, char * prov);
 int sonDistintasProv(listaAeropuertoADT lista,char * origen, char * destino, char * provincias[]);
 int agregarMovAP(listaAeropuertoADT lista,char * oaci,char * clase, char * clasif, int dia);
 void query1(listaAeropuertoADT listaAeropuerto, int *ok);
 void query2(listaAeropuertoADT listaAeropuerto, int *ok);
 void query3(listaAeropuertoADT listaAP, int *ok);
 
-/* Función de comparación para ordenar las componentes del TAD.
- * De no servir este código el usuario debe cambiarlo por el
- * que desea. La convención a seguir es que debe devolver
- * número negativo si el primer parámetro debe aparecer antes
- * que el segundo en la lista, devolver número positivo
- * si debe aparecer después, o bien 0 si son elementos equivalentes
- */
 /*
 static int compare(listElementT elem1, listElementT elem2 )
 {
@@ -54,8 +46,8 @@ static int compare(listElementT elem1, listElementT elem2 )
 listaAeropuertoADT nuevaListaAP(void);
 
 
-/* Funcion:  		Insert
- * Uso:  	        res == 	Insert( list, 12.3);
+/* Funcion:  		insertarAP
+ * Uso:  	        res == 	insertAP(listAP, oaci, denom, prov);
  * -------------------------------------------------------------------
  * Descripción: 	Inserta un elemento en la lista ordenada,
  *  			usando la función de comparación Compare.
@@ -65,7 +57,7 @@ listaAeropuertoADT nuevaListaAP(void);
  * Precondicion:	Lista que sea valida, previamente creada
  * Postcondicion: 	Lista con el nuevo elemento,si no estaba repetido.
  */
-
+int insertarAP( listaAeropuertoADT listaAP, char * oaci, char * denom, char * prov);
 
 void freeAP(listaAeropuertoADT listaAP);
 
