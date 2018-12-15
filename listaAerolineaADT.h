@@ -24,8 +24,9 @@ listaAerolineaADT nuevaListaAL(void);
  * Uso:                     insertarAL(listaAL, "Aerolineas Argentinas");
  * ----------------------------------------------------
  * Descripcion:             Inserta un nuevo nodo con el nombre de la aerolínea, y le suma 1 movimiento.
- * 			    Si la aerolínea ya existia, le suma un movimiento.
- * 			    Retorna 1 si lo pudo insertar y 0 en caso contrario.
+ * 			                    Si la aerolínea ya existia, le suma un movimiento.
+                            En ambos casos reordena la lista segun cantidad de movimientos.
+ * 			                    Retorna 1 si lo pudo insertar y 0 en caso contrario.
  * ----------------------------------------------------
  *  Precondicion:           Lista que sea válida, previamente creada.
  *  Postcondicion:          Lista con un nuevo nodo si no existía dicha aerolinea ya en ella.
