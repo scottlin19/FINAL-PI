@@ -119,7 +119,7 @@ void freeAL(listaAerolineaADT listaAL){
 void query5(listaAerolineaADT listaAL, int *ok){
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
-		printf("Error al crear/reemplazar archivo\n");
+		printf("Error al crear/reemplazar archivo \"porcentaje_cabotaje.csv\"\n");
 		*ok = 1;
 	}
 	else {
