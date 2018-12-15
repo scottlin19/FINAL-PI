@@ -64,6 +64,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	}else if(strcmp(primero->nombre,nombre) == 0){
 		
 		(primero->cant_mov_cabotaje)++;
+		printf(" libero aux = %s \n",nombre);
 		free(nombre);
 		*ok = 1;
 		
