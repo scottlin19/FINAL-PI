@@ -256,6 +256,8 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 
 		if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
+			free(datos.origen);
+			free(datos.destino);
 			return 1;
 		}
 		if(strcmp(datos.clasificacion,"Cabotaje") == 0){// Es cabotaje;
