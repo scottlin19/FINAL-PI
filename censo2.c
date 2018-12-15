@@ -75,8 +75,9 @@ int main(int argc, char * argv[])
 	query5(listaAL,&ok);
 	printf("se hizo la query 5, ok vale %d\n", ok);
 	freeAP(listaAP);
-	freePares(listaPares);
 	freeAL(listaAL);
+	freePares(listaPares);
+
 	
 	return ok;
 	
