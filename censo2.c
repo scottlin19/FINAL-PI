@@ -225,17 +225,17 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
             					strcpy(datos.tipo,token);		
 					break;
 					case ORIGEN:	
-						if(strcmp(datos.tipo,"Despegue") == 0){
+					
             						strcpy(datos.origen,token);
-							oaciAux =datos.origen;
-						}
+							
+					
 					break;
 						
 					case DESTINO:
-						if(strcmp(datos.tipo,"Aterrizaje") == 0){
+						
             						strcpy(datos.destino,token);
-							oaciAux =datos.destino;
-						}
+							
+					
              					
 					break;
 						
@@ -258,7 +258,12 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 			token =  strtok(NULL,";");
 		}
 		
-	
+		if(strcmp(datos.tipo,"Despegue") == 0){
+			oaciAux = datos.origen;
+		}else {
+			oaciAux =datos.destino;
+		}
+		
 		if(!agregarMovAP(listaAP,oaciAux,datos.clase,datos.clasificacion,datos.dia)){
 			printf("Error al sumarle un movimiento al aeropuerto.\n");
 			free(datos.nombre);
