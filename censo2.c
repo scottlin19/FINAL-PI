@@ -191,7 +191,7 @@ FILE * archM = fopen(pathM,"rt"); //Abro archivo movimientos.csv
 	tDatosMov  datos; 
 	char * aux;
 	
-	int i = 1;
+	
 	while(fgets(s,MAX_TEXTO,archM) != NULL){
 
 		token = strtok(s,";");	
