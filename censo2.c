@@ -51,7 +51,7 @@ int main(int argc, char * argv[])
 {
 	int ok = 0;
 	listaAeropuertoADT listaAP = nuevaListaAP();
-	//listaAerolineaADT listaAL = nuevaListaAL();
+	listaAerolineaADT listaAL = nuevaListaAL();
 	listaParesADT listaPares = nuevaListaPares();
 	if (!cargarAeropuertos(listaAP, argv[1])){
 		return 1;
@@ -78,7 +78,7 @@ int main(int argc, char * argv[])
 		printf("se hizo la query 5, ok vale %d\n", ok);
 	}*/
 	freeAP(listaAP);
-	//freeAL(listaAL);
+	freeAL(listaAL);
 	freePares(listaPares);
 
 	
@@ -168,9 +168,9 @@ cargarAeropuertos(listaAeropuertoADT lista, char * pathA)
 			if(valido){ //Si es valido el aeropuerto tiene OACI
 					if(!insertarAP(lista,datos.oaci,datos.denom,datos.prov)){
 						printf("Error al cargar datos \n");
-						free(oaci);
-						free(denom);
-						free(prov);
+						free(datos.oaci);
+						free(datos.denom);
+						free(datos.prov);
 						return 0;
 					}
 
