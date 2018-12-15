@@ -81,19 +81,19 @@ int main(int argc, char * argv[])
 	}
 	if(!ok){	
 		query1(listaAP, &ok);
-		printf("se hizo la query 1, ok vale %d\n", ok);
+		
 	
 		query2(listaAP, &ok);
-		printf("se hizo la query 2, ok vale %d\n", ok);
+	
 		
 		query3(listaAP, &ok);
-		printf("se hizo la query 3, ok vale %d\n", ok);
+		
 	
 		query4(listaPares, &ok);	
-		printf("se hizo la query 4, ok vale %d\n", ok);
+
 	
 		query5(listaAL,&ok);
-		printf("se hizo la query 5, ok vale %d\n", ok);
+		
 	}
 	freeAP(listaAP);
 	freeAL(listaAL);
