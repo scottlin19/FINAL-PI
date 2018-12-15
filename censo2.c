@@ -283,7 +283,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					case NOMBRE:
 						if(strcmp(clasificacion,"Cabotaje") == 0){
 							esCabotaje = 1;
-							datos.nombre = malloc(strlen(token) +1);
+							nombre = malloc(strlen(token) +1);
 							if(nombre == NULL){
 								printf("Error: no se pudo usar malloc. \n");
 								return 0;
