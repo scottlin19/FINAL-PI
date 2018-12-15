@@ -225,14 +225,14 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
             					strcpy(datos.tipo,token);		
 					break;
 					case ORIGEN:	
-						if(strcmp(datos.origen,"Despegue") == 0){
+						if(strcmp(datos.tipo,"Despegue") == 0){
             						strcpy(datos.origen,token);
 							oaciAux =datos.origen;
 						}
 					break;
 						
 					case DESTINO:
-						if(strcmp(datos.origen,"Aterrizaje") == 0){
+						if(strcmp(datos.tipo,"Aterrizaje") == 0){
             						strcpy(datos.destino,token);
 							oaciAux =datos.destino;
 						}
