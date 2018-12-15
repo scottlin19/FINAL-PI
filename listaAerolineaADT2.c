@@ -64,7 +64,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	}else if(strcmp(primero->nombre,nombre) == 0){
 		
 		(primero->cant_mov_cabotaje)++;
-		printf(" libero aux = %s \n",nombre);
+		//printf(" libero aux = %s \n",nombre);
 		free(nombre);
 		*ok = 1;
 		
@@ -111,7 +111,7 @@ void freeAL(listaAerolineaADT listaAL){
 	tAerolineaP actual = listaAL->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
-		printf(" libero aux = %s \n",actual->nombre);
+		//printf(" libero aux = %s \n",actual->nombre);
 		free(actual->nombre);
 		free(actual);
 		actual = aux;
