@@ -115,7 +115,7 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		float porcentaje;
 		while (aux != NULL){
 		
-			porcentaje = ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
+			porcentaje = ((float)(aux->cant_mov_cabotaje) / listaAL->cabotaje_total) * 100;
 			
 			if (porcentaje > 0){
 				fprintf(archivoDest, "%s;%f%%\n", aux->nombre, porcentaje);
