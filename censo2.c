@@ -234,9 +234,10 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	char * provincias[2];
 	char * token;		
 	char * oaciAux;
-	int d,m,a;
-	int cont;	
-	int sirvePar;
+	int d,m,a; 
+	int cont;// Guarda el numero de campo dentro de cada oracion de movimiento
+	
+	int sirvePar;// Si es 1 entonces significa que voy a encontrar las provincias del origen y destino en la listaAP
 	
 	fgets(s,MAX_TEXTO,archM); //Salteo la primera línea del archívo de movimientos.
 	
@@ -284,7 +285,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 						}		
 					break;
 					case ORIGEN:	
-						if(strlen(token) == OACI_DIM ){
+						if(strlen(token) == OACI_DIM ){ // Si es un OACI valido que estará en la listaAP, lo copio
             						strcpy(origen,token);
 						}else{
 							sirvePar = 0;
@@ -294,7 +295,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 						
 					case DESTINO:
 						
-						if(strlen(token) == OACI_DIM){
+						if(strlen(token) == OACI_DIM){ // Si es un OACI valido que estará en la listaAP, lo copio
             						strcpy(destino,token);
 						}else{
 							sirvePar = 0;
