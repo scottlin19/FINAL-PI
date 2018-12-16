@@ -225,8 +225,8 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	int  clase; // 0 = Regular, 1= No Regular, 2 = Vuelo Privado 
 	int   clasificacion; //0 = Cabotaje, 1 = Internacional , 2 = N/A
 	int  tipo; // 0 = Despegue , 1 = Aterrizaje
-	char * origeno;
-	char  * destino;
+	char origeno[MAX_OACI];
+	char   destino[MAX_OACI];
 	char  * nombre;
 	
 	//Variables auxiliares
