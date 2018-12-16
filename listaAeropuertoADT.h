@@ -12,8 +12,8 @@
 #define OACI 1   //Número del campo donde se encuentra el OACI en el aeropuertos.csv
 #define DENOMINACION 4 //Número del campo donde se encuentra la denominación en el aeropuertos.csv
 #define PROVINCIA 21 //Número del campo donde se encuentra la provincia en el aeropuertos.csv
-#define MAX_OACI 5 //Cantidad de letras de un OACI + el '\0'
-
+#define MAX_OACI 5 //Tamaño de una string que contenga un OACI
+#define OACI_DIM 4 //Cantidad de caracteres de un OACI
 #define REGULAR 0
 #define NO_REGULAR 1
 #define VUELO_PRIVADO 2
