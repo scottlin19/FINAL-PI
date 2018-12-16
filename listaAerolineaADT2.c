@@ -8,7 +8,7 @@
 
 struct tAerolinea {
 	char * nombre;
-	float cant_mov_cabotaje;
+	int cant_mov_cabotaje;
 
 	struct tAerolinea * cola;
 };
@@ -20,7 +20,7 @@ struct listaAerolineaCDT{
 	
 	tAerolineaP primero;
 	tAerolineaP proximo;
-	float cabotaje_total;
+	int cabotaje_total;
 
 };
 
@@ -95,7 +95,6 @@ void freeAL(listaAerolineaADT listaAL){
 	tAerolineaP actual = listaAL->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
-		//printf(" libero aux = %s \n",actual->nombre);
 		free(actual->nombre);
 		free(actual);
 		actual = aux;
