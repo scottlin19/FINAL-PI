@@ -284,7 +284,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 						}		
 					break;
 					case ORIGEN:	
-						if(strlen(token) != OACI_DIM ){
+						if(strlen(token) == OACI_DIM ){
             						strcpy(origen,token);
 						}else{
 							sirvePar = 0;
@@ -293,8 +293,8 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					break;
 						
 					case DESTINO:
-						printf("destino = %s \n",token);
-						if(strlen(token) != OACI_DIM){
+						
+						if(strlen(token) == OACI_DIM){
             						strcpy(destino,token);
 						}else{
 							sirvePar = 0;
