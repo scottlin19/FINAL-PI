@@ -22,6 +22,9 @@
 #define INTERNACIONAL 1
 #define NA 2
 
+#define DESPEGUE 0
+#define ATERRIZAJE 1
+
 
 /* El siguiente tipo define el TAD Lista.
  * Se lo define como puntero a "cierta estructura"
