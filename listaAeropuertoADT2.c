@@ -13,7 +13,6 @@
 typedef struct tMov{
 	int cant_cabotaje;
 	int cant_internacional;
-	int cant_NA;
 }tMov;
 
 
@@ -127,11 +126,9 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,int clase, int clasif, int dia,
 				
 				(primero->cant_mov[dia][clase].cant_internacional)++;
 				
-			}else{
-				(primero->cant_mov[dia][clase].cant_NA)++;
 			}
-			
 			(primero->mov_totales)++;
+			
 			*agregado = 1;
 			
 			return primero;
@@ -160,7 +157,7 @@ agregarMovAPrec(tAeropuertoP primero,char * oaci,int clase, int clasif, int dia,
 	return primero;
 }
 int
-agregarMovAP(listaAeropuertoADT lista,int* oaci,int clase, int clasif, int dia)
+agregarMovAP(listaAeropuertoADT lista,char * oaci,int clase, int clasif, int dia)
 {
 	int agregado = 0;
 
