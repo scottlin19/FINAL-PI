@@ -8,7 +8,7 @@
 
 struct tAerolinea {
 	char * nombre;
-	float cant_mov_cabotaje;
+	int cant_mov_cabotaje;
 
 	struct tAerolinea * cola;
 };
@@ -20,7 +20,7 @@ struct listaAerolineaCDT{
 	
 	tAerolineaP primero;
 	tAerolineaP proximo;
-	float cabotaje_total;
+	int cabotaje_total;
 
 };
 
@@ -115,7 +115,7 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		float porcentaje;
 		while (aux != NULL){
 			
-			porcentaje = (aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
+			porcentaje = ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
 		
 				fprintf(archivoDest, "%s;%d%%\n", aux->nombre, porcentaje);
 			}
