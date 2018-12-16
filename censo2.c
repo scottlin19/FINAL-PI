@@ -225,8 +225,8 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	int  clase; // 0 = Regular, 1= No Regular, 2 = Vuelo Privado 
 	int   clasificacion; //0 = Cabotaje, 1 = Internacional , 2 = N/A
 	int  tipo; // 0 = Despegue , 1 = Aterrizaje
-	char  origen[MAX_OACI];
-	char   destino[MAX_OACI];
+	char * origeno;
+	char  * destino;
 	char  * nombre;
 	
 	//Variables auxiliares
@@ -284,7 +284,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 						}		
 					break;
 					case ORIGEN:	
-						if(strlen(token) < MAX_OACI ){
+						if(strlen(token) != OACI_DIM ){
             						strcpy(origen,token);
 						}else{
 							sirvePar = 0;
@@ -293,7 +293,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					break;
 						
 					case DESTINO:
-						if(strlen(token) < MAX_OACI){
+						if(strlen(token) != OACI_DIM){
             						strcpy(destino,token);
 						}else{
 							sirvePar = 0;
