@@ -94,7 +94,9 @@ void query4(listaParesADT lista, int *ok){
 		nodoP aux = lista->primero;
 		fprintf(archivoDest, "Provincia A;Provincia B;Movimientos\n");
 		while (aux != NULL){
-			fprintf(archivoDest, "%s;%s;%d\n", aux->provincias[0], aux->provincias[1], aux->mov_compartidos);
+			if (aux->mov_compartidos >= 1000){
+				fprintf(archivoDest, "%s;%s;%d\n", aux->provincias[0], aux->provincias[1], aux->mov_compartidos);
+			}
 			aux = aux->cola;
 		}
 		fclose(archivoDest);
