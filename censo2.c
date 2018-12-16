@@ -100,7 +100,6 @@ int main(int argc, char * argv[])
 	freeAL(listaAL);
 	freePares(listaPares);
 
-	printf("corrio bien vieja ok  vale %d \n",ok);
 	return ok;
 	
 
@@ -155,7 +154,6 @@ cargarAeropuertos(listaAeropuertoADT listaAP, char * pathA)
 				if(cont == OACI || cont == DENOMINACION || cont == PROVINCIA){
 					
 					
-					//printf("aux = %s \n",aux);
 					
 					if(cont == OACI){
 						if(strcmp(token," ") == 0){
