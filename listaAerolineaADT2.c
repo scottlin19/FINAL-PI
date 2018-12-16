@@ -48,7 +48,7 @@ static tAerolineaP insertarALRec(tAerolineaP primero, char * nombre, int * ok) {
 	}else if(strcmp(primero->nombre,nombre) == 0){
 		
 		(primero->cant_mov_cabotaje)++;
-		//printf(" libero aux = %s \n",nombre);
+		
 		free(nombre);
 		*ok = 1;
 		
@@ -72,7 +72,7 @@ insertarAL( listaAerolineaADT lista, char * nombre)
 	if(ok){
 		(lista->cabotaje_total)++;
 	}
-	//printListaAL(lista);
+	
 	return ok;
 }
 
@@ -104,6 +104,7 @@ void freeAL(listaAerolineaADT listaAL){
 }
 
 void query5(listaAerolineaADT listaAL, int *ok){
+	printf("cabotaje total = %d \n",listaAL->cabotaje_total);
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
 		printf("Error al crear/reemplazar archivo \"porcentaje_cabotaje.csv\"\n");
