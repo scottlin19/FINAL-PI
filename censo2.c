@@ -236,7 +236,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 	char * oaciAux;
 	int d,m,a;
 	int cont;	
-	
+	int sirvePar;
 	
 	fgets(s,MAX_TEXTO,archM); //Salteo la primera línea del archívo de movimientos.
 	
@@ -246,7 +246,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 
 		token = strtok(s,";");	//Divido cada oracion de movimientos en strings, usando como delimitador el ;
 		cont = 0;
-		esCabotaje = 0;
+		sirvePar = 1;
 		
 		while(token != NULL){ //Mientras haya campos que leer, que los lea.
 			if(cont == 0){
@@ -284,15 +284,19 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 						}		
 					break;
 					case ORIGEN:	
-						if(!((clase == VUELO_PRIVADO) &&(tipo == ATERRIZAJE)) ){
+						if(strlen(token) < MAX_OACI) ){
             						strcpy(origen,token);
+						}else{
+							sirvePar = 0;
 						}
 					
 					break;
 						
 					case DESTINO:
-						if(!( (clase == VUELO_PRIVADO) && (tipo == DESPEGUE) ){
+						if(strlen(token) < MAX_OACI){
             						strcpy(destino,token);
+						}else{
+							sirvePar = 0;
 						}
 									
 					break;
@@ -335,12 +339,13 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 		
 		if(agregarMovAP(listaAP,oaciAux,clase,clasificacion,dia)){
 			
-				if((clasificacion == CABOTAJE) && sonDistintasProv(listaAP,origen,destino,provincias)){
-			
-					if(!insertarPares(listaPares,provincias)){
-						printf("Error al insertar en la lista de pares.\n.");
-						free(nombre);
-						return 0;
+				if((clasificacion == CABOTAJE) && (sirvePar)){
+					if(sonDistintasProv(listaAP,origen,destino,provincias)){
+						if(!insertarPares(listaPares,provincias)){
+							printf("Error al insertar en la lista de pares.\n.");
+							free(nombre);
+							return 0;
+						}
 					}
 				}
 		}
