@@ -104,7 +104,7 @@ void freeAL(listaAerolineaADT listaAL){
 }
 
 void query5(listaAerolineaADT listaAL, int *ok){
-	printf("cabotaje total = %d \n",listaAL->cabotaje_total);
+	
 	FILE * archivoDest = fopen("porcentaje_cabotaje.csv", "w+t");
 	if (archivoDest == NULL){
 		printf("Error al crear/reemplazar archivo \"porcentaje_cabotaje.csv\"\n");
@@ -116,7 +116,7 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		int porcentaje;
 		while (aux != NULL){
 			porcentaje = (aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
-			printf("%s : %d \n",aux->nombre,aux->cant_mov_cabotaje);
+
 			if (porcentaje > 0){
 				fprintf(archivoDest, "%s;%d%%\n", aux->nombre, porcentaje);
 			}
