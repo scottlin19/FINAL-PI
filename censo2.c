@@ -293,6 +293,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 					break;
 						
 					case DESTINO:
+						printf("destino = %s \n",token);
 						if(strlen(token) != OACI_DIM){
             						strcpy(destino,token);
 						}else{
