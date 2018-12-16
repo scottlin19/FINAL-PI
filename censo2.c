@@ -284,7 +284,7 @@ cargarMovimientos(listaAerolineaADT listaAL,listaAeropuertoADT listaAP,listaPare
 						}		
 					break;
 					case ORIGEN:	
-						if(strlen(token) < MAX_OACI) ){
+						if(strlen(token) < MAX_OACI ){
             						strcpy(origen,token);
 						}else{
 							sirvePar = 0;
