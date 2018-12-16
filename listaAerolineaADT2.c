@@ -95,7 +95,6 @@ void freeAL(listaAerolineaADT listaAL){
 	tAerolineaP actual = listaAL->primero, aux;
 	while (actual != NULL){
 		aux = actual->cola;
-		//printf(" libero aux = %s \n",actual->nombre);
 		free(actual->nombre);
 		free(actual);
 		actual = aux;
@@ -115,10 +114,9 @@ void query5(listaAerolineaADT listaAL, int *ok){
 		tAerolineaP aux = listaAL->primero;
 		float porcentaje;
 		while (aux != NULL){
-			printf("originalmente vale %g\n", ((float)aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100);
+			
 			porcentaje = (aux->cant_mov_cabotaje / listaAL->cabotaje_total) * 100;
-			printf("despues vale %d\n", porcentaje);
-			if (porcentaje > 0){
+		
 				fprintf(archivoDest, "%s;%d%%\n", aux->nombre, porcentaje);
 			}
 			aux = aux->cola;
