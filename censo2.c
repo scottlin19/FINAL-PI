@@ -100,7 +100,7 @@ int main(int argc, char * argv[])
 	freeAL(listaAL);
 	freePares(listaPares);
 
-	
+	printf("corrio bien vieja ok  vale %d \n",ok);
 	return ok;
 	
 
